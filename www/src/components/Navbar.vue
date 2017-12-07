@@ -7,13 +7,12 @@
             <div class="row">
                 <nav class="navbar navbar-default navbar-fixed-top myNavbar">
                     <!-- WEBSITE NAME -->
-                    <div class="navbar-text col-xs-12" style="font-family: ">
+                    <div class="navbar-text col-xs-12" style="font-family: 'Slabo 27px', serif">
 
 
                         <div id="content">
                             <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn pull-left" data-toggle="collapse" data-target="#sidebar">
-                                <i class="glyphicon glyphicon-align-left-th"></i>
-                                Toggle Sidebar
+                                <img src="https://www.tellusaboutus.com/comments/images/BK-WebComment/BB_WHOPPER-v1.png" alt="burger" style="max-height:50px;width:auto">
                             </button>
                         </div>
 
@@ -62,5 +61,8 @@
         align-content: center;
     }
 
-
+    .navbar-btn {
+        background: black;
+        border: 0px;
+    }
 </style>

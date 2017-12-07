@@ -159,11 +159,6 @@
         animation: 1s 0s 0.5 fadeIn;
     }
 
-    .fadeOut{
-        animated-name: fadeOut;
-        animation: 1s 0s 0.5 fadeOut;
-    }
-
     #sidebar .sidebar-header {
         padding: 20px;
         background: rgb(0, 1, 2);
