@@ -1,13 +1,7 @@
 <template>
   <div id="app">
-<<<<<<< HEAD
-    <home></home>
-    <!-- <login></login> -->
-    <router-view/>
-=======
     <img src="./assets/logo.png">
     <router-view></router-view>
->>>>>>> 949759511a20dfbf34bbde5d81b5b097a0b7daae
   </div>
 </template>
 

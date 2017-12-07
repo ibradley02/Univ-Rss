@@ -44,7 +44,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i class="glyphicon glyphicon-rugby"></i> Sports</a>
+                        <i class="glyphicon glyphicon-soccer-ball-o"></i> Sports</a>
                 </li>
                 <li>
                     <a href="#">
