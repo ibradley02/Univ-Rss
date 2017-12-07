@@ -19,8 +19,6 @@
                             </div>
                         </div>
                     </div>
-
-
                     <!-- FORMS -->
                     <!-- <login></login> -->
 
@@ -36,8 +34,6 @@
             <!-- End of Container -->
         </div>
     </div>
-
-
 </template>
 
 
