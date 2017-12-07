@@ -47,4 +47,7 @@
   a {
     color: #42b983;
   }
+  .home{
+    margin-top: 20vh;
+  }
 </style>
