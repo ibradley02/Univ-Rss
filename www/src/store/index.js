@@ -41,7 +41,8 @@ var store = new vuex.Store({
           console.log('Response to login: ', res)
           if(!res.data.error) {
             commit('setUser', res.data.data)
-            router.push({ path: '/'})
+            router.push({ name: 'home'})
+            debugger
           } else {
             commit('handleError', res.data)
           }
@@ -65,9 +66,10 @@ var store = new vuex.Store({
       auth('authenticate')
         .then(res => {
           commit('setUser', res.data.data)
+          router.push({ name: 'Home'})
         })
         .catch(err => {
-          commit('handleError', err)
+          router.push({ name: 'Login'})
         })
     },
 

@@ -1,9 +1,7 @@
 <template>
   <div id="app">
-    <!-- <home></home> -->
     <img src="./assets/logo.png">
-    <login></login>
-    <!-- <router-view/> -->
+    <router-view></router-view>
   </div>
 </template>
 
@@ -13,6 +11,9 @@ export default {
   name: 'app',
   components: {
     Login
+  },
+  mounted (){
+    this.$store.dispatch('authenticate')
   }
 }
 </script>
