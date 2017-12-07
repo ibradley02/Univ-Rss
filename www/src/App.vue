@@ -2,12 +2,10 @@
   <div id="app">
     <home></home>
     <img src="./assets/logo.png">
-    <home></home>
   </div>
 </template>
 
 <script>
-<<<<<<< HEAD
 import Home from './components/Home'
 export default {
   name: 'app',
@@ -15,15 +13,6 @@ export default {
     Home
   }
 }
-=======
-  import Home from './components/Home'
-  export default {
-    name: 'app',
-    components: {
-      Home
-    },
-  }
->>>>>>> 5b81b5f6c4abac745fccda918de72b9a1d7849ec
 </script>
 
 <style>
