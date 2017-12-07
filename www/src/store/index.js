@@ -23,7 +23,8 @@ var store = new vuex.Store({
     boards: [],
     activeBoard: {},
     error: {},
-    user: {}
+    user: {},
+    weather: {}
   },
   mutations: {
     handleError(state, err) {
@@ -31,10 +32,14 @@ var store = new vuex.Store({
     },
     setUser(state, user) {
       state.user = user
+    },
+    setWeather(state, data){
+      state.weather = data
     }
   },
   actions: {
     //when writing your auth routes (login, logout, register) be sure to use auth instead of api for the posts
+    //USER LOGIN/REGISTER/LOGOUT
     login({ commit, dispatch }, user) {
       auth.post('login', user)
         .then(res => {
@@ -81,11 +86,13 @@ var store = new vuex.Store({
         })
 
     },
-
-    //Error
-
-    handleError({ commit, dispatch }, err) {
-      commit('handleError', err)
+    //GET API DATA
+    getWeather({ commit, dispatch }){
+      api('/weather')
+        .then(res => {
+          commit('setWeather', res.data)
+        })
+        .catch(commit('handleError', Error))
     }
   }
 
