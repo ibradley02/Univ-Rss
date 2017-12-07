@@ -79,6 +79,7 @@
     .userImage {
         border-radius: 50%;
         max-height: 12rem;
+        max-width: 12rem;
     }
 
     .sideNavbar {
