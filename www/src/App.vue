@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <b>Uni</b><img src="./assets/logo.png"> <b>RSS</b>
+    <img src="./assets/logo.png">
     <router-view></router-view>
   </div>
 </template>

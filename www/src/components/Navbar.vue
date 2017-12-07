@@ -31,8 +31,6 @@
             <!-- End of Container -->
         </div>
     </div>
-
-
 </template>
 
 

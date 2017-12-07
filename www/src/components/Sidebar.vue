@@ -36,41 +36,41 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-fw fa-home"></i> Home</a>
+                        <i class="glyphicon glyphicon-home"></i> Home</a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-fw fa-folder"></i> Page one</a>
+                        <i class="glyphicon glyphicon-globe"></i> News</a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-fw fa-file-o"></i> Second page</a>
+                        <i class="glyphicon glyphicon-rugby"></i> Sports</a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-fw fa-cog"></i> Third page</a>
+                        <i class="glyphicon glyphicon-expand"></i> Videos</a>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="glyphicon glyphicon-glyphicon-plus"></i> Dropdown
+                        <i class="glyphicon glyphicon-glyphicon-plus"></i> News
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
-                        <li class="dropdown-header">Dropdown heading</li>
+                        <li class="dropdown-header">News</li>
                         <li>
-                            <a href="#">Action</a>
+                            <a href="#">CNN</a>
                         </li>
                         <li>
-                            <a href="#">Another action</a>
+                            <a href="#">New York Times</a>
                         </li>
                         <li>
-                            <a href="#">Something else here</a>
+                            <a href="#">Vice News</a>
                         </li>
                         <li>
-                            <a href="#">Separated link</a>
+                            <a href="#">Daily Motion</a>
                         </li>
                         <li>
-                            <a href="#">One more separated link</a>
+                            <a href="#">Fake News</a>
                         </li>
                     </ul>
                 </li>
@@ -106,7 +106,7 @@
 
 
 
-<style>
+<style scoped>
     .sideNavbar {
         background-color: #f32020;
     }
