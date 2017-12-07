@@ -1,16 +1,17 @@
 <template>
   <div id="app">
-    <home></home>
+    <!-- <home></home> -->
     <img src="./assets/logo.png">
+    <login></login>
   </div>
 </template>
 
 <script>
-import Home from './components/Home'
+import Login from './components/Login'
 export default {
   name: 'app',
   components: {
-    Home
+    Login
   }
 }
 </script>
