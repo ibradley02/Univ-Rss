@@ -8,19 +8,19 @@
                 <nav class="navbar navbar-default navbar-fixed-top myNavbar">
                     <!-- WEBSITE NAME -->
                     <div class="navbar-text col-xs-12" style="font-family: 'Rock Salt', cursive">
-                        <div class="row">
-                            <div class="col-xs-1">
-                                <button type="button" class="sidebar-button glyphicon glyphicon-th pull-left" data-toggle="offcanvas"></button>
-                            </div>
-                            <div>
-                                <button type="button" class="btn btn-danger pull-right" @click="logout">Logout</button>
-                            </div>
-                            <div class="col-xs-10">
-                                <router-link class="text-center" :to="'/'">
-                                    <h3>Univ-rss</h3>
-                                </router-link>
-                            </div>
+
+
+                        <div id="content">
+                            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn pull-left" data-toggle="collapse" data-target="#sidebar">
+                                <i class="glyphicon glyphicon-align-left-th"></i>
+                                Toggle Sidebar
+                            </button>
                         </div>
+
+                        <div>
+                            <button type="button" class="btn btn-danger pull-right" @click="logout">Logout</button>
+                        </div>
+                        <h1 class="univ-rss">Univ-rss</h1>
                     </div>
                 </nav>
             </div>
@@ -38,7 +38,7 @@
     export default {
         name: 'navbar',
         methods: {
-            logout(){
+            logout() {
                 this.$store.dispatch('logout')
             }
         },
@@ -55,9 +55,11 @@
         background-color: #95ccf6
     }
 
-    .sidebar-button{
+    .sidebar-button {
         display: flex;
         justify-content: center;
         align-content: center;
     }
+
+
 </style>
