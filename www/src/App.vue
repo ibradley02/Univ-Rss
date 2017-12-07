@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <home></home>
-    <img src="./assets/logo.png">
+  
   </div>
 </template>
 
