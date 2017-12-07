@@ -8,12 +8,18 @@
                 <nav class="navbar navbar-default navbar-fixed-top myNavbar">
                     <!-- WEBSITE NAME -->
                     <div class="navbar-text col-xs-12 col-md-4" style="font-family: 'Rock Salt', cursive">
+                        
+                        <sidebar></sidebar>
+
                         <router-link class="pull-left" :to="'/'">
                             <h3>Univ-rss</h3>
                         </router-link>
                     </div>
+
+
                     <!-- FORMS -->
                     <!-- <login></login> -->
+
                 </nav>
                 <!-- <signup></signup> -->
             </div>
@@ -32,11 +38,13 @@
 
 
 <script>
+    import Sidebar from './Sidebar'
     //   import Login from './Login'
     //   import Signup from './Signup'
     export default {
         name: 'navbar',
         components: {
+            Sidebar
             //   Login,
             //   Signup
         },

@@ -1,9 +1,33 @@
 <template>
-    <div id="wrapper">
+    <div id="sidebar">
         <div class="overlay"></div>
 
-        <!-- Sidebar -->
-        <nav class="navbar navbar-inverse navbar-fixed-bottom" id="sidebar-wrapper" role="navigation">
+        <!-- <div class="container-fluid">
+            <div class="row">
+                <nav class="navbar navbar-inverse navbar-toggler-right navbar-fixed-bottom">
+                    <div class="collapse navbar-collapse" id="navbarContent">
+                        <div class="navbar-text col-xs-12">
+                            <router-link class="pull-left" :to="'/'">
+                                <h3>Sidebar</h3>
+                            </router-link>
+                        </div>
+                    </div> -->
+                    <!-- WEBSITE NAME -->
+                <!-- </nav>
+            </div> -->
+            <!-- End Content Section -->
+            <!-- <div class="page-content">
+                <router-view></router-view>
+            </div> -->
+
+
+            <!-- End of Container -->
+        <!-- </div> -->
+
+
+
+       <!-- Sidebar -->
+        <nav class="navbar navbar-inverse navbar-left" id="sidebar-wrapper" role="navigation">
             <ul class="nav sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="#">
@@ -28,7 +52,7 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-fw fa-plus"></i> Dropdown
+                        <i class="glyphicon glyphicon-glyphicon-plus"></i> Dropdown
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
@@ -67,13 +91,13 @@
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
-        <!-- <div id="page-content-wrapper">
+        <div id="page-content-wrapper">
             <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
                 <span class="hamb-top"></span>
                 <span class="hamb-middle"></span>
                 <span class="hamb-bottom"></span>
             </button>
-        </div> -->
+        </div>
     </div>
 
 </template>
@@ -82,7 +106,7 @@
     export default {
         name: 'navbar',
         components: {
-        
+
         },
     }
 
@@ -91,13 +115,12 @@
 
 
 <style>
-    .myNavbar {
-        background-color: #95ccf6
+    .sideNavbar {
+        background-color: #f32020;
     }
 </style>
 
 </script>
 
 <style>
-
 </style>

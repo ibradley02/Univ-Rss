@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <navbar></navbar>
-    <!-- <sidebar></sidebar> -->
 
   </div>
 </template>
