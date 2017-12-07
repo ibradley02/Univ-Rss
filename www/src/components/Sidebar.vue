@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="wrapper">
-            <nav id="sidebar" class="collapse">
+            <nav id="sidebar" class="collapse animated fadeInLeft">
                 <div class="sidebar-header">
                     <img class="userImage" :src="user.image" at="User Image"></img>
                     <h3>
@@ -82,11 +82,6 @@
         max-width: 12rem;
     }
 
-    .sideNavbar {
-        background-color: #f32020;
-
-    }
-
     .wrapper {
         display: flex;
         align-items: stretch;
@@ -156,7 +151,17 @@
         /* don't forget to add all the previously mentioned styles here too */
         background: rgba(0, 1, 3, 1);
         color: #fff;
-        transition: all 0.3s;
+        /* transition: all 0.3s; */
+    }
+
+    .fadeIn{
+        animation-name: fadeIn;
+        animation: 1s 0s 0.5 fadeIn;
+    }
+
+    .fadeOut{
+        animated-name: fadeOut;
+        animation: 1s 0s 0.5 fadeOut;
     }
 
     #sidebar .sidebar-header {
@@ -181,7 +186,7 @@
     }
 
     #sidebar ul li a:hover {
-        color: #7386D5;
+        color: black;
         background: #fff;
     }
 

@@ -7,7 +7,7 @@
             <div class="row">
                 <nav class="navbar navbar-default navbar-fixed-top myNavbar">
                     <!-- WEBSITE NAME -->
-                    <div class="navbar-text col-xs-12" style="font-family: 'Rock Salt', cursive">
+                    <div class="navbar-text col-xs-12" style="font-family: ">
 
 
                         <div id="content">
@@ -52,7 +52,8 @@
 
 <style>
     .myNavbar {
-        background-color: #95ccf6
+        background-color: rgba(0, 1, 3, 1);
+        color: white;
     }
 
     .sidebar-button {
