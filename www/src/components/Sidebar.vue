@@ -1,12 +1,13 @@
 <template>
     <div>
-
         <div class="wrapper">
             <nav id="sidebar" class="collapse">
                 <div class="sidebar-header">
+                    <img class="userImage" :src="user.image" at="User Image"></img>
                     <h3>
-                        sidebar-header
+                        {{user.name}}
                     </h3>
+                    <h6>{{user.email}}</h6>
                 </div>
                 <ul class="list-unstyled components">
                     <li class="active">
@@ -15,7 +16,6 @@
                     <li>
                         <a href="#">About</a>
                     </li>
-
                     <li>
                         <!-- Link with dropdown items -->
                         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
@@ -63,6 +63,11 @@
             }
 
 
+        },
+        computed: {
+            user() {
+                return this.$store.state.user
+            }
         }
     }
 
@@ -71,6 +76,11 @@
 
 
 <style scoped>
+    .userImage {
+        border-radius: 50%;
+        max-height: 12rem;
+    }
+
     .sideNavbar {
         background-color: #f32020;
 
@@ -143,14 +153,14 @@
 
     #sidebar {
         /* don't forget to add all the previously mentioned styles here too */
-        background: rgba(0, 1, 3,1);
+        background: rgba(0, 1, 3, 1);
         color: #fff;
         transition: all 0.3s;
     }
 
     #sidebar .sidebar-header {
         padding: 20px;
-        background:  rgb(0, 1, 2);
+        background: rgb(0, 1, 2);
     }
 
     #sidebar ul.components {
