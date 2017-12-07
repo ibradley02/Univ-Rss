@@ -41,8 +41,7 @@ var store = new vuex.Store({
           console.log('Response to login: ', res)
           if(!res.data.error) {
             commit('setUser', res.data.data)
-            router.push({ name: 'home'})
-            debugger
+            router.push({ name: 'Home'})
           } else {
             commit('handleError', res.data)
           }
@@ -77,7 +76,7 @@ var store = new vuex.Store({
       auth.delete('logout')
         .then(res => {
           commit('setUser', {})
-          dispatch('getBoards')
+          router.push({ name: 'Login' })
           console.log(res)
         })
 

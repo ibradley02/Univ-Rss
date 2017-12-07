@@ -12,6 +12,9 @@
                             <div class="col-xs-1">
                                 <button type="button" class="sidebar-button glyphicon glyphicon-th pull-left" data-toggle="offcanvas"></button>
                             </div>
+                            <div>
+                                <button type="button" class="btn btn-danger pull-right" @click="logout">Logout</button>
+                            </div>
                             <div class="col-xs-10">
                                 <router-link class="text-center" :to="'/'">
                                     <h3>Univ-rss</h3>
@@ -19,18 +22,12 @@
                             </div>
                         </div>
                     </div>
-                    <!-- FORMS -->
-                    <!-- <login></login> -->
-
                 </nav>
-                <!-- <signup></signup> -->
             </div>
             <!-- End Content Section -->
             <div class="page-content">
                 <router-view></router-view>
             </div>
-
-
             <!-- End of Container -->
         </div>
     </div>
@@ -38,13 +35,14 @@
 
 
 <script>
-    //   import Login from './Login'
-    //   import Signup from './Signup'
     export default {
         name: 'navbar',
+        methods: {
+            logout(){
+                this.$store.dispatch('logout')
+            }
+        },
         components: {
-            //   Login,
-            //   Signup
         },
     }
 
