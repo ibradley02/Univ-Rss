@@ -5,7 +5,7 @@ let env = {
 	DBUSERNAME: 'Admin',
 	DBPASSWORD: 'admin123',
 	DBHOST: 'ds044887.mlab.com:44887',
-	DBNAME: 'track-it',
+	DBNAME: 'univ-rss',
 	SERVERNAME: 'dev-server'
 }
 
