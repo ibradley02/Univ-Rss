@@ -1,45 +1,28 @@
 <template>
 <div>
-                <div class="modal-body">
-                    <form type="submit" @submit.prevent="submitRegister">
-                        <label for="firstName">
-                            <span class="glyphicon glyphicon-edit"></span> Full Name:</label>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="ex. Johnny Appleseed" required v-model="register.name">
-                        </div>
-                        <label for="Email">
-                            <span class="glyphicon glyphicon-envelope"></span> Email:</label>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="john.doe@gmail.com" required v-model="register.email">
-                        </div>
-                        <!-- USERNAME INPUT FORM -->
-                        <label for="Username">
-                            <span class="glyphicon glyphicon-user"></span> Username:</label>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="trackmaster123" required v-model="register.username">
-                        </div>
-                        <label for="Username">
-                            <span class="glyphicon glyphicon-picture"></span> Profile Image:</label>
-                        <!-- IMG INPUT FORM -->
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="image url here" v-model="register.image">
-                        </div>
-                        <!-- PASSWORD INPUT FORM -->
-                        <label for="Password">
-                            <span class="glyphicon glyphicon-eye-open"></span> Password:</label>
-                        <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password" required v-model="register.password">
-                        </div>
-                        <!-- SIGN UP BUTTON -->
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-success navbar-btn btn-center">
-                                <span class="glyphicon glyphicon-lock"></span> Sign Up</button>
-                        </div>
-                    </form>
-                </div>
-                <!-- MODAL CLOSE -->
-            </div>
-        </div>
+<form type="submit" @submit.prevent="submitRegister">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" placeholder="Johnny Appleseed" v-model="register.name" required>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" placeholder="Me@gmail.com" v-model="register.email" required>
+    </div>
+    <div class="form-group">
+        <label for="image">Image</label>
+        <input type="text" class="form-control" placeholder="Image Link Here" v-model="register.image" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" placeholder="123badpassword" v-model="register.password" required>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">
+            <span class="glyphicon glyphicon-lock"> Register</span>
+        </button>
+    </div>
+</form>
 </div>
 </template>
 
