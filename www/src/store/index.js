@@ -68,6 +68,7 @@ var store = new vuex.Store({
       auth.post('register', payload)
         .then(res => {
           commit('setUser', res.data.data)
+          dispatch('authenticate')
         })
     },
 
