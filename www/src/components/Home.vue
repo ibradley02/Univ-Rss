@@ -1,15 +1,23 @@
 <template>
-  <div class="home">
+  <div class="col-sm-12">
     <navbar></navbar>
-      <div class="timeclock">
-        <h1>
-          <Clock :blink="true" />    
-        </h1>
+    <div class="row">
+      <div class="main">
+        <div class="sidebar-container">
+          <sidebar></sidebar>
+        </div>
+        <div class="main-body">
+          <div class="timeclock">
+            <h1>
+              <Clock :blink="true" />
+            </h1>
+          </div>
+          <weather></weather>
+          <quote></quote>
+          <router-view/>
+        </div>
       </div>
-    <sidebar></sidebar>
-    <weather></weather>
-    <quote></quote>
-    <router-view/>
+    </div>
   </div>
 </template>
 
@@ -57,12 +65,23 @@
   a {
     color: #42b983;
   }
-  .home{
+
+  .home {
     margin-top: 20vh;
   }
-  .timeclock{
+
+  .main{
+    display: flex;
+  }
+
+  .timeclock {
     color: white;
     background-color: rgba(128, 128, 128, 0.514);
-
+  }
+  .sidebar-container{
+    display: fixed
+  }
+  .main-body{
+    flex-grow: 1
   }
 </style>
