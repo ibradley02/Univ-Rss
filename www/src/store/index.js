@@ -22,6 +22,8 @@ vue.use(vuex)
 var store = new vuex.Store({
   state: {
     boards: [],
+    todos: [],
+    results: [],
     activeBoard: {},
     error: {},
     user: {},
@@ -35,10 +37,13 @@ var store = new vuex.Store({
     setUser(state, user) {
       state.user = user
     },
-    setWeather(state, data){
+    setWeather(state, data) {
       state.weather = data
     },
-    setQuote(state, data){
+    setTodos(state, data) {
+      state.results = data
+    },
+    setQuote(state, data) {
       state.quote = data
     }
   },
@@ -49,9 +54,9 @@ var store = new vuex.Store({
       auth.post('login', user)
         .then(res => {
           console.log('Response to login: ', res)
-          if(!res.data.error) {
+          if (!res.data.error) {
             commit('setUser', res.data.data)
-            router.push({ name: 'Home'})
+            router.push({ name: 'Home' })
           } else {
             commit('handleError', res.data)
           }
@@ -76,10 +81,10 @@ var store = new vuex.Store({
       auth('authenticate')
         .then(res => {
           commit('setUser', res.data.data)
-          router.push({ name: 'Home'})
+          router.push({ name: 'Home' })
         })
         .catch(err => {
-          router.push({ name: 'Login'})
+          router.push({ name: 'Login' })
         })
     },
 
@@ -93,20 +98,40 @@ var store = new vuex.Store({
 
     },
     //GET API DATA
-    getWeather({ commit, dispatch }){
+    getWeather({ commit, dispatch }) {
       api('/weather')
         .then(res => {
           commit('setWeather', res.data)
         })
         .catch(commit('handleError', Error))
     },
-    getQuote({ commit, dispatch }){
-      api('/quote')
+    getTodos({ commit, dispatch }) {
+      debugger
+      api('/todos')
         .then(res => {
-            commit('setQuote', res.data)
+          commit('setTodos', res.data)
         })
         .catch(commit('handleError', Error))
-    }
+    },
+    addTodo({ commit, dispatch }, todo) {
+      api.post('/todos', todo)
+        .then(res => {
+          dispatch('getTodos')
+        })
+    },
+    removeTodo({ commit, dispatch }, id) {
+      debugger
+      api.delete('/todos/' + id)
+        .then(res =>{ dispatch('getTodos')
+      })    
+     },
+getQuote({ commit, dispatch }){
+  api('/quote')
+    .then(res => {
+      commit('setQuote', res.data)
+    })
+    .catch(commit('handleError', Error))
+}
   }
 
 })

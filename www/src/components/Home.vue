@@ -12,6 +12,7 @@
               <Clock :blink="true" />
             </h1>
           </div>
+          <todo></todo>
           <weather></weather>
           <quote></quote>
           <router-view/>
@@ -25,6 +26,7 @@
   import Navbar from './Navbar'
   import Sidebar from './Sidebar'
   import Weather from './Weather'
+  import Todo from './Todo'
   import Quote from './Quote'
   import Clock from 'vue-digital-clock'
   export default {
@@ -38,6 +40,7 @@
       Weather,
       Navbar,
       Sidebar,
+      Todo,
       Quote,
       Clock
     }

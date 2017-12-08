@@ -17,6 +17,10 @@ const actions = {
       endpoint: 'users',
       preventDefaultApi: true,
       useCustomRoutes: true
+    },
+   todo: {
+      name: 'Todo',
+      endpoint: 'todos'
     }
   }
   
