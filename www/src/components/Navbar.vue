@@ -11,7 +11,7 @@
             </div>
             <div class="col-sm-2 pull-right sidebar-button">
                 <h4>Welcome, {{user.name}}</h4>
-                <button type="button" class="btn btn-danger" @click="logout">Logout</button>
+                <button type="button" class="btn btn-danger logout" @click="logout">Logout</button>
             </div>
         </nav>
     </div>
@@ -52,7 +52,8 @@
     }
 
     .burger{
-        margin-top: 1vh;
+        margin-top: 2vh;
+        margin-left: -3vw;
         max-height: 10vh;
         max-width: 10vw;
         cursor: pointer;
@@ -66,5 +67,9 @@
     .navbar-btn {
         background: black;
         border: 0px;
+    }
+
+    .logout{
+        margin-bottom: 2vh
     }
 </style>
