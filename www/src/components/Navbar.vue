@@ -2,7 +2,7 @@
     <div class="row text-center">
         <nav class="navbar navbar-default navbar-fixed-top myNavbar">
             <div class="col-sm-2 sidebar-button">
-                <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn" data-toggle="collapse" data-target="#sidebar">
+                <button type="button" id="sidebarCollapse" class="btn navbar-btn" data-toggle="collapse" data-target="#sidebar">
                     <img src="https://www.tellusaboutus.com/comments/images/BK-WebComment/BB_WHOPPER-v1.png" alt="burger" class="burger">
                 </button>
             </div>
