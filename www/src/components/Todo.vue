@@ -46,7 +46,6 @@
         },
         methods: {
             addTodo() {
-                debugger
                 this.$store.dispatch('addTodo', this.todo)
                 this.todo = {}
             },
@@ -60,7 +59,6 @@
         },
         computed: {
             todos() {
-                debugger
                 return this.$store.state.todos
             }
 
