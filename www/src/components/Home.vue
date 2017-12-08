@@ -1,5 +1,5 @@
 <template>
-  <div class="col-sm-12">
+  <div class="col-sm-12 text-center">
     <navbar></navbar>
     <sidebar></sidebar>
     <weather></weather>
