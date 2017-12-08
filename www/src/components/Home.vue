@@ -86,7 +86,7 @@
   }
 
   .home {
-    margin-top: 20vh;
+    margin-top: 0px;
   }
 
   .main{
