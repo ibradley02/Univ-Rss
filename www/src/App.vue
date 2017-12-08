@@ -6,16 +6,17 @@
 </template>
 
 <script>
-import Login from './components/Login'
-export default {
-  name: 'app',
-  components: {
-    Login
-  },
-  mounted (){
-    this.$store.dispatch('authenticate')
+  import Login from './components/Login'
+  export default {
+    name: 'app',
+    components: {
+      Login
+    },
+    mounted() {
+      this.$store.dispatch('authenticate')
+      this.$store.dispatch('getWeather')
+    }
   }
-}
 </script>
 
 <style>
