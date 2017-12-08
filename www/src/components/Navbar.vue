@@ -45,13 +45,10 @@
         color: white;
         display: flex;
         margin-bottom: 0px;
-<<<<<<< HEAD
     }
 
     .navbar{
         border: 0px;
-=======
->>>>>>> 37c1c34a982c2f9146b9c0dca5597f12d19f3470
     }
 
     .burger{
