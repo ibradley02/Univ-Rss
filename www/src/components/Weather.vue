@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div class="col-xs-1 pull-right">
+        <div class="col-xs-3 pull-right">
             <div class="panel panel-default panel-style">
                 <div class="panel-heading">
                     <h3>Weather</h3>
