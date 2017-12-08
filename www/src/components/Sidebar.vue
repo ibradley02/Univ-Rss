@@ -11,7 +11,9 @@
             </div>
             <div class="col-xs-2 col-xs-offset-1">
                 <h3>
-                    <i class="fa fa-cog"></i>
+                    <a data-toggle="modal" data-target="#profileModal">
+                        <i class="fa fa-cog"></i>
+                    </a>
                 </h3>
             </div>
             <h6>{{user.email}}</h6>
@@ -25,7 +27,7 @@
                         <a href="#">Clock</a>
                     </li>
                     <li>
-                        <span class="glyphicon glyphicon-plus pull-right"></span>                      
+                        <span class="glyphicon glyphicon-plus pull-right"></span>
                         <a href="#">To-Do</a>
                     </li>
                     <li>
@@ -33,7 +35,7 @@
                         <a href="#">Weather</a>
                     </li>
                     <li>
-                        <span class="glyphicon glyphicon-plus pull-right"></span>                        
+                        <span class="glyphicon glyphicon-plus pull-right"></span>
                         <a href="#">Random Quote</a>
                     </li>
                 </ul>
@@ -61,7 +63,6 @@
         name: 'sidebar',
         toggleClass: false,
         components: {
-
         },
         methods: {
             toggelSidebar() {

@@ -119,19 +119,45 @@ var store = new vuex.Store({
         })
     },
     removeTodo({ commit, dispatch }, id) {
-      debugger
       api.delete('/todos/' + id)
-        .then(res =>{ dispatch('getTodos')
-      })    
-     },
-getQuote({ commit, dispatch }){
-  api('/quote')
-    .then(res => {
-      commit('setQuote', res.data)
-    })
-    .catch(commit('handleError', Error))
-}
+        .then(res => {
+          dispatch('getTodos')
+        })
+    },
+    getQuote({ commit, dispatch }) {
+      api('/quote')
+        .then(res => {
+          commit('setQuote', res.data)
+        })
+        .catch(commit('handleError', Error))
+    },
+
+    //Profile
+    updateProfile({ commit, dispatch }, payload) {
+      if(payload.image === ''){
+        delete payload.image
+      }
+      if(payload.name === ''){
+        delete payload.name
+      }
+      if(payload.background === ''){
+        delete payload.background
+      }
+      if(payload.password === ''){
+        delete payload.password
+      }
+      if(payload.email === ''){
+        delete payload.email
+      }
+      api.put('/users/' + payload.userId, payload)
+        .then(res => {
+          console.log(res)
+          dispatch('authenticate')
+        })
+    }
+
   }
+
 
 })
 
