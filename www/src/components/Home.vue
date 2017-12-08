@@ -1,5 +1,5 @@
 <template>
-  <div class="col-sm-12 text-center">
+  <div class="col-sm-12 text-center background" :style="{ 'background-image': 'url(' + user.background + ')' }">
     <navbar></navbar>
     <div class="row">
       <div class="main">
@@ -19,6 +19,7 @@
         </div>
       </div>
     </div>
+    <profile></profile>
   </div>
 </template>
 
@@ -29,6 +30,7 @@
   import Todo from './Todo'
   import Quote from './Quote'
   import Clock from 'vue-digital-clock'
+  import Profile from './Profile'
   export default {
     data() {
       return {
@@ -42,7 +44,13 @@
       Sidebar,
       Todo,
       Quote,
-      Clock
+      Clock,
+      Profile
+    },
+    computed:{
+      user(){
+        return this.$store.state.user
+      }
     }
   }
 
@@ -90,5 +98,13 @@
   }
   .main-body{
     flex-grow: 1
+  }
+
+  .background{
+    background: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    
   }
 </style>

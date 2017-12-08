@@ -30,7 +30,7 @@ module.exports = {
       }
     },
     userProfile: {
-      path: '/user/:userId',
+      path: '/users/:userId',
       reqType: 'put',
       method(req, res, next) {
         let action = 'Update User Profile'

@@ -129,8 +129,38 @@ var store = new vuex.Store({
           commit('setQuote', res.data)
         })
         .catch(commit('handleError', Error))
+<<<<<<< HEAD
+    },
+
+    //Profile
+    updateProfile({ commit, dispatch }, payload) {
+      if(payload.image === ''){
+        delete payload.image
+      }
+      if(payload.name === ''){
+        delete payload.name
+      }
+      if(payload.background === ''){
+        delete payload.background
+      }
+      if(payload.password === ''){
+        delete payload.password
+      }
+      if(payload.email === ''){
+        delete payload.email
+      }
+      api.put('/users/' + payload.userId, payload)
+        .then(res => {
+          console.log(res)
+          dispatch('authenticate')
+        })
     }
+
+=======
+    }
+>>>>>>> 774742533fb22571c9e78bd343ad72c96e3589e9
   }
+
 
 })
 
