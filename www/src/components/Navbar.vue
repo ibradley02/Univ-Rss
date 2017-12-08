@@ -10,6 +10,7 @@
                 <h1 class="univ-rss">Univ-rss</h1>
             </div>
             <div class="col-sm-2 pull-right sidebar-button">
+                <h4>Welcome, {{user.name}}</h4>
                 <button type="button" class="btn btn-danger" @click="logout">Logout</button>
             </div>
         </nav>
@@ -27,6 +28,11 @@
         },
         components: {
         },
+        computed:{
+            user(){
+                return this.$store.state.user
+            }
+        }
     }
 
 </script>
