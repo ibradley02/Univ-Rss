@@ -7,14 +7,14 @@
           <sidebar></sidebar>
         </div>
         <div class="main-body">
-          <div class="panel panel-default panel-style">
+          <div class="panel panel-default panel-style text-center col-sm-4 col-sm-offset-5">
             <h1>
               <Clock :blink="true" />
             </h1>
           </div>
-          <todo></todo>
           <weather></weather>
           <quote></quote>
+          <todo></todo>
           <router-view/>
         </div>
       </div>
@@ -74,7 +74,7 @@
     background-color: gray;
     width: 15vw;
     height: 15vh;
-    align-content: center;
+
   }
 
   .home {
