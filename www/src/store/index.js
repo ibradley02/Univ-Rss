@@ -106,7 +106,6 @@ var store = new vuex.Store({
         .catch(commit('handleError', Error))
     },
     getTodos({ commit, dispatch }) {
-      debugger
       api('/todos')
         .then(res => {
           commit('setTodos', res.data)

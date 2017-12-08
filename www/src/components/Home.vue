@@ -7,7 +7,7 @@
           <sidebar></sidebar>
         </div>
         <div class="main-body">
-          <div class="timeclock">
+          <div class="panel panel-default panel-style">
             <h1>
               <Clock :blink="true" />
             </h1>
@@ -69,6 +69,14 @@
     color: #42b983;
   }
 
+  .panel-style{
+    color: white;
+    background-color: gray;
+    width: 15vw;
+    height: 15vh;
+    align-content: center;
+  }
+
   .home {
     margin-top: 20vh;
   }
@@ -77,12 +85,8 @@
     display: flex;
   }
 
-  .timeclock {
-    color: white;
-    background-color: rgba(128, 128, 128, 0.514);
-  }
   .sidebar-container{
-    display: fixed
+    display: fixed;
   }
   .main-body{
     flex-grow: 1
