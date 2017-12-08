@@ -8,20 +8,13 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title text-center">Profile Settings</h4>
                 </div>
-                <!-- EMAIL INPUT FORM -->
                 <div class="modal-body">
-                    <form type="submit" @submit.prevent="updateProfile">
+                    <form type="submit">
                         <div class="form-group">
                             <label for="firstName">
                                 <span class="glyphicon glyphicon-edit"></span> Full Name: {{user.name}}</label>
                             <input type="text" class="form-control" placeholder="ex. Johnny Appleseed" v-model="profile.name">
                         </div>
-                        <div class="form-group">
-                            <label for="Email">
-                                <span class="glyphicon glyphicon-envelope"></span> Email: {{user.email}}</label>
-                            <input type="text" class="form-control" placeholder="john.doe@gmail.com" v-model="profile.email">
-                        </div>
-                        <!-- USERNAME INPUT FORM -->
                         <!-- IMG INPUT FORM -->
                         <div class="form-group">
                             <label for="Username">
@@ -41,7 +34,7 @@
                         </div>
                         <!-- SIGN UP BUTTON -->
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success btn-center">
+                            <button type="submit" class="btn btn-success btn-center" @click="updateProfile" data-dismiss="modal">
                                 <span class="glyphicon glyphicon-lock"></span> Save Changes </button>
                         </div>
                     </form>
@@ -64,7 +57,6 @@
             return {
                 profile: {
                     name: '',
-                    email: '',
                     username: '',
                     image: '',
                     background: ''
@@ -76,7 +68,6 @@
                 var update = {
                     userId: this.user._id,
                     name: this.profile.name,
-                    email: this.profile.email,
                     password: this.profile.password,
                     image: this.profile.image,
                     background: this.profile.background

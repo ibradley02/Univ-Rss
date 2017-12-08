@@ -158,9 +158,6 @@ var store = new vuex.Store({
       if (payload.password === '') {
         delete payload.password
       }
-      if (payload.email === '') {
-        delete payload.email
-      }
       api.put('/users/' + payload.userId, payload)
         .then(res => {
           console.log(res)
