@@ -98,11 +98,24 @@ var store = new vuex.Store({
     },
     //GET API DATA
     getWeather({ commit, dispatch }) {
-      api('/weather')
-        .then(res => {
-          commit('setWeather', res.data)
-        })
-        .catch(commit('handleError', Error))
+      // Get position if possible **Not possible on Chrome 50**
+      navigator.geolocation.getCurrentPosition(function (position) {
+        console.log(position);
+        if (position) {
+          var location = {
+            lat: position.coords.latitude,
+            long: position.coords.longitude
+          }
+
+        }
+        api('/weather/' + location.lat + '/' + location.long)
+          .then(res => {
+            commit('setWeather', res.data)
+          })
+          .catch(commit('handleError', Error))
+      })
+
+
     },
     getTodos({ commit, dispatch }) {
       api('/usertodos')
@@ -129,24 +142,23 @@ var store = new vuex.Store({
           commit('setQuote', res.data)
         })
         .catch(commit('handleError', Error))
-<<<<<<< HEAD
     },
 
     //Profile
     updateProfile({ commit, dispatch }, payload) {
-      if(payload.image === ''){
+      if (payload.image === '') {
         delete payload.image
       }
-      if(payload.name === ''){
+      if (payload.name === '') {
         delete payload.name
       }
-      if(payload.background === ''){
+      if (payload.background === '') {
         delete payload.background
       }
-      if(payload.password === ''){
+      if (payload.password === '') {
         delete payload.password
       }
-      if(payload.email === ''){
+      if (payload.email === '') {
         delete payload.email
       }
       api.put('/users/' + payload.userId, payload)
@@ -156,9 +168,6 @@ var store = new vuex.Store({
         })
     }
 
-=======
-    }
->>>>>>> 774742533fb22571c9e78bd343ad72c96e3589e9
   }
 
 

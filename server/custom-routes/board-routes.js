@@ -7,13 +7,11 @@ module.exports = {
         reqType: 'get',
         method(req, res, next) {
             let action = 'make request to outside api and return data requested'
-            var coor = getCoords().then(() =>{
                 request('https://api.openweathermap.org/data/2.5/weather?lat=' + req.params.lat + '&lon=' + req.params.long + '&units=imperial&&appid=8d7d6f68ddb8370dd6ae5712e11ca530', function (error, response, body) {
                     console.log('error:', error)
                     console.log('statusCode:', response && response.statusCode)
                     res.send(body)
                 })
-            })
         }
 
     },
