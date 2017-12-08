@@ -4,8 +4,7 @@ var Schema = mongoose.Schema
 var ObjectId = Schema.Types.ObjectId
 
 var schema = new Schema({
-    title: { type: String},
-    content: { type: String},
+    name: { type: String},
     creatorId: {type: ObjectId, ref: models.user.name, required: true }
 
   })

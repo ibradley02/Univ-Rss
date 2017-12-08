@@ -17,7 +17,7 @@ module.exports = {
     }
   },
     userTodos: {
-      path: '/todos',
+      path: '/usertodos',
       reqType: 'get',
       method(req, res, next) {
         let action = 'Find User Todos'
