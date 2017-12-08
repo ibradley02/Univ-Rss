@@ -51,6 +51,7 @@
         margin-top: 1vh;
         max-height: 10vh;
         max-width: 10vw;
+        cursor: pointer;
     }
 
     .sidebar-button {
