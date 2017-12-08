@@ -1,53 +1,42 @@
 <template>
-    <div>
-        <div class="wrapper">
-            <nav id="sidebar" class="collapse animated fadeInLeft">
-                <div class="sidebar-header">
-                    <img class="userImage" :src="user.image" at="User Image"></img>
-                    <h3>
-                        {{user.name}}
-                    </h3>
-                    <h6>{{user.email}}</h6>
-                </div>
-                <ul class="list-unstyled components">
-                    <li class="active">
-                        <a href="#">Home</a>
-                    </li>
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <!-- Link with dropdown items -->
-                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
-                        <ul class="collapse list-unstyled" id="homeSubmenu">
-                            <li>
-                                <a href="#">Page</a>
-                            </li>
-                            <li>
-                                <a href="#">Page</a>
-                            </li>
-                            <li>
-                                <a href="#">Page</a>
-                            </li>
-                        </ul>
-
-                        <li>
-                            <a href="#">Portfolio</a>
-                        </li>
-                        <li>
-                            <a href="#">Contact</a>
-                        </li>
-                </ul>
-            </nav>
-
-            <div id="content">
-
-            </div>
-
+    <nav id="sidebar" class="collapse animated fadeInLeft">
+        <div class="sidebar-header">
+            <img class="userImage" :src="user.image" at="User Image"></img>
+            <h3>
+                {{user.name}}
+            </h3>
+            <h6>{{user.email}}</h6>
         </div>
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a href="#">Home</a>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
+            <li>
+                <!-- Link with dropdown items -->
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a href="#">Page</a>
+                    </li>
+                    <li>
+                        <a href="#">Page</a>
+                    </li>
+                    <li>
+                        <a href="#">Page</a>
+                    </li>
+                </ul>
 
-    </div>
-
+                <li>
+                    <a href="#">Portfolio</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+        </ul>
+    </nav>
 </template>
 
 <script>
@@ -82,12 +71,6 @@
         max-width: 12rem;
     }
 
-    .wrapper {
-        display: flex;
-        align-items: stretch;
-
-    }
-
     #sidebar {
         min-width: 250px;
         max-width: 250px;
@@ -106,7 +89,7 @@
     a[aria-expanded="false"]::before,
     a[aria-expanded="true"]::before {
         content: '\e259';
-        display: block;
+        /* display: block; */
         position: absolute;
         right: 20px;
         font-family: 'Glyphicons Halflings';
@@ -154,7 +137,7 @@
         /* transition: all 0.3s; */
     }
 
-    .fadeIn{
+    .fadeIn {
         animation-name: fadeIn;
         animation: 1s 0s 0.5 fadeIn;
     }

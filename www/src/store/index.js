@@ -28,6 +28,7 @@ var store = new vuex.Store({
     error: {},
     user: {},
     weather: {},
+    quote: {}
   },
   mutations: {
     handleError(state, err) {
@@ -41,6 +42,9 @@ var store = new vuex.Store({
     },
     setTodos(state, data) {
       state.results = data
+    },
+    setQuote(state, data) {
+      state.quote = data
     }
   },
   actions: {
@@ -101,7 +105,7 @@ var store = new vuex.Store({
         .catch(commit('handleError', Error))
     },
     getTodos({ commit, dispatch }) {
-debugger
+      debugger
       api('/todos')
         .then(res => {
           commit('setTodos', res.data)
@@ -117,8 +121,16 @@ debugger
     removeTodo({ commit, dispatch }, id) {
       debugger
       api.delete('/todos/' + id)
-        .then(res => dispatch('getTodos'))
-    }
+        .then(res =>{ dispatch('getTodos')
+      })    
+     },
+getQuote({ commit, dispatch }){
+  api('/quote')
+    .then(res => {
+      commit('setQuote', res.data)
+    })
+    .catch(commit('handleError', Error))
+}
   }
 
 })
