@@ -66,10 +66,7 @@
         },
         methods: {
             toggelSidebar() {
-
             }
-
-
         },
         computed: {
             user() {
@@ -77,10 +74,7 @@
             }
         }
     }
-
 </script>
-
-
 
 <style scoped>
     .userImage {

@@ -44,6 +44,7 @@
         background-color: rgba(0, 1, 3, 1);
         color: white;
         display: flex;
+        margin-bottom: 0px;
     }
 
     .burger{
