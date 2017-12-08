@@ -1,10 +1,6 @@
 <template>
   <div class="col-sm-12 text-center">
     <navbar></navbar>
-    <sidebar></sidebar>
-    <weather></weather>
-    <todo></todo>
-    <router-view/>
     <div class="row">
       <div class="main">
         <div class="sidebar-container">
@@ -16,6 +12,7 @@
               <Clock :blink="true" />
             </h1>
           </div>
+          <todo></todo>
           <weather></weather>
           <quote></quote>
           <router-view/>
