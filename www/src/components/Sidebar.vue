@@ -1,5 +1,5 @@
 <template>
-    <nav id="sidebar" class="collapse animated fadeInLeft">
+    <nav id="sidebar" class="collapse animated fadeInLeft text-center">
         <div class="sidebar-header">
             <img class="userImage" :src="user.image" at="User Image"></img>
             <h3>

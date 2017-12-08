@@ -1,5 +1,5 @@
 <template>
-    <div class="row">
+    <div class="row text-center">
         <nav class="navbar navbar-default navbar-fixed-top myNavbar">
             <!-- WEBSITE NAME -->
             <div class="navbar-text col-xs-12" style="font-family: 'Slabo 27px', serif">

@@ -39,7 +39,7 @@
                     </div>
                     <div class="form-group">
                         <label for="image">Image</label>
-                        <input type="text" class="form-control" placeholder="Image Link Here" v-model="register.image" required>
+                        <input type="text" class="form-control" placeholder="Image Link Here" v-model="register.image">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
