@@ -3,6 +3,7 @@
     <navbar></navbar>
     <sidebar></sidebar>
     <weather></weather>
+    <quote></quote>
     <router-view/>
   </div>
 </template>
@@ -11,6 +12,7 @@
   import Navbar from './Navbar'
   import Sidebar from './Sidebar'
   import Weather from './Weather'
+  import Quote from './Quote'
   export default {
     data() {
       return {
@@ -21,7 +23,8 @@
     components: {
       Weather,
       Navbar,
-      Sidebar
+      Sidebar,
+      Quote
     }
   }
 

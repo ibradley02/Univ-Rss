@@ -25,7 +25,8 @@ var store = new vuex.Store({
     activeBoard: {},
     error: {},
     user: {},
-    weather: {}
+    weather: {},
+    quote: {}
   },
   mutations: {
     handleError(state, err) {
@@ -36,6 +37,9 @@ var store = new vuex.Store({
     },
     setWeather(state, data){
       state.weather = data
+    },
+    setQuote(state, data){
+      state.quote = data
     }
   },
   actions: {
@@ -92,6 +96,13 @@ var store = new vuex.Store({
       api('/weather')
         .then(res => {
           commit('setWeather', res.data)
+        })
+        .catch(commit('handleError', Error))
+    },
+    getQuote({ commit, dispatch }){
+      api('/quote')
+        .then(res => {
+            commit('setQuote', res.data)
         })
         .catch(commit('handleError', Error))
     }

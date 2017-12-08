@@ -13,6 +13,18 @@ module.exports = {
                 res.send(body)
             })
         }
+    },
+    getQuote: {
+        path: '/quote',
+        reqType: 'get',
+        method(req, res, next){
+            let action = 'make request to outside api and return data requested'
+            request('http://quotesondesign.com/api/3.0/api-3.0.json', function (error, response, body) {
+                console.log('error:', error)
+                console.log('statusCode:', response && response.statusCode)
+                res.send(body)
+            })
+        }
     }
 }
 

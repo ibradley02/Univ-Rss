@@ -15,6 +15,7 @@
     mounted() {
       this.$store.dispatch('authenticate')
       this.$store.dispatch('getWeather')
+      this.$store.dispatch('getQuote')
     }
   }
 </script>
