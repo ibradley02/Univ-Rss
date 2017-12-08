@@ -79,10 +79,9 @@
 
   .panel-style{
     color: white;
-    background-color: gray;
+    background-color: rgba(5, 0, 0, 0.25);
     width: 15vw;
     height: 15vh;
-
   }
 
   .home {
@@ -97,7 +96,8 @@
     display: fixed;
   }
   .main-body{
-    flex-grow: 1
+    flex-grow: 1;
+    margin-top: 10vh;
   }
 
   .background{
