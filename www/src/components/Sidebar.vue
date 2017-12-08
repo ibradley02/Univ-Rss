@@ -1,10 +1,19 @@
 <template>
-    <nav id="sidebar" class="collapse animated fadeInLeft text-center">
+    <nav id="sidebar" class="collapse animated fadeInLeft">
         <div class="sidebar-header">
-            <img class="userImage" :src="user.image" at="User Image"></img>
-            <h3>
-                {{user.name}}
-            </h3>
+            <div class="col-xs-12">
+                <img class="userImage" :src="user.image" at="User Image"></img>
+            </div>
+            <div class="col-xs-6 col-xs-offset-3">
+                <h3>
+                    {{user.name}}
+                </h3>
+            </div>
+            <div class="col-xs-2 col-xs-offset-1">
+                <h3>
+                    <i class="fa fa-cog"></i>
+                </h3>
+            </div>
             <h6>{{user.email}}</h6>
         </div>
         <ul class="list-unstyled components">

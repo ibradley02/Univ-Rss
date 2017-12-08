@@ -1,15 +1,15 @@
 <template>
     <div class="row text-center">
         <nav class="navbar navbar-default navbar-fixed-top myNavbar">
-            <div class="col-sm-2">
+            <div class="col-sm-2 sidebar-button">
                 <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn" data-toggle="collapse" data-target="#sidebar">
                     <img src="https://www.tellusaboutus.com/comments/images/BK-WebComment/BB_WHOPPER-v1.png" alt="burger" class="burger">
                 </button>
             </div>
-            <div class="col-sm-10">
+            <div class="col-sm-8">
                 <h1 class="univ-rss">Univ-rss</h1>
             </div>
-            <div class="col-sm-2 pull-right">
+            <div class="col-sm-2 pull-right sidebar-button">
                 <button type="button" class="btn btn-danger" @click="logout">Logout</button>
             </div>
         </nav>
@@ -37,6 +37,7 @@
     .myNavbar {
         background-color: rgba(0, 1, 3, 1);
         color: white;
+        display: flex;
     }
 
     .burger{
@@ -45,7 +46,6 @@
     }
 
     .sidebar-button {
-        display: flex;
         justify-content: center;
         align-content: center;
     }
