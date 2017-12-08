@@ -85,8 +85,8 @@
 <style scoped>
     .userImage {
         border-radius: 50%;
-        max-height: 12rem;
-        max-width: 12rem;
+        height: 12rem;
+        width: 12rem;
     }
 
     #sidebar {

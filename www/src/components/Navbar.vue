@@ -2,9 +2,9 @@
     <div class="row text-center">
         <nav class="navbar navbar-default navbar-fixed-top myNavbar">
             <div class="col-sm-2 sidebar-button">
-                <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn" data-toggle="collapse" data-target="#sidebar">
+                <a id="sidebarCollapse" data-toggle="collapse" data-target="#sidebar">
                     <img src="https://www.tellusaboutus.com/comments/images/BK-WebComment/BB_WHOPPER-v1.png" alt="burger" class="burger">
-                </button>
+                </a>
             </div>
             <div class="col-sm-8">
                 <h1 class="univ-rss">Univ-rss</h1>
@@ -47,6 +47,7 @@
     }
 
     .burger{
+        margin-top: 1vh;
         max-height: 10vh;
         max-width: 10vw;
     }

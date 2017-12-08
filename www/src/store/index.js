@@ -23,7 +23,6 @@ var store = new vuex.Store({
   state: {
     boards: [],
     todos: [],
-    results: [],
     activeBoard: {},
     error: {},
     user: {},
@@ -41,7 +40,7 @@ var store = new vuex.Store({
       state.weather = data
     },
     setTodos(state, data) {
-      state.results = data
+      state.todos = data
     },
     setQuote(state, data) {
       state.quote = data
@@ -106,9 +105,9 @@ var store = new vuex.Store({
         .catch(commit('handleError', Error))
     },
     getTodos({ commit, dispatch }) {
-      api('/todos')
+      api('/usertodos')
         .then(res => {
-          commit('setTodos', res.data)
+          commit('setTodos', res.data.data)
         })
         .catch(commit('handleError', Error))
     },
@@ -130,6 +129,7 @@ var store = new vuex.Store({
           commit('setQuote', res.data)
         })
         .catch(commit('handleError', Error))
+<<<<<<< HEAD
     },
 
     //Profile
@@ -156,6 +156,9 @@ var store = new vuex.Store({
         })
     }
 
+=======
+    }
+>>>>>>> 774742533fb22571c9e78bd343ad72c96e3589e9
   }
 
 
