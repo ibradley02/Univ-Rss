@@ -83,8 +83,8 @@
     }
 
     .wrapper {
-        display: flex;
-        align-items: stretch;
+        display: flex !important;
+        /* align-items: stretch; */
 
     }
 

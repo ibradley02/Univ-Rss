@@ -1,6 +1,11 @@
 <template>
   <div class="home">
     <navbar></navbar>
+      <div class="timeclock">
+        <h1>
+          <Clock :blink="true" />    
+        </h1>
+      </div>
     <sidebar></sidebar>
     <weather></weather>
     <quote></quote>
@@ -13,6 +18,7 @@
   import Sidebar from './Sidebar'
   import Weather from './Weather'
   import Quote from './Quote'
+  import Clock from 'vue-digital-clock'
   export default {
     data() {
       return {
@@ -24,7 +30,8 @@
       Weather,
       Navbar,
       Sidebar,
-      Quote
+      Quote,
+      Clock
     }
   }
 
@@ -52,5 +59,10 @@
   }
   .home{
     margin-top: 20vh;
+  }
+  .timeclock{
+    color: white;
+    background-color: rgba(128, 128, 128, 0.514);
+
   }
 </style>
