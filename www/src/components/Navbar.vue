@@ -1,18 +1,17 @@
 <template>
     <div class="row text-center">
         <nav class="navbar navbar-default navbar-fixed-top myNavbar">
-            <!-- WEBSITE NAME -->
-            <div class="navbar-text col-xs-12" style="font-family: 'Slabo 27px', serif">
-                <div id="content">
-                    <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn pull-left" data-toggle="collapse" data-target="#sidebar">
-                        <img src="https://www.tellusaboutus.com/comments/images/BK-WebComment/BB_WHOPPER-v1.png" alt="burger" style="max-height:50px;width:auto">
-                    </button>
-                </div>
-
-                <div>
-                    <button type="button" class="btn btn-danger pull-right" @click="logout">Logout</button>
-                </div>
+            <div class="col-sm-2 sidebar-button">
+                <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn" data-toggle="collapse" data-target="#sidebar">
+                    <img src="https://www.tellusaboutus.com/comments/images/BK-WebComment/BB_WHOPPER-v1.png" alt="burger" class="burger">
+                </button>
+            </div>
+            <div class="col-sm-8">
                 <h1 class="univ-rss">Univ-rss</h1>
+            </div>
+            <div class="col-sm-2 pull-right sidebar-button">
+                <h4>Welcome, {{user.name}}</h4>
+                <button type="button" class="btn btn-danger" @click="logout">Logout</button>
             </div>
         </nav>
     </div>
@@ -29,6 +28,11 @@
         },
         components: {
         },
+        computed:{
+            user(){
+                return this.$store.state.user
+            }
+        }
     }
 
 </script>
@@ -39,10 +43,15 @@
     .myNavbar {
         background-color: rgba(0, 1, 3, 1);
         color: white;
+        display: flex;
+    }
+
+    .burger{
+        max-height: 10vh;
+        max-width: 10vw;
     }
 
     .sidebar-button {
-        display: flex;
         justify-content: center;
         align-content: center;
     }

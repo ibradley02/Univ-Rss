@@ -1,40 +1,57 @@
 <template>
-    <nav id="sidebar" class="collapse animated fadeInLeft text-center">
+    <nav id="sidebar" class="collapse animated fadeInLeft">
         <div class="sidebar-header">
-            <img class="userImage" :src="user.image" at="User Image"></img>
-            <h3>
-                {{user.name}}
-            </h3>
+            <div class="col-xs-12">
+                <img class="userImage" :src="user.image" at="User Image"></img>
+            </div>
+            <div class="col-xs-6 col-xs-offset-3">
+                <h3>
+                    {{user.name}}
+                </h3>
+            </div>
+            <div class="col-xs-2 col-xs-offset-1">
+                <h3>
+                    <i class="fa fa-cog"></i>
+                </h3>
+            </div>
             <h6>{{user.email}}</h6>
         </div>
         <ul class="list-unstyled components">
-            <li class="active">
-                <a href="#">Home</a>
-            </li>
             <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <!-- Link with dropdown items -->
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
                     <li>
-                        <a href="#">Page</a>
+                        <span class="glyphicon glyphicon-plus pull-right"></span>
+                        <a href="#">Clock</a>
                     </li>
                     <li>
-                        <a href="#">Page</a>
+                        <span class="glyphicon glyphicon-plus pull-right"></span>                      
+                        <a href="#">To-Do</a>
                     </li>
                     <li>
-                        <a href="#">Page</a>
+                        <span class="glyphicon glyphicon-plus pull-right"></span>
+                        <a href="#">Weather</a>
+                    </li>
+                    <li>
+                        <span class="glyphicon glyphicon-plus pull-right"></span>                        
+                        <a href="#">Random Quote</a>
                     </li>
                 </ul>
-
-                <li>
-                    <a href="#">Portfolio</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
+            </li>
+            <li>
+                <a href="#feedSubmenu" data-toggle="collapse" aria-expanded="false">Feeds</a>
+                <ul class="collapse list-unstyled" id="feedSubmenu">
+                    <li>
+                        <a href="#">News</a>
+                    </li>
+                    <li>
+                        <a href="#">Sports</a>
+                    </li>
+                    <li>
+                        <a href="#">Youtube</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </nav>
 </template>
@@ -89,7 +106,6 @@
     a[aria-expanded="false"]::before,
     a[aria-expanded="true"]::before {
         content: '\e259';
-        /* display: block; */
         position: absolute;
         right: 20px;
         font-family: 'Glyphicons Halflings';
@@ -180,70 +196,3 @@
         background: rgba(0, 1, 3, 0.521);
     }
 </style>
-
-
-
-<!-- <div id="mySidebar">
-        <div class="overlay"></div>
-        <nav class="navbar navbar-inverse navbar-left" id="sidebar-wrapper" role="navigation">
-            <ul class="nav sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="#">
-                        Bootstrap 3
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="glyphicon glyphicon-home"></i> Home</a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="glyphicon glyphicon-globe"></i> News</a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-soccer-ball-o"></i> Sports</a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="glyphicon glyphicon-expand"></i> Videos</a>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="glyphicon glyphicon-glyphicon-plus"></i> News
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li class="dropdown-header">News</li>
-                        <li>
-                            <a href="#">CNN</a>
-                        </li>
-                        <li>
-                            <a href="#">New York Times</a>
-                        </li>
-                        <li>
-                            <a href="#">Vice News</a>
-                        </li>
-                        <li>
-                            <a href="#">Daily Motion</a>
-                        </li>
-                        <li>
-                            <a href="#">Fake News</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-fw fa-bank"></i> Page four</a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-fw fa-dropbox"></i> Page 5</a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-fw fa-twitter"></i> Last page</a>
-                </li>
-            </ul>
-        </nav>
-    </div> -->
