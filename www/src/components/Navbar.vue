@@ -3,11 +3,11 @@
         <nav class="navbar navbar-default navbar-fixed-top myNavbar">
             <div class="col-sm-2 sidebar-button">
                 <a id="sidebarCollapse" data-toggle="collapse" data-target="#sidebar">
-                    <img src="https://www.tellusaboutus.com/comments/images/BK-WebComment/BB_WHOPPER-v1.png" alt="burger" class="burger">
+                    <i class="fa fa-4x fa-bars menu" aria-hidden="true"></i>
                 </a>
             </div>
             <div class="col-sm-8">
-                <h1 class="univ-rss">Univ-rss</h1>
+                <h1 class="univ-rss">UNIV <i class="fa fa-rss"></i></h1>
             </div>
             <div class="col-sm-2 pull-right sidebar-button">
                 <h4>Welcome, {{user.name}}</h4>
@@ -40,6 +40,10 @@
 
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Bungee');
+    .univ-rss{
+        font-family: 'Bungee', cursive;
+    }
     .myNavbar {
         background-color: rgba(0, 1, 3, 1);
         color: white;
@@ -49,14 +53,6 @@
 
     .navbar{
         border: 0px;
-    }
-
-    .burger{
-        margin-top: 2vh;
-        margin-left: -3vw;
-        max-height: 10vh;
-        max-width: 10vw;
-        cursor: pointer;
     }
 
     .sidebar-button {
@@ -71,5 +67,10 @@
 
     .logout{
         margin-bottom: 2vh
+    }
+
+    .menu{
+        color: white;
+        margin-top: 2vh;
     }
 </style>

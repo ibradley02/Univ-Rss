@@ -1,54 +1,47 @@
 <template>
-    <div>
-        <div class="panel panel-info" v-if="loginFormActive">
-            <div class="panel-heading">
-                <h3>Login:</h3>
-            </div>
+    <div class="text-center login-body col-sm-12">
+        <header>
+            <h2 class="univ-rss">UNIV <i class="fa fa-rss"></i></h2>
+        </header>
+        <div class="panel" v-if="loginFormActive">
             <div class="panel-body">
                 <form type="submit" @submit.prevent="submitLogin">
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email">Email:</label>
                         <input type="email" class="form-control" placeholder="Me@gmail.com" v-model="login.email" required>
                     </div>
                     <div class="form-group">
-                        <label for="password">Password</label>
+                        <label for="password">Password:</label>
                         <input type="password" class="form-control" placeholder="123badpassword" v-model="login.password" required>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success">
-                            <span class="glyphicon glyphicon-lock"> Login</span>
-                        </button>
+                        <button type="submit" class="btn">Login</button>
                     </div>
                     <a class="toggle-link" @click="toggleFormState">Don't Have an Account? Signup now!</a>
                 </form>
             </div>
         </div>
-        <div class="panel panel-info" v-else>
-            <div class="panel-heading">
-                <h3>Register:</h3>
-            </div>
+        <div class="panel" v-else>
             <div class="panel-body">
                 <form type="submit" @submit.prevent="submitRegister">
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" placeholder="Johnny Appleseed" v-model="register.name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email">Email:</label>
                         <input type="email" class="form-control" placeholder="Me@gmail.com" v-model="register.email" required>
                     </div>
                     <div class="form-group">
-                        <label for="image">Image</label>
-                        <input type="text" class="form-control" placeholder="Image Link Here" v-model="register.image">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
+                        <label for="password">Password:</label>
                         <input type="password" class="form-control" placeholder="123badpassword" v-model="register.password" required>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success">
-                            <span class="glyphicon glyphicon-lock"> Register</span>
-                        </button>
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" placeholder="Johnny Appleseed" v-model="register.name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Profile Image:</label>
+                        <input type="text" class="form-control" placeholder="Image Link Here" v-model="register.image">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn">Register</button>
                     </div>
                     <a class="toggle-link" @click="toggleFormState">Already Have an Account? Login now!</a>                    
                 </form>
@@ -110,5 +103,22 @@
     }
 </script>
 
-<style>
+<style scoped>
+
+    input{
+        text-align: center;
+        width: 40vw;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .panel{
+        background-color: rgb(176, 209, 222) !important;
+    }
+
+    .login-body{
+        background-color: rgb(176, 209, 222) !important;
+        height: 120vh;
+        width: 100vw;
+    }
 </style>

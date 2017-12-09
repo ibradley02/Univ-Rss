@@ -6,9 +6,9 @@
                     <h3>Weather</h3>
                 </div>
                 <div class="panel-body text-center" v-if="weather.weather">
+                    <h5>{{weather.name}}</h5>
                     <img :src="'http://openweathermap.org/img/w/'+ weather.weather[0].icon +'.png'">
-                    <div><h5>{{weather.name}}</h5></div>
-                    <div><h5>{{weather.main.temp}}°F</h5></div>
+                    <h5>{{weather.main.temp}}°F</h5>
                 </div>
             </div>
         </div>

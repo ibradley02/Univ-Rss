@@ -23,19 +23,15 @@
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
                     <li>
-                        <span class="glyphicon glyphicon-plus pull-right"></span>
                         <a href="#">Clock</a>
                     </li>
                     <li>
-                        <span class="glyphicon glyphicon-plus pull-right"></span>
                         <a href="#">To-Do</a>
                     </li>
                     <li>
-                        <span class="glyphicon glyphicon-plus pull-right"></span>
                         <a href="#">Weather</a>
                     </li>
                     <li>
-                        <span class="glyphicon glyphicon-plus pull-right"></span>
                         <a href="#">Random Quote</a>
                     </li>
                 </ul>

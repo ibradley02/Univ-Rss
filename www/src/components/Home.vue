@@ -101,6 +101,7 @@
   }
 
   .background{
+    margin-top: 71px;
     background: no-repeat;
     background-position: center;
     background-size: cover;
