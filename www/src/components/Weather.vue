@@ -7,8 +7,12 @@
                 </div>
                 <div class="panel-body text-center" v-if="weather.weather">
                     <h5>{{weather.name}}</h5>
-                    <img :src="'http://openweathermap.org/img/w/'+ weather.weather[0].icon +'.png'">
-                    <h5>{{weather.main.temp}}°F</h5>
+                    <div class="icon">
+                        <img :src="'http://openweathermap.org/img/w/'+ weather.weather[0].icon +'.png'">
+                    </div>
+                    <div class="temp">
+                        <h5>{{weather.main.temp}}°F</h5>
+                    </div>
                 </div>
             </div>
         </div>
@@ -30,6 +34,11 @@
 
 </script>
 
-<style>
-
+<style scoped>
+    .temp {
+        display: inline-block;
+    }
+    .icon {
+        display: inline-block;
+    }
 </style>

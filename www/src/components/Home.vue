@@ -7,7 +7,7 @@
           <sidebar></sidebar>
         </div>
         <div class="main-body">
-          <div class="panel panel-default panel-style text-center col-sm-4 col-sm-offset-5">
+          <div class="panel panel-style text-center col-sm-4 col-sm-offset-5">
             <h1>
               <Clock :blink="true" />
             </h1>
