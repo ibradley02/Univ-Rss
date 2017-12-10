@@ -64,4 +64,8 @@
         }
     }
 </script>
-<style></style>
+<style scoped>
+    input{
+        text-align: center;
+    }
+</style>

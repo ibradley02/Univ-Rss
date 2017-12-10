@@ -93,7 +93,8 @@
   }
 
   .sidebar-container{
-    display: fixed;
+    display: relative;
+    position: fixed;
   }
   .main-body{
     flex-grow: 1;

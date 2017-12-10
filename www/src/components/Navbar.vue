@@ -72,5 +72,6 @@
     .menu{
         color: white;
         margin-top: 2vh;
+        margin-left: 2vw;
     }
 </style>
