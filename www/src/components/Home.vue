@@ -87,7 +87,10 @@
   .menu {
     margin-left: 2vw;
     color: white;
-    position: fixed-left;
+    position: fixed;
+    z-index: 1;
+    top: 10px;
+    left: 10px; 
   }
 
   .panel-style {
@@ -102,6 +105,7 @@
   }
 
   .sidebar-container {
+    margin-top: 10vh;
     display: relative;
     position: fixed;
   }
@@ -114,7 +118,7 @@
   .background {
     background: no-repeat;
     background-position: center;
-    background-size: center;
+    background-size: cover;
     background-attachment: fixed;
     margin: 0px 0px 0px 0px;
   }
