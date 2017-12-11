@@ -121,5 +121,6 @@
     background-size: cover;
     background-attachment: fixed;
     margin: 0px 0px 0px 0px;
+    height: 100vh;
   }
 </style>
