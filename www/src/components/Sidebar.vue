@@ -86,7 +86,7 @@
     #sidebar {
         min-width: 250px;
         max-width: 250px;
-        min-height: 100vh;
+        min-height: 85vh;
         z-index: 99999;
     }
 
