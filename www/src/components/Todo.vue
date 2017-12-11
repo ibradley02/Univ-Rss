@@ -63,6 +63,9 @@
     }
 </script>
 <style scoped>
+    span{
+        cursor: pointer;
+    }
     input {
         width: 60%;
         text-align: center;

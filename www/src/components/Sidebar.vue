@@ -57,7 +57,7 @@
                         <a href="#">Weather</a>
                     </li>
                     <li>
-                        <a href="#">Random Quote</a>
+                        <a href="#">Inspirational Quote</a>
                     </li>
                 </ul>
             </li>
@@ -85,6 +85,15 @@
 </script>
 
 <style scoped>
+    a{
+        cursor: pointer;
+    }
+    h1{
+        margin-bottom: 2vh;
+    }
+    .fa-cog{
+        cursor: pointer;
+    }
     .userImage {
         border-radius: 50%;
         height: 12rem;
