@@ -1,22 +1,31 @@
 <template>
   <div class="col-sm-12 text-center background" :style="{ 'background-image': 'url(' + user.background + ')' }">
-    <navbar></navbar>
     <div class="row">
-      <div class="main">
-        <div class="sidebar-container">
-          <sidebar></sidebar>
+      <div class="col-sm-12">
+        <div class="row">
+          <a id="sidebarCollapse" data-toggle="collapse" data-target="#sidebar">
+            <i class="fa fa-4x fa-bars menu pull-left" aria-hidden="true"></i>
+          </a>
         </div>
-        <div class="main-body">
-          <div class="panel panel-style text-center col-sm-4 col-sm-offset-5">
-            <h1>
-              <Clock :blink="true" />
-            </h1>
+        <div class="main row">
+          <div class="col-sm-12">
+            <div class="sidebar-container">
+              <sidebar></sidebar>
+            </div>
+            <div class="main-body">
+              <div class="panel panel-style text-center col-sm-4 col-sm-offset-5">
+                <h1>
+                  <Clock :blink="true" />
+                </h1>
+              </div>
+              <weather></weather>
+              <quote></quote>
+              <todo></todo>
+              <router-view/>
+            </div>
           </div>
-          <weather></weather>
-          <quote></quote>
-          <todo></todo>
-          <router-view/>
         </div>
+
       </div>
     </div>
     <profile></profile>
@@ -24,7 +33,6 @@
 </template>
 
 <script>
-  import Navbar from './Navbar'
   import Sidebar from './Sidebar'
   import Weather from './Weather'
   import Todo from './Todo'
@@ -40,15 +48,14 @@
     name: 'Home',
     components: {
       Weather,
-      Navbar,
       Sidebar,
       Todo,
       Quote,
       Clock,
       Profile
     },
-    computed:{
-      user(){
+    computed: {
+      user() {
         return this.$store.state.user
       }
     }
@@ -77,36 +84,38 @@
     color: #42b983;
   }
 
-  .panel-style{
+  .menu {
+    margin-left: 2vw;
+    color: white;
+    position: fixed-left;
+  }
+
+  .panel-style {
     color: white;
     background-color: rgba(5, 0, 0, 0.25);
     width: 15vw;
     height: 15vh;
   }
 
-  .home {
-    margin-top: 0px;
-  }
-
-  .main{
+  .main {
     display: flex;
   }
 
-  .sidebar-container{
+  .sidebar-container {
     display: relative;
     position: fixed;
   }
-  .main-body{
+
+  .main-body {
     flex-grow: 1;
     margin-top: 10vh;
   }
 
-  .background{
-    margin-top: 71px;
+  .background {
     background: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: center;
     background-attachment: fixed;
-    
+    margin: 0px 0px 0px 0px;
   }
 </style>

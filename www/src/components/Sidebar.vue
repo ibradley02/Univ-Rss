@@ -17,6 +17,8 @@
                 </h3>
             </div>
             <h6>{{user.email}}</h6>
+            <button type="button" class="btn btn-danger logout" @click="logout">Logout</button>
+            
         </div>
         <ul class="list-unstyled components">
             <li>
@@ -61,7 +63,8 @@
         components: {
         },
         methods: {
-            toggelSidebar() {
+            logout() {
+                this.$store.dispatch('logout')
             }
         },
         computed: {
