@@ -73,4 +73,9 @@
     .delete{
         margin-right: 2px;
     }
+    .add-list-form{
+        height: 35vh;
+        max-height: 30vh;
+        overflow: auto;    
+        }
 </style>

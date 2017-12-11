@@ -1,6 +1,7 @@
 <template>
     <nav id="sidebar" class="collapse animated fadeInLeft">
         <div class="sidebar-header">
+            <h1 class="univ-rss">UNIV <i class="fa fa-rss"></i></h1>  
             <div class="col-xs-12">
                 <img class="userImage" :src="user.image" at="User Image"></img>
             </div>
