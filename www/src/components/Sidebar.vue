@@ -1,7 +1,9 @@
 <template>
     <nav id="sidebar" class="collapse animated fadeInLeft">
         <div class="sidebar-header">
-            <h1 class="univ-rss">UNIV <i class="fa fa-rss"></i></h1>  
+            <h1 class="univ-rss">UNIV
+                <i class="fa fa-rss"></i>
+            </h1>
             <div class="col-xs-12">
                 <img class="userImage" :src="user.image" at="User Image"></img>
             </div>
@@ -19,25 +21,14 @@
             </div>
             <h6>{{user.email}}</h6>
             <button type="button" class="btn btn-danger logout" @click="logout">Logout</button>
-            
+
         </div>
         <ul class="list-unstyled components">
             <li>
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
-                <ul class="collapse list-unstyled" id="homeSubmenu">
-                    <li>
-                        <a href="#">Clock</a>
-                    </li>
-                    <li>
-                        <a href="#">To-Do</a>
-                    </li>
-                    <li>
-                        <a href="#">Weather</a>
-                    </li>
-                    <li>
-                        <a href="#">Random Quote</a>
-                    </li>
-                </ul>
+                <a>Home</a>
+            </li>
+            <li>
+                <a>Profile</a>
             </li>
             <li>
                 <a href="#feedSubmenu" data-toggle="collapse" aria-expanded="false">Feeds</a>
@@ -50,6 +41,23 @@
                     </li>
                     <li>
                         <a href="#">Youtube</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#componentSubmenu" data-toggle="collapse" aria-expanded="false">Components</a>
+                <ul class="collapse list-unstyled" id="componentSubmenu">
+                    <li>
+                        <a href="#">Clock</a>
+                    </li>
+                    <li>
+                        <a href="#">To-Do</a>
+                    </li>
+                    <li>
+                        <a href="#">Weather</a>
+                    </li>
+                    <li>
+                        <a href="#">Random Quote</a>
                     </li>
                 </ul>
             </li>
