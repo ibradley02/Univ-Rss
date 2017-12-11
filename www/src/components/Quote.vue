@@ -1,6 +1,6 @@
 <template>
     <div class="row text-center">
-        <div class="col-xs-3 pull-right">
+        <div class="col-sm-4 col-sm-offset-4">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div><p>"{{quote.quote}}"</p></div>

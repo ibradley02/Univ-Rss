@@ -13,7 +13,7 @@
               <sidebar></sidebar>
             </div>
             <div class="main-body">
-              <div class="panel panel-style text-center col-sm-4 col-sm-offset-5">
+              <div class="panel-style text-center col-sm-4 col-sm-offset-5">
                 <h1>
                   <Clock :blink="true" />
                 </h1>
@@ -97,7 +97,7 @@
     color: white;
     background-color: rgba(5, 0, 0, 0.25);
     width: 15vw;
-    height: 15vh;
+    height: 8vh;
   }
 
   .main {
