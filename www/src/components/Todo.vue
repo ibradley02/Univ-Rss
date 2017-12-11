@@ -21,7 +21,7 @@
                             </div>
                         </form>
                         <div class="todos" v-for="todo in todos">
-                            <span class="glyphicon glyphicon-remove-circle pull-right" @click="removeTodo(todo._id)"></span>
+                            <span class="glyphicon glyphicon-remove-circle pull-right delete" @click="removeTodo(todo._id)"></span>
                             <h3>{{ todo.name }}</h3>
                         </div>
                     </div>
@@ -66,6 +66,11 @@
 </script>
 <style scoped>
     input{
+        width: 80%;
+        margin: auto auto;
         text-align: center;
+    }
+    .delete{
+        margin-right: 2px;
     }
 </style>
