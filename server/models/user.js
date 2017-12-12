@@ -10,7 +10,11 @@ let schema = new Schema({
   image: { type: String, default: 'https://i.ytimg.com/vi/WgvTgV5EoGY/maxresdefault.jpg'},
   background: { type: String },
   password: { type: String, required: true },
-  created: { type: Number, required: true, default: Date.now() }
+  created: { type: Number, required: true, default: Date.now() },
+  weather: { type: Boolean, required: true, default: true },
+  quote: { type: Boolean, required: true, default: true },
+  todo: { type: Boolean, required: true, default: true },
+  clock: { type: Boolean, required: true, default: true }
 })
 
 

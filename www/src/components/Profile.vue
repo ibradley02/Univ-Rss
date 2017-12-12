@@ -34,15 +34,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="password">Password:</label>
-                                <input type="text" class="form-control" placeholder="Johnny Appleseed" v-model="profile.password">
+                                <input type="text" class="form-control" placeholder="123badpassword" v-model="profile.password">
                             </div>
                             <div class="form-group">
                                 <label for="image">Profile Image:</label>
-                                <input type="text" class="form-control" placeholder="Johnny Appleseed" v-model="profile.image">
+                                <input type="text" class="form-control" placeholder="Image Link Here" v-model="profile.image">
                             </div>
                             <div class="form-group">
                                 <label for="background">Background Image:</label>
-                                <input type="text" class="form-control" placeholder="Johnny Appleseed" v-model="profile.background">
+                                <input type="text" class="form-control" placeholder="Image Link Here" v-model="profile.background">
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-default">Update</button>
@@ -67,16 +67,12 @@
                     image: '',
                     background: ''
                 },
-                profileFormActive: true
             }
         },
         components: {
             Sidebar
         },
         methods: {
-            toggleFormState() {
-                this.profileFormActive = !this.profileFormActive
-            },
             updateProfile() {
                 var update = {
                     userId: this.user._id,

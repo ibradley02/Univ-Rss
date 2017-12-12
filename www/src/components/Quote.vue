@@ -1,5 +1,5 @@
 <template>
-    <div class="row text-center">
+    <div class="row text-center" v-if="user.quote">
         <div class="col-sm-4 col-sm-offset-4">
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -20,6 +20,9 @@
         computed: {
             quote() {
                 return this.$store.state.quote
+            },
+            user() {
+                return this.$store.state.user
             }
         }
     }

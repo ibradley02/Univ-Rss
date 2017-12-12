@@ -27,7 +27,7 @@ var store = new vuex.Store({
     error: {},
     user: {},
     weather: {},
-    quote: {}
+    quote: {},
   },
   mutations: {
     handleError(state, err) {
@@ -175,8 +175,36 @@ var store = new vuex.Store({
           console.log(res)
           dispatch('authenticateProfile')
         })
+    },
+    //TOGGLE COMPONENTS
+    updateClock({ commit, dispatch }, payload) {
+      api.put('/users/' + payload.userId, payload)
+        .then(res => {
+          console.log(res)
+          dispatch('authenticate')
+        })
+    },
+    updateTodo({ commit, dispatch }, payload) {
+      api.put('/users/' + payload.userId, payload)
+        .then(res => {
+          console.log(res)
+          dispatch('authenticate')
+        })
+    },
+    updateWeather({ commit, dispatch }, payload) {
+      api.put('/users/' + payload.userId, payload)
+        .then(res => {
+          console.log(res)
+          dispatch('authenticate')
+        })
+    },
+    updateQuote({ commit, dispatch }, payload) {
+      api.put('/users/' + payload.userId, payload)
+        .then(res => {
+          console.log(res)
+          dispatch('authenticate')
+        })
     }
-
   }
 
 

@@ -48,16 +48,16 @@
                 <a href="#componentSubmenu" data-toggle="collapse" aria-expanded="false">Components</a>
                 <ul class="collapse list-unstyled" id="componentSubmenu">
                     <li>
-                        <a href="#">Clock</a>
+                        <a @click="setClock">Clock</a>
                     </li>
                     <li>
-                        <a href="#">To-Do</a>
+                        <a @click="setTodo">To-Do</a>
                     </li>
                     <li>
-                        <a href="#">Weather</a>
+                        <a @click="setWeather">Weather</a>
                     </li>
                     <li>
-                        <a href="#">Inspirational Quote</a>
+                        <a @click="setQuote">Inspirational Quote</a>
                     </li>
                 </ul>
             </li>
@@ -68,12 +68,48 @@
 <script>
     export default {
         name: 'sidebar',
+        data(){
+            return {
+                update: {
+
+                } 
+            }
+        },
         toggleClass: false,
         components: {
         },
         methods: {
             logout() {
                 this.$store.dispatch('logout')
+            },
+            setClock() {
+                var updateClock = {
+                    userId: this.user._id,
+                    clock: !this.user.clock
+                }
+                this.$store.dispatch('updateClock', updateClock)
+            },
+            setTodo() {
+                var updateTodo = {
+                    userId: this.user._id,
+                    todo: !this.user.todo
+                }
+                this.$store.dispatch('updateTodo', updateTodo)
+            },
+            setWeather() {
+                var updateWeather = {
+                    userId: this.user._id,
+                    weather: !this.user.weather
+                }
+                this.$store.dispatch('updateWeather', updateWeather)
+            },
+            setQuote() {
+                var updateQuote = {
+                    userId: this.user._id,
+                    quote: !this.user.quote
+                }
+                this.$store.dispatch('updateQuote', updateQuote)
+
             }
         },
         computed: {

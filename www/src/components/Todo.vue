@@ -1,5 +1,5 @@
 <template>
-    <div class="row">
+    <div class="row" v-if="user.todo">
         <div class="col-xs-3 pull-right">
             <div class="panel panel-default panel-style">
                 <div class="panel-heading">
@@ -35,8 +35,7 @@
         data() {
             return {
                 todo: {
-                    name: '',
-
+                    name: ''
                 },
                 message: ''
             }
@@ -57,6 +56,9 @@
         computed: {
             todos() {
                 return this.$store.state.todos
+            },
+            user() {
+                return this.$store.state.user
             }
 
         }
