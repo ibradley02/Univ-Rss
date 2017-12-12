@@ -14,9 +14,11 @@
             </div>
             <div class="col-xs-2 col-xs-offset-1">
                 <h3>
-                    <a data-toggle="modal" data-target="#profileModal">
-                        <i class="fa fa-cog"></i>
-                    </a>
+                    <router-link to="Profile">
+                        <i class="fa fa-cog">
+
+                        </i>
+                    </router-link>
                 </h3>
             </div>
             <h6>{{user.email}}</h6>
@@ -25,10 +27,10 @@
         </div>
         <ul class="list-unstyled components">
             <li>
-                <a href="/">Home</a>
+                <router-link to="/">Home</router-link>
             </li>
             <li>
-                <a href="/profile">Profile</a>
+                <router-link to="Profile">Profile</router-link>
             </li>
             <li>
                 <a href="#feedSubmenu" data-toggle="collapse" aria-expanded="false">Feeds</a>
@@ -85,15 +87,18 @@
 </script>
 
 <style scoped>
-    a{
+    a {
         cursor: pointer;
     }
-    h1{
+
+    h1 {
         margin-bottom: 2vh;
     }
-    .fa-cog{
+
+    .fa-cog {
         cursor: pointer;
     }
+
     .userImage {
         border-radius: 50%;
         height: 12rem;

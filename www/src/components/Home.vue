@@ -27,7 +27,6 @@
         </div>
       </div>
     </div>
-    <profile></profile>
   </div>
 </template>
 
