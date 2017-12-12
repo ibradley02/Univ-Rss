@@ -83,8 +83,8 @@
     }
 
     .add-list-form {
-        height: 35vh;
-        max-height: 30vh;
-        overflow: auto;
+        /* height: 35vh; */
+         max-height: 15vh;
+        overflow: auto; 
     }
 </style>

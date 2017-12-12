@@ -1,12 +1,19 @@
 <template>
     <div class="row text-center">
         <nav class="navbar navbar-default navbar-fixed-top myNavbar">
-            <div class="text-left sidebar-button col-sm-6">
+            <div class="text-left sidebar-button col-sm-4">
                 <a id="sidebarCollapse" data-toggle="collapse" data-target="#sidebar">
                     <i class="fa fa-4x fa-bars menu" aria-hidden="true"></i>
                 </a>
             </div>
-            <div class="weather col-sm-6">
+            <div class="col-sm-4">
+                <div class="panel-style text-center col-sm-4 col-sm-offset-5" v-if="user.clock">
+                    <h1>
+                        <Clock :blink="true" />
+                    </h1>
+                </div>
+            </div>
+            <div class="weather col-sm-4">
                 <weather></weather>
             </div>
         </nav>
@@ -16,12 +23,14 @@
 
 <script>
     import Weather from './Weather'
+    import Clock from 'vue-digital-clock'
     export default {
         name: 'navbar',
         methods: {
         },
         components: {
-            Weather
+            Weather,
+            Clock
         },
         computed: {
             user() {
@@ -71,7 +80,9 @@
 
     .menu {
         color: white;
-        margin-top: 2vh;
-        margin-left: 2vw;
+        margin-top: .5vh;
+        /* margin-left: .3vw; */
+        z-index: 99999;
+        cursor: pointer;
     }
 </style>

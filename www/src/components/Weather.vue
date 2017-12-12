@@ -1,13 +1,13 @@
 <template>
-    <div v-if="user.weather">
-        <div class="panel-body" v-if="weather.weather">
+    <div class="weather-panel" v-if="user.weather">
+        <div v-if="weather.weather">
             <div class="icon">
                 <img :src="'http://openweathermap.org/img/w/'+ weather.weather[0].icon +'.png'">
             </div>
             <div class="temp">
                 <h4>{{weather.main.temp}}°F</h4>
             </div>
-            <h4>{{weather.name}}</h4>
+            <p>{{weather.name}}</p>
         </div>
     </div>
 </template>
@@ -38,8 +38,7 @@
     .icon {
         display: inline-block;
     }
-
-    .panel-body {
-        color: white;
+    .weather-panel{
+        margin-right: .3vw;
     }
 </style>
