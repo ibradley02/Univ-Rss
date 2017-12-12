@@ -3,10 +3,10 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="row">
-          <a id="sidebarCollapse" data-toggle="collapse" data-target="#sidebar">
+          <!-- <a id="sidebarCollapse" data-toggle="collapse" data-target="#sidebar">
             <i class="fa fa-4x fa-bars menu pull-left" aria-hidden="true"></i>
-          </a>
-          <weather></weather>
+          </a> -->
+          <navbar></navbar>
         </div>
         <div class="main row">
           <div class="col-sm-12">
@@ -37,6 +37,7 @@
   import Quote from './Quote'
   import Clock from 'vue-digital-clock'
   import Profile from './Profile'
+  import Navbar from './Navbar'
   export default {
     data() {
       return {
@@ -50,7 +51,8 @@
       Todo,
       Quote,
       Clock,
-      Profile
+      Profile,
+      Navbar
     },
     computed: {
       user() {
@@ -101,6 +103,7 @@
 
   .main {
     display: flex;
+    margin-top: 10vh;
   }
 
   .sidebar-container {
