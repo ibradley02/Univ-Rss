@@ -209,7 +209,11 @@
     }
 
     #sidebar .sidebar-header {
-        padding: 20px;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        padding-right: 20px;
+        padding-left: 20px;
+        /* padding: 1px 20px 20px 20px; */
         background: rgb(0, 1, 2);
     }
 
