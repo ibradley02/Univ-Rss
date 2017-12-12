@@ -25,10 +25,10 @@
         </div>
         <ul class="list-unstyled components">
             <li>
-                <a>Home</a>
+                <a href="/">Home</a>
             </li>
             <li>
-                <a>Profile</a>
+                <a href="/profile">Profile</a>
             </li>
             <li>
                 <a href="#feedSubmenu" data-toggle="collapse" aria-expanded="false">Feeds</a>
