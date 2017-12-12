@@ -185,10 +185,10 @@
     margin: 0px 0px 0px 0px;
     height: 100vh;
   }
-  .vue-grid-layout {
-  /* background: #eee; */
+  /* .vue-grid-layout {
+  background: #eee;
 
-}
+} */
 
 
 .vue-grid-item:not(.vue-grid-placeholder) {
