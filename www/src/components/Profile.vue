@@ -1,56 +1,62 @@
 <template>
-    <!-- BEGIN MODAL -->
-    <div id="profileModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal SIGN UP WINDOW -->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title text-center">Profile Settings</h4>
+    <div class="col-sm-12 text-center background" :style="{ 'background-image': 'url(' + user.background + ')' }">
+        <div class="row">
+            <a id="sidebarCollapse" data-toggle="collapse" data-target="#sidebar">
+                <i class="fa fa-4x fa-bars menu pull-left" aria-hidden="true"></i>
+            </a>
+        </div>
+        <div class="row">
+            <div class="sidebar-container">
+                <sidebar></sidebar>
+            </div>
+        </div>
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2>Your Profile</h2>
                 </div>
-                <div class="modal-body">
-                    <form type="submit">
-                        <div class="form-group">
-                            <label for="firstName">
-                                <span class="glyphicon glyphicon-edit"></span> Full Name: {{user.name}}</label>
-                            <input type="text" class="form-control" placeholder="ex. Johnny Appleseed" v-model="profile.name">
-                        </div>
-                        <!-- IMG INPUT FORM -->
-                        <div class="form-group">
-                            <label for="Username">
-                                <span class="glyphicon glyphicon-picture"></span> Profile Image: </label>
-                            <input type="text" class="form-control" placeholder="image url here" v-model="profile.image">
-                        </div>
-                        <div class="form-group">
-                            <label for="firstName">
-                                <span class="glyphicon glyphicon-edit"></span> Background Image:</label>
-                            <input type="text" class="form-control" placeholder="ex. Johnny Appleseed" v-model="profile.background">
-                        </div>
-                        <!-- PASSWORD INPUT FORM -->
-                        <div class="form-group">
-                            <label for="Password">
-                                <span class="glyphicon glyphicon-eye-open"></span> Password:</label>
-                            <input type="password" class="form-control" placeholder="Password" v-model="profile.password">
-                        </div>
-                        <!-- SIGN UP BUTTON -->
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-success btn-center" @click="updateProfile" data-dismiss="modal">
-                                <span class="glyphicon glyphicon-lock"></span> Save Changes </button>
-                        </div>
-                    </form>
-                </div>
-                <!-- MODAL CLOSE -->
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger" data-dismiss="modal">
-                        <span class="glyphicon glyphicon-remove"></span> Close</button>
+                <div class="panel-body">
+                    <div class="col-sm-6 text-left">
+                        <h3>Name: {{user.name}}</h3>
+                        <h3>Email: {{user.email}}</h3>
+                        <h3>Profile picture:
+                                   <img :src="user.image" class="userImage" alt="Profile Picture">
+                        </h3>
+                        <h3>Background Image:
+                            <img :src="user.background" class="backgroundImage" alt="Background Image">
+                        </h3>
+                    </div>
+                    <div class="col-sm-6">
+                        <form type="submit" @submit.prevent="updateProfile">
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" class="form-control" placeholder="Johnny Appleseed" v-model="profile.name">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="text" class="form-control" placeholder="123badpassword" v-model="profile.password">
+                            </div>
+                            <div class="form-group">
+                                <label for="image">Profile Image:</label>
+                                <input type="text" class="form-control" placeholder="Image Link Here" v-model="profile.image">
+                            </div>
+                            <div class="form-group">
+                                <label for="background">Background Image:</label>
+                                <input type="text" class="form-control" placeholder="Image Link Here" v-model="profile.background">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default">Update</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 </template>
 
 <script>
+    import Sidebar from './Sidebar'
     export default {
         name: "profile",
         data() {
@@ -60,11 +66,14 @@
                     username: '',
                     image: '',
                     background: ''
-                }
+                },
             }
         },
+        components: {
+            Sidebar
+        },
         methods: {
-            updateProfile(){
+            updateProfile() {
                 var update = {
                     userId: this.user._id,
                     name: this.profile.name,
@@ -91,4 +100,48 @@
 </script>
 
 <style scoped>
+    input {
+        text-align: center;
+    }
+
+    .backgroundImage {
+        height: 12rem;
+        width: 15rem;
+    }
+
+    .userImage {
+        border-radius: 50%;
+        height: 12rem;
+        width: 12rem;
+    }
+
+    .background {
+        background: no-repeat;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+        margin: 0px 0px 0px 0px;
+        height: 100vh;
+    }
+
+    .menu {
+        cursor: pointer;
+        margin-left: 2vw;
+        color: white;
+        position: fixed;
+        z-index: 1;
+        top: 10px;
+        left: 10px;
+    }
+
+    .sidebar-container {
+        margin-top: 10vh;
+        display: relative;
+        position: fixed;
+    }
+
+    .panel {
+        width: 50%;
+        margin: 10vh auto;
+    }
 </style>

@@ -1,15 +1,14 @@
 <template>
-    <div class="row">
-        <div class="col-xs-3 pull-right">
-            <div class="panel panel-default panel-style">
+    <div v-if="user.weather" class="pull-right">
+        <div class="col-sm-12">
                 <div class="panel-body text-center" v-if="weather.weather">
                     <div class="icon">
                         <img :src="'http://openweathermap.org/img/w/'+ weather.weather[0].icon +'.png'">
                     </div>
                     <div class="temp">
-                        <h5>{{weather.main.temp}}°F</h5>
+                        <h4>{{weather.main.temp}}°F</h4>
                     </div>
-                    <h5>{{weather.name}}</h5>
+                    <h4>{{weather.name}}</h4>
                 </div>
             </div>
         </div>
@@ -25,6 +24,9 @@
         computed: {
             weather() {
                 return this.$store.state.weather
+            },
+            user() {
+                return this.$store.state.user
             }
         }
     }
@@ -37,5 +39,8 @@
     }
     .icon {
         display: inline-block;
+    }
+    .panel-body{
+        color: white;
     }
 </style>

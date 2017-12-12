@@ -31,6 +31,7 @@
           <a id="sidebarCollapse" data-toggle="collapse" data-target="#sidebar">
             <i class="fa fa-4x fa-bars menu pull-left" aria-hidden="true"></i>
           </a>
+          <weather></weather>
         </div>
         <div class="main row">
           <div class="col-sm-12">
@@ -38,12 +39,11 @@
               <sidebar></sidebar>
             </div>
             <div class="main-body">
-              <div class="panel-style text-center col-sm-4 col-sm-offset-5">
+              <div class="panel-style text-center col-sm-4 col-sm-offset-5" v-if="user.clock">
                 <h1>
                   <Clock :blink="true" />
                 </h1>
               </div>
-              <weather></weather>
               <quote></quote>
               <todo></todo>
               <router-view/>
@@ -52,7 +52,6 @@
         </div>
       </div>
     </div>
-    <profile></profile>
   </div>
 </template>
 
@@ -167,14 +166,12 @@
   }
 
   .sidebar-container {
-    margin-top: 10vh;
     display: relative;
     position: fixed;
   }
 
   .main-body {
     flex-grow: 1;
-    margin-top: 10vh;
   }
 
   .background {
