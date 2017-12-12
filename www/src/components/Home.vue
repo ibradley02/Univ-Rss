@@ -25,7 +25,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
     <profile></profile>
@@ -85,6 +84,7 @@
   }
 
   .menu {
+    cursor: pointer;
     margin-left: 2vw;
     color: white;
     position: fixed;

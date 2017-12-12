@@ -4,27 +4,25 @@
             <div class="panel panel-default panel-style">
                 <div class="panel-heading">
                     <h3>Todos</h3>
+                    <h4 v-if="todos.length == 0">You have nothing to do</h4>
+                    <h4 v-if="todos.length == 1">You have <b>1</b> thing to do</h4>
+                    <h4 v-if="todos.length > 1">You have <b>{{ todos.length }}</b> things to do</h4>
                 </div>
                 <div class="text-center">
                     <div class="add-list-form">
-                        <h4 v-if="todos.length == 0">I have nothing to do</h4>
-                        <h4 v-if="todos.length == 1">I have 1 thing to do</h4>
-                        <h4 v-if="todos.length > 1">I have {{ todos.length }} things to do</h4>
-                        </h4>
-                        <form type="submit" @submit.prevent="addTodo()">
-                            <div class="form-group">
-                                <input name="name" type="text" class="form-control" placeholder="Todo" v-model="todo.name" required>
-                            </div>
-
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-success navbar-btn">Create Todo</button>
-                            </div>
-                        </form>
                         <div class="todos" v-for="todo in todos">
                             <span class="glyphicon glyphicon-remove-circle pull-right delete" @click="removeTodo(todo._id)"></span>
                             <h3>{{ todo.name }}</h3>
                         </div>
                     </div>
+                </div>
+                <div class="panel-footer">
+                    <form type="submit" @submit.prevent="addTodo()">
+                        <div class="form-group">
+                            <input name="name" type="text" class="form-control" placeholder="Todo" v-model="todo.name" required>
+                            <button type="submit" class="btn btn-success navbar-btn">Create Todo</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -65,12 +63,26 @@
     }
 </script>
 <style scoped>
-    input{
-        width: 80%;
-        margin: auto auto;
-        text-align: center;
+    span{
+        cursor: pointer;
     }
-    .delete{
+    input {
+        width: 60%;
+        text-align: center;
+        display: inline-block;
+    }
+
+    button {
+        display: inline-block;
+    }
+
+    .delete {
         margin-right: 2px;
+    }
+
+    .add-list-form {
+        height: 35vh;
+        max-height: 30vh;
+        overflow: auto;
     }
 </style>
