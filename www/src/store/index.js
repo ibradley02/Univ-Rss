@@ -87,6 +87,18 @@ var store = new vuex.Store({
         })
     },
 
+    authenticateProfile({ commit, dispatch }) {
+      auth('authenticate')
+        .then(res => {
+          commit('setUser', res.data.data)
+          router.push({ name: 'Profile' })
+        })
+        .catch(err => {
+          router.push({ name: 'Login' })
+        })
+    },
+
+
     logout({ commit, dispatch }) {
       auth.delete('logout')
         .then(res => {
@@ -161,7 +173,7 @@ var store = new vuex.Store({
       api.put('/users/' + payload.userId, payload)
         .then(res => {
           console.log(res)
-          dispatch('authenticate')
+          dispatch('authenticateProfile')
         })
     }
 

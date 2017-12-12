@@ -15,9 +15,7 @@
             <div class="col-xs-2 col-xs-offset-1">
                 <h3>
                     <router-link to="Profile">
-                        <i class="fa fa-cog">
-
-                        </i>
+                        <i class="fa fa-cog"></i>
                     </router-link>
                 </h3>
             </div>

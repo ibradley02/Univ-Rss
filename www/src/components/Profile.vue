@@ -13,40 +13,42 @@
         <div class="row">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h2>Your Profile
-                        <a class="toggle-link" @click="toggleFormState">
-                            <span class="glyphicon glyphicon-edit pull-right"></span>
-                        </a>
-                    </h2>
+                    <h2>Your Profile</h2>
                 </div>
-                <div class="panel-body" v-if="profileFormActive">
-                    <h3>Name: {{user.name}}</h3>
-                    <h3>Email: {{user.email}}</h3>
-                    <h3>Profile picture: <img :src="user.image" class="userImage" alt="Profile Picture"></h3>
-                    <h3>Background Image: <img :src="user.background" class="backgroundImage" alt="Background Image"></h3>
-                </div>
-                <div class="panel-body" v-else>
-                    <form type="submit" @submit.prevent="updateProfile">
-                        <div class="form-group">
-                            <label for="name">Name:</label>
-                            <input type="text" class="form-control" placeholder="Johnny Appleseed" v-model="profile.name">
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password:</label>
-                            <input type="text" class="form-control" placeholder="Johnny Appleseed" v-model="profile.password">
-                        </div>
-                        <div class="form-group">
-                            <label for="image">Profile Image:</label>
-                            <input type="text" class="form-control" placeholder="Johnny Appleseed" v-model="profile.image">
-                        </div>
-                        <div class="form-group">
-                            <label for="background">Background Image:</label>
-                            <input type="text" class="form-control" placeholder="Johnny Appleseed" v-model="profile.background">
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-default">Update</button>
-                        </div>
-                    </form>
+                <div class="panel-body">
+                    <div class="col-sm-6 text-left">
+                        <h3>Name: {{user.name}}</h3>
+                        <h3>Email: {{user.email}}</h3>
+                        <h3>Profile picture:
+                                   <img :src="user.image" class="userImage" alt="Profile Picture">
+                        </h3>
+                        <h3>Background Image:
+                            <img :src="user.background" class="backgroundImage" alt="Background Image">
+                        </h3>
+                    </div>
+                    <div class="col-sm-6">
+                        <form type="submit" @submit.prevent="updateProfile">
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" class="form-control" placeholder="Johnny Appleseed" v-model="profile.name">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="text" class="form-control" placeholder="Johnny Appleseed" v-model="profile.password">
+                            </div>
+                            <div class="form-group">
+                                <label for="image">Profile Image:</label>
+                                <input type="text" class="form-control" placeholder="Johnny Appleseed" v-model="profile.image">
+                            </div>
+                            <div class="form-group">
+                                <label for="background">Background Image:</label>
+                                <input type="text" class="form-control" placeholder="Johnny Appleseed" v-model="profile.background">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default">Update</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
