@@ -62,13 +62,10 @@
   import Quote from './Quote'
   import Clock from 'vue-digital-clock'
   import Profile from './Profile'
-<<<<<<< HEAD
   import Navbar from './Navbar'
-=======
   import VueGridLayout from 'vue-grid-layout'
   var GridLayout = VueGridLayout.GridLayout;
   var GridItem = VueGridLayout.GridItem;
->>>>>>> 8fb380b57da3c06994ff607a0a01c2e2cf493bc5
   export default {
     data() {
       return {
