@@ -1,5 +1,30 @@
 <template>
   <div class="col-sm-12 text-center background" :style="{ 'background-image': 'url(' + user.background + ')' }">
+      <!-- <grid-layout 
+      :layout="layout" 
+      :col-num="16" 
+      :row-height="30" 
+      :is-draggable="true" 
+      :is-resizable="true" 
+      :vertical-compact="true"
+      :margin="[10, 10]" 
+      :use-css-transforms="true">
+        <grid-item class="grid-cell" v-for="item in layout" 
+        :x="item.x" 
+        :y="item.y" 
+        :w="item.w" 
+        :h="item.h" 
+        :i="item.i"
+        @resize="resize"
+        @move="move"
+        @resized="resized"
+        @moved="moved"
+        >
+          <button>
+            {{item.i}}
+          </button>
+        </grid-item>
+      </grid-layout> -->
     <div class="row">
       <div class="col-sm-12">
         <div class="row">
@@ -37,15 +62,41 @@
   import Quote from './Quote'
   import Clock from 'vue-digital-clock'
   import Profile from './Profile'
+<<<<<<< HEAD
   import Navbar from './Navbar'
+=======
+  import VueGridLayout from 'vue-grid-layout'
+  var GridLayout = VueGridLayout.GridLayout;
+  var GridItem = VueGridLayout.GridItem;
+>>>>>>> 8fb380b57da3c06994ff607a0a01c2e2cf493bc5
   export default {
     data() {
       return {
-        msg: 'Welcome to Your Vue.js App'
+        layout: [{
+        "x": 2,
+        "y": 0,
+        "w": 4,
+        "h": 2,
+        "i": "0"
+      }, {
+        "x": 6,
+        "y": 0,
+        "w": 4,
+        "h": 4,
+        "i": "1"
+      }, {
+        "x": 10,
+        "y": 0,
+        "w": 4,
+        "h": 4,
+        "i": "2"
+      }],
       }
     },
     name: 'Home',
     components: {
+      GridLayout,
+      GridItem,
       Weather,
       Sidebar,
       Todo,
@@ -57,6 +108,20 @@
     computed: {
       user() {
         return this.$store.state.user
+      }
+    },
+    methods:{
+      move: function(i, newX, newY){
+          console.log("MOVE i=" + i + ", X=" + newX + ", Y=" + newY);
+      },
+      resize: function(i, newH, newW){
+          console.log("RESIZE i=" + i + ", H=" + newH + ", W=" + newW);
+      },         
+      moved: function(i, newX, newY){
+          console.log("### MOVED i=" + i + ", X=" + newX + ", Y=" + newY);
+      },
+      resized: function(i, newH, newW, newHPx, newWPx){
+          console.log("### RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
       },
     }
   }
@@ -91,7 +156,7 @@
     position: fixed;
     z-index: 1;
     top: 10px;
-    left: 10px; 
+    left: 10px;
   }
 
   .panel-style {
@@ -123,4 +188,43 @@
     margin: 0px 0px 0px 0px;
     height: 100vh;
   }
+  .vue-grid-layout {
+  /* background: #eee; */
+
+}
+
+
+.vue-grid-item:not(.vue-grid-placeholder) {
+  background: #ccc;
+  border: 1px solid black;
+}
+
+.vue-grid-item.resizing {
+  opacity: 0.9;
+}
+
+.vue-grid-item.static {
+  background: #cce;
+}
+
+.vue-grid-item .text {
+  font-size: 24px;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 24px;
+}
+
+.vue-grid-item .minMax {
+  font-size: 12px;
+}
+
+.vue-grid-item .add {
+  cursor: pointer;
+}
+
 </style>

@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import store from './store'
 import router from './router'
-
+import VueGridLayout from 'vue-grid-layout'
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
