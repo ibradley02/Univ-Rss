@@ -8,7 +8,7 @@ let schema = new Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true, dropDups: true },
   image: { type: String, default: 'https://i.ytimg.com/vi/WgvTgV5EoGY/maxresdefault.jpg'},
-  background: { type: String },
+  background: { type: String, default: 'http://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials-hero-00e10b1f.jpg' },
   password: { type: String, required: true },
   created: { type: Number, required: true, default: Date.now() },
   weather: { type: Boolean, required: true, default: true },

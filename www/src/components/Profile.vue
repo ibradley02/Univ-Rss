@@ -13,6 +13,9 @@
         <div class="row">
             <div class="panel panel-default">
                 <div class="panel-heading">
+                    <router-link to="/">
+                        <i class="fa fa-window-close fa-3x pull-right"></i>
+                    </router-link>
                     <h2>Your Profile</h2>
                 </div>
                 <div class="panel-body">
@@ -20,7 +23,7 @@
                         <h3>Name: {{user.name}}</h3>
                         <h3>Email: {{user.email}}</h3>
                         <h3>Profile picture:
-                                   <img :src="user.image" class="userImage" alt="Profile Picture">
+                            <img :src="user.image" class="userImage" alt="Profile Picture">
                         </h3>
                         <h3>Background Image:
                             <img :src="user.background" class="backgroundImage" alt="Background Image">
@@ -102,6 +105,10 @@
 <style scoped>
     input {
         text-align: center;
+    }
+
+    .fa{
+        color: black;
     }
 
     .backgroundImage {

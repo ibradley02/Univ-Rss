@@ -1,12 +1,12 @@
 <template>
     <div class="row text-center">
-        <nav class="navbar navbar-default navbar-fixed-top myNavbar col-sm-12">
-            <div class="pull-left sidebar-button">
+        <nav class="navbar navbar-default navbar-fixed-top myNavbar">
+            <div class="text-left sidebar-button col-sm-6">
                 <a id="sidebarCollapse" data-toggle="collapse" data-target="#sidebar">
                     <i class="fa fa-4x fa-bars menu" aria-hidden="true"></i>
                 </a>
             </div>
-            <div class="pull-right weather">
+            <div class="weather col-sm-6">
                 <weather></weather>
             </div>
         </nav>
@@ -38,6 +38,10 @@
     @import url('https://fonts.googleapis.com/css?family=Bungee');
     .univ-rss {
         font-family: 'Bungee', cursive;
+    }
+
+    .weather {
+        text-align: right !important;
     }
 
     .myNavbar {

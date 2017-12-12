@@ -21,7 +21,6 @@
             </div>
             <h6>{{user.email}}</h6>
             <button type="button" class="btn btn-danger logout" @click="logout">Logout</button>
-
         </div>
         <ul class="list-unstyled components">
             <li>
@@ -143,7 +142,7 @@
         min-width: 250px;
         max-width: 250px;
         min-height: 85vh;
-        z-index: 99999;
+        z-index: 99999 !important;
     }
 
     #sidebar.active {
@@ -215,7 +214,7 @@
     }
 
     #sidebar ul.components {
-        padding: 20px 0;
+        padding: 0px 0;
         border-bottom: 0px;
     }
 

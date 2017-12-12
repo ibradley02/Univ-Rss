@@ -1,6 +1,6 @@
 <template>
     <div v-if="user.weather">
-        <div class="panel-body text-center" v-if="weather.weather">
+        <div class="panel-body" v-if="weather.weather">
             <div class="icon">
                 <img :src="'http://openweathermap.org/img/w/'+ weather.weather[0].icon +'.png'">
             </div>
