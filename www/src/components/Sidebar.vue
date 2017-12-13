@@ -1,5 +1,5 @@
 <template>
-    <nav id="sidebar" class="collapse animated fadeInLeft">
+    <nav id="sidebar">
         <div class="sidebar-header">
             <h1 class="univ-rss">UNIV
                 <i class="fa fa-rss"></i>
@@ -24,7 +24,7 @@
         </div>
         <ul class="list-unstyled components">
             <li>
-                <router-link to="/">Home</router-link>
+                <router-link to="Home">Home</router-link>
             </li>
             <li>
                 <router-link to="Profile">Profile</router-link>
@@ -74,7 +74,7 @@
                 } 
             }
         },
-        toggleClass: false,
+
         components: {
         },
         methods: {
@@ -138,20 +138,20 @@
         width: 12rem;
     }
 
-    #sidebar {
-        min-width: 250px;
-        max-width: 250px;
-        min-height: 85vh;
-        z-index: 99999 !important;
-    }
 
     #sidebar.active {
-        margin-left: -250px;
+        /* margin-left: 0px; */
+        /* animation-name: bounceInLeft; */
+        /* animation: 1s 0s 0.5 fadeInLeft; */
+        transform: translateX(255px);
+        transition: .7s ease-in-out;
+        opacity: 1;
     }
 
-    a[data-toggle="collapse"] {
+    /* a[data-toggle="collapse"] {
         position: relative;
-    }
+        
+    } */
 
     a[aria-expanded="false"]::before,
     a[aria-expanded="true"]::before {
@@ -198,14 +198,29 @@
 
     #sidebar {
         /* don't forget to add all the previously mentioned styles here too */
-        background: rgba(0, 1, 3, 1);
+        background: rgba(0, 0, 0, 0.7);
         color: #fff;
+        min-width: 250px;
+        max-width: 250px;
+        min-height: 85vh;
+        z-index: 99999 !important;
+        margin-left: -265px;
+        /* animation-name: fadeOutLeft; */
+        /* animation: 1s 0s 0.5 fadeOut; */
+        transform: translateX(0);
+        transition: .7s ease-in-out;
+        opacity: 0;
         /* transition: all 0.3s; */
     }
 
-    .fadeIn {
+    /* .fadeIn {
         animation-name: fadeIn;
         animation: 1s 0s 0.5 fadeIn;
+    } */
+
+    .fadeOut{
+        animation-name: fadeOut;
+        animation: 1s 0s 0.5 fadeOut;
     }
 
     #sidebar .sidebar-header {
@@ -214,7 +229,7 @@
         padding-right: 20px;
         padding-left: 20px;
         /* padding: 1px 20px 20px 20px; */
-        background: rgb(0, 1, 2);
+        background: rgba(0, 0, 0, 0.7);
     }
 
     #sidebar ul.components {
@@ -249,4 +264,6 @@
         padding-left: 30px !important;
         background: rgba(0, 1, 3, 0.521);
     }
+
+
 </style>

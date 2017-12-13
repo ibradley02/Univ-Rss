@@ -98,6 +98,7 @@
         width: 60%;
         text-align: center;
         display: inline-block;
+        color: white;
     }
 
     input::placeholder {

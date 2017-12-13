@@ -2,8 +2,11 @@
     <div class="row text-center">
         <nav class="navbar navbar-default navbar-fixed-top myNavbar">
             <div class="text-left sidebar-button col-sm-4">
-                <a id="sidebarCollapse" data-toggle="collapse" data-target="#sidebar">
-                    <i class="fa fa-3x fa-bars menu" aria-hidden="true"></i>
+                    <div id="stack" @click="toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                 </a>
             </div>
             <div class="col-sm-4">
@@ -27,6 +30,10 @@
     export default {
         name: 'navbar',
         methods: {
+            toggle() {
+                $('#stack').toggleClass('open'),
+                $('#sidebar').toggleClass('active')
+            }
         },
         components: {
             Weather,
@@ -84,5 +91,55 @@
         /* margin-left: .3vw; */
         z-index: 99999;
         cursor: pointer;
+    }
+
+    #stack {
+        width: 7vh;
+        height: 45px;
+        position: relative;
+        margin: 1.7vh 0vh;
+        transform: rotate(0deg);
+        transition: .5s ease-in-out;
+        cursor: pointer;
+    }
+
+    #stack span {
+        height: 6px;
+        width: 100%;
+        display: block;
+        position: absolute;
+        background: white;
+        border-radius: 9px;
+        opacity: 1;
+        left: 0;
+        transform: rotate(0deg);
+        transition: .25s ease-in-out;
+    }
+
+    #stack span:nth-child(1) {
+        top: 0px;
+    }
+
+    #stack span:nth-child(2) {
+        top: 17px;
+    }
+
+    #stack span:nth-child(3) {
+        top: 35px;
+    }
+
+    #stack.open span:nth-child(1) {
+        top: 17px; 
+        transform: rotate(135deg);
+    }
+
+    #stack.open span:nth-child(2) {
+        opacity: 0;
+        left: -40px;
+    }
+
+    #stack.open span:nth-child(3) {
+        top: 17px;
+        transform: rotate(-135deg);
     }
 </style>
