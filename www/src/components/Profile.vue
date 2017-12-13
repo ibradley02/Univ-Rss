@@ -107,7 +107,7 @@
         text-align: center;
     }
 
-    .fa{
+    .fa {
         color: black;
     }
 
