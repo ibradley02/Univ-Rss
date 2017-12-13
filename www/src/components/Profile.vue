@@ -1,9 +1,7 @@
 <template>
     <div class="col-sm-12 text-center background" :style="{ 'background-image': 'url(' + user.background + ')' }">
         <div class="row">
-            <a id="sidebarCollapse" data-toggle="collapse" data-target="#sidebar">
-                <i class="fa fa-4x fa-bars menu pull-left" aria-hidden="true"></i>
-            </a>
+            <navbar></navbar>
         </div>
         <div class="row">
             <div class="sidebar-container">
@@ -59,6 +57,7 @@
 </template>
 
 <script>
+    import Navbar from './Navbar'
     import Sidebar from './Sidebar'
     export default {
         name: "profile",
@@ -73,7 +72,8 @@
             }
         },
         components: {
-            Sidebar
+            Sidebar,
+            Navbar
         },
         methods: {
             updateProfile() {
