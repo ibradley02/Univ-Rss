@@ -39,6 +39,9 @@ var store = new vuex.Store({
     setWeather(state, data) {
       state.weather = data
     },
+    setEvent(state, data) {
+      state.weather = data
+    },
     setTodos(state, data) {
       state.todos = data
     },
@@ -123,6 +126,28 @@ var store = new vuex.Store({
         api('/weather/' + location.lat + '/' + location.long)
           .then(res => {
             commit('setWeather', res.data)
+          })
+          .catch(commit('handleError', Error))
+      })
+
+
+    },
+    getEvents({ commit, dispatch }) {
+      // Get position if possible **Not possible on Chrome 50**
+      navigator.geolocation.getCurrentPosition(function (position) {
+        if (position) {
+          var location = {
+            lat: position.coords.latitude,
+            long: position.coords.longitude
+          }
+
+        }
+        api('/event/' + location.lat + '/' + location.long)
+          .then(res => {
+            // res = JSON.parse(res)
+            console.log(res)
+            // debugger
+            commit('setEvent', res.data)
           })
           .catch(commit('handleError', Error))
       })

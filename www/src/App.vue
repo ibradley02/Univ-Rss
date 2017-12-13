@@ -17,6 +17,7 @@
       this.$store.dispatch('authenticate')
       this.$store.dispatch('getWeather')
       this.$store.dispatch('getTodos')
+      this.$store.dispatch('getEvents')
       this.$store.dispatch('getQuote')
     },
     computed:{

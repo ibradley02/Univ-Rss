@@ -15,6 +15,21 @@ module.exports = {
         }
 
     },
+    getEvents: {
+        path: '/event/:lat/:long',
+        reqType: 'get',
+        method(req, res, next) {
+            let action = 'make request to outside api and return data requested'
+                request('http://api.eventful.com/rest/events/search?&where='+ req.params.lat +','+ req.params.long + '&within=25&app_key=j8PNS6tcSztxdnWS', function (error, response, body) {
+                    console.log('error:', error)
+                    console.log('statusCode:', response && response.statusCode)
+                res.send(body)
+                // '&app_key='+@key
+                // j8PNS6tcSztxdnWS
+                })
+        }
+
+    },
     getQuote: {
         path: '/quote',
         reqType: 'get',
