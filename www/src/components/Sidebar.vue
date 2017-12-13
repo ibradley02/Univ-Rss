@@ -12,51 +12,44 @@
                     {{user.name}}
                 </h3>
             </div>
-            <div class="col-xs-2 col-xs-offset-1">
-                <h3>
-                    <router-link to="Profile">
-                        <i class="fa fa-cog"></i>
-                    </router-link>
-                </h3>
-            </div>
             <h6>{{user.email}}</h6>
-            <button type="button" class="btn btn-danger logout" @click="logout">Logout</button>
+            <button type="button" class="btn btn-danger logout" @click="logout"> <i class="fa fa-power-off"></i> Logout</button>
         </div>
         <ul class="list-unstyled components">
             <li>
-                <router-link to="Home">Home</router-link>
+                <router-link to="Home"><i class="fa fa-home"></i> Home</router-link>
             </li>
             <li>
-                <router-link to="Profile">Profile</router-link>
+                <router-link to="Profile"> <i class="fa fa-cog"></i> Profile</router-link>
             </li>
             <li>
-                <a href="#feedSubmenu" data-toggle="collapse" aria-expanded="false">Feeds</a>
+                <a href="#feedSubmenu" data-toggle="collapse" aria-expanded="false"> <i class="fa fa-feed"></i> Feeds</a>
                 <ul class="collapse list-unstyled" id="feedSubmenu">
                     <li>
-                        <a href="#">News</a>
+                        <a href="#"><i class="fa fa-newspaper-o"></i> News</a>
                     </li>
                     <li>
-                        <a href="#">Sports</a>
+                        <a href="#"><i class="fa fa-futbol-o"></i> Sports</a>
                     </li>
                     <li>
-                        <a href="#">Youtube</a>
+                        <a href="#"><i class="fa fa-youtube-play"></i> Youtube</a>
                     </li>
                 </ul>
             </li>
             <li>
-                <a href="#componentSubmenu" data-toggle="collapse" aria-expanded="false">Components</a>
+                <a href="#componentSubmenu" data-toggle="collapse" aria-expanded="false"><i class="fa fa-briefcase"></i> Components</a>
                 <ul class="collapse list-unstyled" id="componentSubmenu">
                     <li>
-                        <a @click="setClock">Clock</a>
+                        <a @click="setClock"><i class="fa fa-clock-o"></i> Clock</a>
                     </li>
                     <li>
-                        <a @click="setTodo">To-Do</a>
+                        <a @click="setTodo"><i class="fa fa-list-ol"></i> To-Do</a>
                     </li>
                     <li>
-                        <a @click="setWeather">Weather</a>
+                        <a @click="setWeather"><i class="fa fa-snowflake-o"></i> Weather</a>
                     </li>
                     <li>
-                        <a @click="setQuote">Inspirational Quote</a>
+                        <a @click="setQuote"><i class="fa fa-commenting"></i> Inspirational Quote</a>
                     </li>
                 </ul>
             </li>
