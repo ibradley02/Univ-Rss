@@ -13,27 +13,27 @@
             <div class="sidebar-container">
               <sidebar></sidebar>
             </div>
-            <!-- <div class="grid">
+            <div class="grid">
               <grid-layout :layout="layout" :col-num="16" :row-height="30" :is-draggable="true" :is-resizable="true" :vertical-compact="true"
                 :margin="[10, 10]" :use-css-transforms="true">
                 <grid-item class="grid-cell" v-for="item in layout" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i"
                   @resize="resize" @move="move" @resized="resized" @moved="moved">
-                  <button>
+                  <h2>
                     {{item.i}}
-                  </button>
+                  </h2>
                 </grid-item>
               </grid-layout>
-            </div> -->
-            <div class="row main-body">
-              <div class="col-sm-12">
-                <quote></quote>
-                <todo></todo>
-              </div>
-              <router-view/>
             </div>
+            <router-view/>
           </div>
         </div>
       </div>
+    </div>
+    <div class="quote">
+      <quote></quote>
+    </div>
+    <div class="todo">
+      <todo></todo>
     </div>
   </div>
 </template>
@@ -90,10 +90,10 @@
     },
     methods: {
       move: function (i, newX, newY) {
-        console.log("MOVE i=" + i + ", X=" + newX + ", Y=" + newY);
+        console.log("MOVING i=" + i + ", X=" + newX + ", Y=" + newY);
       },
       resize: function (i, newH, newW) {
-        console.log("RESIZE i=" + i + ", H=" + newH + ", W=" + newW);
+        console.log("RESIZING i=" + i + ", H=" + newH + ", W=" + newW);
       },
       moved: function (i, newX, newY) {
         console.log("### MOVED i=" + i + ", X=" + newX + ", Y=" + newY);
@@ -127,6 +127,13 @@
     color: #42b983;
   }
 
+  .todo {
+    position: absolute;
+    bottom: 0px;
+    right: 1px;
+    min-width: 20vw;
+  }
+
   .menu {
     cursor: pointer;
     margin-left: 2vw;
@@ -142,6 +149,13 @@
     background-color: rgba(5, 0, 0, 0.25);
     width: 15vw;
     height: 8vh;
+  }
+
+  .quote {
+    position: absolute;
+    bottom: 0px;
+    left: 1px;
+    max-width: 75vw;
   }
 
   .main {

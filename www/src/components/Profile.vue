@@ -13,7 +13,7 @@
         <div class="row">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <router-link to="/">
+                    <router-link to="/Home">
                         <i class="fa fa-window-close fa-3x pull-right"></i>
                     </router-link>
                     <h2>Your Profile</h2>

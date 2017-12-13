@@ -9,12 +9,12 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/Home',
       name: 'Home',
       component: Home
     },
     {
-      path: '/login',
+      path: '/Login',
       name: 'Login',
       component: Login
     },

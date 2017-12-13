@@ -1,10 +1,14 @@
 <template>
-    <div class="row text-center" v-if="user.quote">
-        <div class="col-sm-4 col-sm-offset-4">
+    <div class="text-center" v-if="user.quote">
+        <div class="col-sm-12">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <div><p>"{{quote.quote}}"</p></div>
-                    <div><h5>-{{quote.author}}</h5></div>
+                    <div>
+                        <p><b>"{{quote.quote}}"</b></p>
+                    </div>
+                    <div>
+                        <h4>-{{quote.author}}</h4>
+                    </div>
                 </div>
             </div>
         </div>
@@ -30,5 +34,12 @@
 </script>
 
 <style scoped>
-
+    .panel-body{
+        padding: 0px;
+    }
+    .panel {
+        background-color:rgba(0, 0, 0, 0.2);
+        color: white;
+        border: none
+    }
 </style>

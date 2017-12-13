@@ -3,7 +3,7 @@
         <nav class="navbar navbar-default navbar-fixed-top myNavbar">
             <div class="text-left sidebar-button col-sm-4">
                 <a id="sidebarCollapse" data-toggle="collapse" data-target="#sidebar">
-                    <i class="fa fa-4x fa-bars menu" aria-hidden="true"></i>
+                    <i class="fa fa-3x fa-bars menu" aria-hidden="true"></i>
                 </a>
             </div>
             <div class="col-sm-4">

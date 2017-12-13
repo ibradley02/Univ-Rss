@@ -1,26 +1,34 @@
 <template>
-    <div class="row" v-if="user.todo">
-        <div class="col-xs-3 pull-right">
+    <div class="" v-if="user.todo">
+        <div class="col-sm-12">
             <div class="panel panel-default panel-style">
                 <div class="panel-heading">
-                    <h3>Todos</h3>
-                    <h4 v-if="todos.length == 0">You have nothing to do</h4>
-                    <h4 v-if="todos.length == 1">You have <b>1</b> thing to do</h4>
-                    <h4 v-if="todos.length > 1">You have <b>{{ todos.length }}</b> things to do</h4>
+                    <h4>Todos</h4>
+                    <h5 v-if="todos.length == 0">
+                        <b>You have nothing to do</b>
+                    </h5>
+                    <h5 v-if="todos.length == 1">
+                        <b>You have
+                            <b>1</b> thing to do</b>
+                    </h5>
+                    <h5 v-if="todos.length > 1">
+                        <b>You have
+                            <b>{{ todos.length }}</b> things to do</b>
+                    </h5>
                 </div>
                 <div class="text-center">
                     <div class="add-list-form">
                         <div class="todos" v-for="todo in todos">
                             <span class="glyphicon glyphicon-remove-circle pull-right delete" @click="removeTodo(todo._id)"></span>
-                            <h3>{{ todo.name }}</h3>
+                            <h5>{{ todo.name }}</h5>
                         </div>
                     </div>
                 </div>
                 <div class="panel-footer">
                     <form type="submit" @submit.prevent="addTodo()">
                         <div class="form-group">
-                            <input name="name" type="text" class="form-control" placeholder="Todo" v-model="todo.name" required>
-                            <button type="submit" class="btn btn-success navbar-btn">Create Todo</button>
+                            <input name="name" type="text" class="form-control" placeholder="Add Todo" v-model="todo.name" required>
+                            <!-- <button type="submit" class="btn btn-success navbar-btn">Create Todo</button> -->
                         </div>
                     </form>
                 </div>
@@ -65,13 +73,35 @@
     }
 </script>
 <style scoped>
-    span{
+    /* *{
+        border: 1px red solid;
+    } */
+
+    input {
+        background-color: transparent;
+        border: 2px solid white;
+    }
+
+    .panel,
+    .panel-heading,
+    .panel-footer {
+        background-color: rgba(0, 0, 0, 0.151);
+        color: white;
+        border: none
+    }
+
+    span {
         cursor: pointer;
     }
+
     input {
         width: 60%;
         text-align: center;
         display: inline-block;
+    }
+
+    input::placeholder {
+        color:white;
     }
 
     button {
@@ -84,7 +114,8 @@
 
     .add-list-form {
         /* height: 35vh; */
-         max-height: 15vh;
-        overflow: auto; 
+        max-height: 15vh;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.151);
     }
 </style>
