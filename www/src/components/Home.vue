@@ -3,11 +3,6 @@
     <navbar></navbar>
     <div class="row">
       <div class="col-sm-12">
-        <div class="row">
-          <!-- <a id="sidebarCollapse" data-toggle="collapse" data-target="#sidebar">
-            <i class="fa fa-4x fa-bars menu pull-left" aria-hidden="true"></i>
-          </a> -->
-        </div>
         <div class="main row">
           <div class="col-sm-12">
             <div class="sidebar-container">
@@ -181,10 +176,6 @@
     margin: 0px 0px 0px 0px;
     height: 100vh;
   }
-
-  /* .vue-grid-layout {
-    background: #eee;
-  } */
 
   .vue-grid-item:not(.vue-grid-placeholder) {
     background: #ccc;
