@@ -16,7 +16,8 @@
     "vue-digital-clock": "^1.5.0",
     "vue-grid-layout": "^2.1.9",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "yui": "^3.18.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

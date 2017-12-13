@@ -19,7 +19,8 @@
     "express-session": "^1.15.0",
     "mongoose": "^4.8.1",
     "request": "^2.83.0",
-    "socket.io": "^1.7.3"
+    "socket.io": "^1.7.3",
+    "yui": "^3.18.1"
   },
   "engines": {
     "node": "8.0.0",
