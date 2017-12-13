@@ -1,5 +1,5 @@
 <template>
-  <div class="col-sm-12 text-center background" :style="{ 'background-image': 'url(' + user.background + ')' }">
+  <div class="col-sm-12 text-center background">
     <navbar></navbar>
     <div class="row">
       <div class="col-sm-12">
@@ -11,11 +11,14 @@
             <div class="grid">
               <grid-layout :layout="layout" :col-num="16" :row-height="30" :is-draggable="true" :is-resizable="true" :vertical-compact="true"
                 :margin="[10, 10]" :use-css-transforms="true">
-                <grid-item class="grid-cell" v-for="item in layout" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i"
+                <grid-item class="grid-cell" v-for="item in layout" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i" :source="item.source" :ttle="item.title" :imageLink="item.imageLink"
                   @resize="resize" @move="move" @resized="resized" @moved="moved">
                   <h2>
-                    {{item.i}}
+                    {{item.title}}
                   </h2>
+                  <p>{{item.source}}</p>
+                  <img :src="item.imageLink" alt="">
+                 <p>{{item.text}}</p>
                 </grid-item>
               </grid-layout>
             </div>
@@ -47,19 +50,24 @@
     data() {
       return {
         layout: [{
-          "x": 0,
+          "x": 2,
           "y": 0,
           "w": 4,
           "h": 4,
-          "i": "0"
+          "i": "0",
+          
         }, {
-          "x": 4,
+          "x": 6,
           "y": 0,
           "w": 4,
-          "h": 4,
-          "i": "1"
+          "h": 8,
+          "i": "1",
+          "source": "Fox News",
+          "text": "Alabama Senate election: Doug Jones wins in major upset, Roy Moore won't yet concede",
+          "title": "BAMA",
+          "imageLink": "http://cdn.cnn.com/cnnnext/dam/assets/171206200235-doug-jones---9-small-169.jpg" 
         }, {
-          "x": 8,
+          "x": 10,
           "y": 0,
           "w": 4,
           "h": 4,
@@ -123,7 +131,7 @@
   }
 
   .todo {
-    position: absolute;
+    position: fixed;
     bottom: 0px;
     right: 1px;
     min-width: 20vw;
@@ -147,7 +155,7 @@
   }
 
   .quote {
-    position: absolute;
+    position: fixed;
     bottom: 0px;
     left: 1px;
     max-width: 75vw;
@@ -168,14 +176,7 @@
     flex-grow: 1;
   }
 
-  .background {
-    background: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-attachment: fixed;
-    margin: 0px 0px 0px 0px;
-    height: 100vh;
-  }
+ 
 
   .vue-grid-item:not(.vue-grid-placeholder) {
     background: #ccc;
