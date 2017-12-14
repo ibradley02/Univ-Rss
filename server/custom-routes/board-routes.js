@@ -21,6 +21,7 @@ module.exports = {
         reqType: 'get',
         method(req, res, next) {
             let action = 'make request to outside api and return data requested'
+<<<<<<< HEAD
                 request('http://api.eventful.com/rest/events/search?&where='+ req.params.lat +','+ req.params.long + '&within=25&app_key=j8PNS6tcSztxdnWS', function (error, response, body) {
                 
                 var mySchema = {
@@ -30,6 +31,12 @@ module.exports = {
                 }
                 var myOutput = YUI.DataSchema.XML.apply(mySchema, body)
                 console.log(myOutput)
+=======
+                request('http://api.eventful.com/json/events/search?&where='+ req.params.lat +','+ req.params.long + '&within=25&app_key=j8PNS6tcSztxdnWS', function (error, response, body) {
+                    console.log('error:', error)
+                    console.log('statusCode:', response && response.statusCode)
+                res.send(body)
+>>>>>>> 936da6ef6f1b77070840cf0df1284784246b49ff
                 // '&app_key='+@key
                 // j8PNS6tcSztxdnWS
             }).then(res.send(body)

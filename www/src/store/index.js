@@ -27,6 +27,7 @@ var store = new vuex.Store({
     error: {},
     user: {},
     weather: {},
+    events: {},
     quote: {},
   },
   mutations: {
@@ -40,7 +41,7 @@ var store = new vuex.Store({
       state.weather = data
     },
     setEvent(state, data) {
-      state.weather = data
+      state.events = data.events.event
     },
     setTodos(state, data) {
       state.todos = data
