@@ -13,12 +13,20 @@
                 :margin="[10, 10]" :use-css-transforms="true">
                 <grid-item class="grid-cell" v-for="item in layout" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i" :source="item.source" :ttle="item.title" :imageLink="item.imageLink"
                   @resize="resize" @move="move" @resized="resized" @moved="moved">
-                  <h2>
+                  <h3>
                     {{item.title}}
-                  </h2>
+                  </h3>
                   <p>{{item.source}}</p>
+                  <div v-if="item.imageLink">
                   <img :src="item.imageLink" alt="">
+                  </div>
+                  <div v-if="item.mediaLink">
+                    <iframe  :src="item.mediaLink "width='200' height='300' frameborder='0' allowtransparency='true'></iframe>
+                  </div>
                  <p>{{item.text}}</p>
+                 <div v-if="item.i == 2" class="event">
+                  <event></event>
+                </div>
                 </grid-item>
               </grid-layout>
             </div>
@@ -32,9 +40,6 @@
     </div>
     <div class="todo">
       <todo></todo>
-    </div>
-    <div class="event">
-      <event></event>
     </div>
   </div>
 </template>
@@ -57,12 +62,13 @@
           "x": 2,
           "y": 0,
           "w": 4,
-          "h": 10,
+          "h": 13,
           "i": "0",
           "source": "Spotify",
           "text": "If you have a Spotify account make sure you are logged in to enjoy our daily choice of playlist. (updated daily or whenever the fuck we feel like it)",
-          "imageLink": "<iframe src='https://open.spotify.com/embed/user/spotify/playlist/37i9dQZF1DX7KNKjOK0o75' width='300' height='380' frameborder='0' allowtransparency='true'></iframe>",
+          "imageLink": "",
           "title": "Playlist of the Day",
+          "mediaLink":"https://open.spotify.com/embed/user/spotify/playlist/37i9dQZF1DX7KNKjOK0o75"
         }, {
           "x": 6,
           "y": 0,
@@ -97,6 +103,9 @@
     computed: {
       user() {
         return this.$store.state.user
+      },
+      layout() {
+        // return this.$store.state.layout
       }
     },
     mounted() {
