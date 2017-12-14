@@ -7,13 +7,8 @@ const SALT_FACTOR = 10
 let schema = new Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true, dropDups: true },
-<<<<<<< HEAD
-  picture: { type: String, default: 'https://i.ytimg.com/vi/WgvTgV5EoGY/maxresdefault.jpg'},
-  background: { type: String },
-=======
   image: { type: String, default: 'https://i.ytimg.com/vi/WgvTgV5EoGY/maxresdefault.jpg'},
   background: { type: String, default: 'http://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials-hero-00e10b1f.jpg' },
->>>>>>> e97238e7639dfe2f45ab136381470b08c4f9b902
   password: { type: String, required: true },
   created: { type: Number, required: true, default: Date.now() },
   weather: { type: Boolean, required: true, default: true },
