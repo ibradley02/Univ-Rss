@@ -30,6 +30,9 @@
     <div class="todo">
       <todo></todo>
     </div>
+    <div class="event">
+      <event></event>
+    </div>
   </div>
 </template>
 
@@ -37,6 +40,7 @@
   import Sidebar from './Sidebar'
   import Weather from './Weather'
   import Todo from './Todo'
+  import Event from './Event'
   import Quote from './Quote'
   import Profile from './Profile'
   import Navbar from './Navbar'
@@ -75,6 +79,7 @@
       Sidebar,
       Todo,
       Quote,
+      Event,
       Profile,
       Navbar
     },
@@ -149,6 +154,13 @@
   .quote {
     position: absolute;
     bottom: 0px;
+    left: 1px;
+    max-width: 75vw;
+  }
+
+  .event {
+    position: absolute;
+    bottom: 15vh;
     left: 1px;
     max-width: 75vw;
   }

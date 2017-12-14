@@ -1,10 +1,19 @@
 <template>
-    <div class="event-panel" v-if="user.event">
-        <div v-if="event.event">
-            <div class="events">
-                <h4>{{event.main.temp}}°F</h4>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default panel-style">
+                <div class="panel-heading">
+                    <h4>Local Events</h4>
+                </div>
+                <div class="panel-body">
+                    <div v-for="e in events">
+                        <h6>{{ e.title }}</h6>
+                        <h6>{{ e.venue_name }}</h6>
+                        <h6>{{ e.venue_address }}</h6>
+                        <h6>{{ e.city_name }}</h6>
+                    </div>
+                </div>
             </div>
-            <p>{{event.name}}</p>
         </div>
     </div>
 </template>
@@ -13,14 +22,17 @@
     export default {
         name: 'event',
         data() {
-            return {}
+            return {
+            }
+        },
+        methods: {
+            getEvents() {
+                this.$store.dispatch('getEvents')
+            }
         },
         computed: {
-            event() {
-                return this.$store.state.event
-            },
-            user() {
-                return this.$store.state.user
+            events() {
+                return this.$store.state.events
             }
         }
     }
@@ -35,7 +47,24 @@
     .icon {
         display: inline-block;
     }
-    .weather-panel{
+
+    .panel-body {
         margin-right: .3vw;
+        overflow-y: auto;
+        max-height: 25vh;
+        text-align: left;
+    }
+
+    .panel-style {
+        margin: 0 auto;
+    }
+    
+    .panel,
+    .panel-heading,
+    .panel-footer {
+        background-color: rgba(0, 0, 0, 0.151);
+        color: white;
+        border: none
+
     }
 </style>
