@@ -41,6 +41,9 @@
     <div class="todo">
       <todo></todo>
     </div>
+    <div>
+      <feed></feed>
+    </div>
   </div>
 </template>
 
@@ -53,6 +56,7 @@
   import Profile from './Profile'
   import Navbar from './Navbar'
   import VueGridLayout from 'vue-grid-layout'
+  import Feed from './Feed'
   var GridLayout = VueGridLayout.GridLayout;
   var GridItem = VueGridLayout.GridItem;
   export default {
@@ -75,10 +79,9 @@
           "w": 4,
           "h": 8,
           "i": "1",
-          "source": "Fox News",
-          "text": "Alabama Senate election: Doug Jones wins in major upset, Roy Moore won't yet concede",
-          "title": "BAMA",
-          "imageLink": "http://cdn.cnn.com/cnnnext/dam/assets/171206200235-doug-jones---9-small-169.jpg" 
+          "source": "",
+          "text": "",
+          "title": "",
         }, {
           "x": 10,
           "y": 0,
@@ -98,7 +101,8 @@
       Quote,
       Event,
       Profile,
-      Navbar
+      Navbar,
+      Feed
     },
     computed: {
       user() {
@@ -107,9 +111,7 @@
       layout() {
         // return this.$store.state.layout
       }
-    },
-    mounted() {
-      this.$store.dispatch('getFeedly')
+
     },
     methods: {
       move: function (i, newX, newY) {
@@ -148,6 +150,12 @@
 
   a {
     color: #42b983;
+  }
+
+  .image-style >>> .wp-post-image{
+    height: 35vh !important;
+    width: 20vw !important;    
+
   }
 
   .todo {

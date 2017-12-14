@@ -29,6 +29,7 @@ var store = new vuex.Store({
     weather: {},
     events: {},
     quote: {},
+    feeds: {}
   },
   mutations: {
     handleError(state, err) {
@@ -48,10 +49,13 @@ var store = new vuex.Store({
     },
     setQuote(state, data) {
       state.quote = data
+    },
+    setFeeds(state, data) {
+      state.feeds = data
     }
+
   },
   actions: {
-    //when writing your auth routes (login, logout, register) be sure to use auth instead of api for the posts
     //USER LOGIN/REGISTER/LOGOUT
     login({ commit, dispatch }, user) {
       auth.post('login', user)
@@ -223,7 +227,7 @@ var store = new vuex.Store({
     updateQuote({ commit, dispatch }, payload) {
       api.put('/users/' + payload.userId, payload)
         .then(res => {
-          dispatch('authenticate')
+          dispatch('authenticate', res.data)
         })
     },
     updateEvent({ commit, dispatch }, payload) {
@@ -232,12 +236,12 @@ var store = new vuex.Store({
           dispatch('authenticate')
         })
     },
-    //FEEDLY
-
-    getFeedly({ commit, dispatch }) {
-      api('/feedly')
+    //FEEDS
+    submitFeed({ commit, dispatch }, payload) {
+      api.post('feed', payload)
         .then(res => {
           console.log(res)
+          commit('setFeeds', res.data)
         })
     }
   }

@@ -1,8 +1,26 @@
 let Users = require('../models/user')
 let request = require('request')
+<<<<<<< HEAD
 let YUI = require('yui').use('yql', 'dataschema', 'datatype')
 
 module.exports = {
+=======
+
+module.exports = {
+    getFeeds: {
+        path: '/feed',
+        reqType: 'post',
+        method(req, res, next) {
+            let apiKey= 'u1le59ytbef1hkkspxk0ewbrd1lm3pcu1nuazvin'
+            let action = 'make request to outside api and return data requested'
+            request('https://api.rss2json.com/v1/api.json?rss_url=' + req.body.url + '&api_key=' + apiKey, function (error, response, body) {
+                var info = JSON.parse(body)
+                console.log(info)
+                res.send(info)
+            })
+        }
+    },
+>>>>>>> 31efe3c836791b6f75a3d47d5eaa6dde5f205bdc
     getWeather: {
         path: '/weather/:lat/:long',
         reqType: 'get',
