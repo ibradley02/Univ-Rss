@@ -133,15 +133,13 @@ var store = new vuex.Store({
 
 
     },
-<<<<<<< HEAD
     getGoogleUser({ commit, dispatch }, token) {
         api('/google/' + token)
           .then(res => {
             debugger
             dispatch('login', res.data)
           })
-          .catch(commit('handleError', Error))
-=======
+          .catch(commit('handleError', Error))},
     getEvents({ commit, dispatch }) {
       // Get position if possible **Not possible on Chrome 50**
       navigator.geolocation.getCurrentPosition(function (position) {
@@ -163,7 +161,6 @@ var store = new vuex.Store({
       })
 
 
->>>>>>> e97238e7639dfe2f45ab136381470b08c4f9b902
     },
     getTodos({ commit, dispatch }) {
       api('/usertodos')
