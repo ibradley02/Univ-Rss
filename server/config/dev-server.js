@@ -8,6 +8,7 @@ var api = require('../models')
 var session = require('../authentication/sessions')
 var Auth = require('../authentication/auth')
 
+
 // ENABLE ROUTES IF USING app SIDE ROUTING
 // import routes from './routes'
 

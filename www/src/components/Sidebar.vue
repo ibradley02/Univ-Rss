@@ -51,6 +51,9 @@
                     <li>
                         <a @click="setQuote"><i class="fa fa-commenting"></i> Inspirational Quote</a>
                     </li>
+                    <li>
+                        <a @click="setEvent"><i class="fa fa-calendar"></i> Local Events</a>
+                    </li>
                 </ul>
             </li>
         </ul>
@@ -89,6 +92,7 @@
                 this.$store.dispatch('updateTodo', updateTodo)
             },
             setWeather() {
+                // $('#weather').toggleClass('active')
                 var updateWeather = {
                     userId: this.user._id,
                     weather: !this.user.weather
@@ -101,7 +105,13 @@
                     quote: !this.user.quote
                 }
                 this.$store.dispatch('updateQuote', updateQuote)
-
+            },
+            setEvent() {
+                var updateEvent = {
+                    userId: this.user._id,
+                    event: !this.user.event
+                }
+                this.$store.dispatch('updateEvent', updateEvent)
             }
         },
         computed: {

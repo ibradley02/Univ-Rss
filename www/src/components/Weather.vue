@@ -1,5 +1,5 @@
 <template>
-    <div class="weather-panel" v-if="user.weather">
+    <div id="weather" class="weather-panel animated fadeInLeftBig" v-if="user.weather">
         <div v-if="weather.weather">
             <div class="icon">
                 <img :src="'http://openweathermap.org/img/w/'+ weather.weather[0].icon +'.png'">
@@ -40,5 +40,14 @@
     }
     .weather-panel{
         margin-right: .3vw;
+        opacity: 1;
+        /* transform: translate(0); */
+        /* transition: .3s ease-in-out;  */
+
     }
+    /* .weather-panel{
+        opacity:0;
+        transform: translate(-86vw,90vh);
+        transition: .3s ease-in-out;
+    } */
 </style>
