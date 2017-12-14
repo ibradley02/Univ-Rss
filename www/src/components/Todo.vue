@@ -85,7 +85,7 @@
     .panel,
     .panel-heading,
     .panel-footer {
-        background-color: rgba(0, 0, 0, 0.151);
+        background-color: rgba(0, 0, 0, 0.1);
         color: white;
         border: none
     }

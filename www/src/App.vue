@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container-fluid">
+  <div id="app" class="container-fluid background" :style="{ 'background-image': 'url(' + user.background + ')' }">
     <div class="row">
       <router-view></router-view>
     </div>
@@ -34,6 +34,14 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
+  }
+  .background {
+    background: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0px 0px 0px 0px;
+    min-height: 100vh;
   }
 
 </style>

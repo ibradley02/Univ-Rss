@@ -34,6 +34,7 @@
 </script>
 
 <style scoped>
+
     .panel-body{
         padding: 0px;
     }

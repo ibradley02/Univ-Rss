@@ -191,7 +191,7 @@
 
     #sidebar {
         /* don't forget to add all the previously mentioned styles here too */
-        background: rgba(0, 0, 0, 0.7);
+        background: rgba(0, 0, 0, 0.9);
         color: #fff;
         min-width: 250px;
         max-width: 250px;
@@ -222,7 +222,7 @@
         padding-right: 20px;
         padding-left: 20px;
         /* padding: 1px 20px 20px 20px; */
-        background: rgba(0, 0, 0, 0.7);
+        /* background: rgba(0, 0, 0, 0.7); */
     }
 
     #sidebar ul.components {
