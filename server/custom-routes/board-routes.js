@@ -1,5 +1,6 @@
 let Users = require('../models/user')
 let request = require('request')
+let YUI = require('yui').use('yql', 'dataschema', 'datatype')
 
 module.exports = {
     getWeather: {
@@ -21,12 +22,18 @@ module.exports = {
         method(req, res, next) {
             let action = 'make request to outside api and return data requested'
                 request('http://api.eventful.com/rest/events/search?&where='+ req.params.lat +','+ req.params.long + '&within=25&app_key=j8PNS6tcSztxdnWS', function (error, response, body) {
-                    console.log('error:', error)
-                    console.log('statusCode:', response && response.statusCode)
-                res.send(body)
+                
+                var mySchema = {
+                    metaFields: { total: "//search/total_items" },
+                    resultListLocator: "//search/events/event",
+                    resultFields: [{key: "title", locator: "//search/events/event/title"}, {key: "description", locator: "//search/events/event/description"}, {key: "url", locator: "//search/events/event/url"}]
+                }
+                var myOutput = YUI.DataSchema.XML.apply(mySchema, body)
+                console.log(myOutput)
                 // '&app_key='+@key
                 // j8PNS6tcSztxdnWS
-                })
+            }).then(res.send(body)
+        )
         }
 
     },
