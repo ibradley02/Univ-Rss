@@ -92,6 +92,7 @@
                 this.$store.dispatch('updateTodo', updateTodo)
             },
             setWeather() {
+                // $('#weather').toggleClass('active')
                 var updateWeather = {
                     userId: this.user._id,
                     weather: !this.user.weather
