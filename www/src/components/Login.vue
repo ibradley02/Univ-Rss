@@ -1,7 +1,9 @@
 <template>
     <div class="text-center login-body col-sm-12">
         <header>
-            <h2 class="univ-rss">UNIV <i class="fa fa-rss"></i></h2>
+            <h2 class="univ-rss">UNIV
+                <i class="fa fa-rss"></i>
+            </h2>
         </header>
         <div class="panel" v-if="loginFormActive">
             <div class="panel-body">
@@ -19,6 +21,10 @@
                     </div>
                     <a class="toggle-link" @click="toggleFormState">Don't Have an Account? Signup now!</a>
                 </form>
+                <a id="signin-button" v-on:click="signIn">
+                    <i class="fa fa-google-plus-official fa-3x"></i>
+                    Sign in with Google
+                </a>
             </div>
         </div>
         <div class="panel" v-else>
@@ -43,7 +49,7 @@
                     <div class="form-group">
                         <button type="submit" class="btn">Register</button>
                     </div>
-                    <a class="toggle-link" @click="toggleFormState">Already Have an Account? Login now!</a>                    
+                    <a class="toggle-link" @click="toggleFormState">Already Have an Account? Login now!</a>
                 </form>
             </div>
         </div>
@@ -51,6 +57,8 @@
 </template>
 
 <script>
+    import Vue from 'vue'
+
     export default {
         data() {
             return {
@@ -71,6 +79,26 @@
         components: {
         },
         methods: {
+            signIn: function () {
+                Vue.googleAuth().directAccess()
+                Vue.googleAuth().signIn(this.onSignInSuccess, this.onSignInError)
+            },
+            onSignInSuccess: function (authorizationCode) {
+                this.toggleLoading()
+                this.resetResponse()
+                this.$store.dispatch('getGoogleUser', authorizationCode.Zi.access_token)
+                console.log(authorizationCode)
+            },
+            onSignInError: function (error) {
+                this.response = 'Failed to sign-in'
+                console.log('GOOGLE SERVER - SIGN-IN ERROR', error)
+            },
+            toggleLoading: function () {
+                this.loading = (this.loading === '') ? 'loading' : ''
+            },
+            resetResponse: function () {
+                this.response = ''
+            },
             toggleFormState() {
                 this.loginFormActive = !this.loginFormActive
             },
@@ -104,19 +132,18 @@
 </script>
 
 <style scoped>
-
-    input{
+    input {
         text-align: center;
         width: 40vw;
         display: block;
         margin: 0 auto;
     }
 
-    .panel{
+    .panel {
         background-color: rgb(176, 209, 222) !important;
     }
 
-    .login-body{
+    .login-body {
         background-color: rgb(176, 209, 222) !important;
         height: 120vh;
         width: 100vw;
