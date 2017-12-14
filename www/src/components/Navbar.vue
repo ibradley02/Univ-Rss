@@ -10,7 +10,7 @@
                 </a>
             </div>
             <div class="col-sm-4">
-                <div class="panel-style text-center col-sm-4 col-sm-offset-5" v-if="user.clock">
+                <div class="panel-style text-center col-sm-4 col-sm-offset-5 animated fadeInLeftBig" v-if="user.clock">
                     <h1>
                         <Clock :blink="true" />
                     </h1>
