@@ -1,20 +1,13 @@
 <template>
-    <div class="row">
-        <div class="col-xs-3 pull-right">
-            <div class="panel panel-default panel-style">
-                <div class="panel-heading">
-                    <h3>Weather</h3>
-                </div>
-                <div class="panel-body text-center" v-if="weather.weather">
-                    <h5>{{weather.name}}</h5>
-                    <div class="icon">
-                        <img :src="'http://openweathermap.org/img/w/'+ weather.weather[0].icon +'.png'">
-                    </div>
-                    <div class="temp">
-                        <h5>{{weather.main.temp}}°F</h5>
-                    </div>
-                </div>
+    <div id="weather" class="weather-panel animated fadeInLeftBig" v-if="user.weather">
+        <div v-if="weather.weather">
+            <div class="icon">
+                <img :src="'http://openweathermap.org/img/w/'+ weather.weather[0].icon +'.png'">
             </div>
+            <div class="temp">
+                <h4>{{weather.main.temp}}°F</h4>
+            </div>
+            <p>{{weather.name}}</p>
         </div>
     </div>
 </template>
@@ -28,6 +21,9 @@
         computed: {
             weather() {
                 return this.$store.state.weather
+            },
+            user() {
+                return this.$store.state.user
             }
         }
     }
@@ -38,7 +34,20 @@
     .temp {
         display: inline-block;
     }
+
     .icon {
         display: inline-block;
     }
+    .weather-panel{
+        margin-right: .3vw;
+        opacity: 1;
+        /* transform: translate(0); */
+        /* transition: .3s ease-in-out;  */
+
+    }
+    /* .weather-panel{
+        opacity:0;
+        transform: translate(-86vw,90vh);
+        transition: .3s ease-in-out;
+    } */
 </style>

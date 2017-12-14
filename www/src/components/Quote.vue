@@ -1,13 +1,14 @@
 <template>
-    <div class="row text-center">
-        <div class="col-xs-3 pull-right">
-            <div class="panel panel-default panel-style">
-                <div class="panel-heading">
-                    <h3>Quote</h3>
-                </div>
+    <div class="text-center animated zoomInDown" v-if="user.quote">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
                 <div class="panel-body">
-                    <div><p>"{{quote.quote}}"</p></div>
-                    <div><h5>-{{quote.author}}</h5></div>
+                    <div>
+                        <p><b>"{{quote.quote}}"</b></p>
+                    </div>
+                    <div>
+                        <h4>-{{quote.author}}</h4>
+                    </div>
                 </div>
             </div>
         </div>
@@ -23,12 +24,23 @@
         computed: {
             quote() {
                 return this.$store.state.quote
+            },
+            user() {
+                return this.$store.state.user
             }
         }
     }
 
 </script>
 
-<style>
+<style scoped>
 
+    .panel-body{
+        padding: 0px;
+    }
+    .panel {
+        background-color:rgba(0, 0, 0, 0.2);
+        color: white;
+        border: none
+    }
 </style>

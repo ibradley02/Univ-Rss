@@ -14,9 +14,14 @@
     "jquery": "^3.2.1",
     "vue": "^2.5.2",
     "vue-digital-clock": "^1.5.0",
+<<<<<<< HEAD
     "vue-google-auth": "^1.0.5",
+=======
+    "vue-grid-layout": "^2.1.9",
+>>>>>>> e97238e7639dfe2f45ab136381470b08c4f9b902
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "yui": "^3.18.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

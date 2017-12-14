@@ -1,5 +1,6 @@
 let Users = require('../models/user')
 let request = require('request')
+let YUI = require('yui').use('yql', 'dataschema', 'datatype')
 
 module.exports = {
     getWeather: {
@@ -12,6 +13,19 @@ module.exports = {
                     console.log('statusCode:', response && response.statusCode)
                     res.send(body)
                 })
+        }
+
+    },
+    getEvents: {
+        path: '/event/:lat/:long',
+        reqType: 'get',
+        method(req, res, next) {
+            let action = 'make request to outside api and return data requested'
+                request('http://api.eventful.com/json/events/search?&where='+ req.params.lat +','+ req.params.long + '&within=25&app_key=j8PNS6tcSztxdnWS', function (error, response, body) {
+                    console.log('error:', error)
+                    console.log('statusCode:', response && response.statusCode)
+                    res.send(body)
+            })
         }
 
     },

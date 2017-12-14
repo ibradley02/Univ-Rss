@@ -1,6 +1,9 @@
 <template>
-    <nav id="sidebar" class="collapse animated fadeInLeft">
+    <nav id="sidebar">
         <div class="sidebar-header">
+            <h1 class="univ-rss">UNIV
+                <i class="fa fa-rss"></i>
+            </h1>
             <div class="col-xs-12">
                 <img class="userImage" :src="user.image" at="User Image"></img>
             </div>
@@ -9,46 +12,47 @@
                     {{user.name}}
                 </h3>
             </div>
-            <div class="col-xs-2 col-xs-offset-1">
-                <h3>
-                    <a data-toggle="modal" data-target="#profileModal">
-                        <i class="fa fa-cog"></i>
-                    </a>
-                </h3>
-            </div>
             <h6>{{user.email}}</h6>
-            <button type="button" class="btn btn-danger logout" @click="logout">Logout</button>
-            
+            <button type="button" class="btn btn-danger logout" @click="logout"> <i class="fa fa-power-off"></i> Logout</button>
         </div>
         <ul class="list-unstyled components">
             <li>
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
-                <ul class="collapse list-unstyled" id="homeSubmenu">
+                <router-link to="Home"><i class="fa fa-home"></i> Home</router-link>
+            </li>
+            <li>
+                <router-link to="Profile"> <i class="fa fa-cog"></i> Profile</router-link>
+            </li>
+            <li>
+                <a href="#feedSubmenu" data-toggle="collapse" aria-expanded="false"> <i class="fa fa-feed"></i> Feeds</a>
+                <ul class="collapse list-unstyled" id="feedSubmenu">
                     <li>
-                        <a href="#">Clock</a>
+                        <a href="#"><i class="fa fa-newspaper-o"></i> News</a>
                     </li>
                     <li>
-                        <a href="#">To-Do</a>
+                        <a href="#"><i class="fa fa-futbol-o"></i> Sports</a>
                     </li>
                     <li>
-                        <a href="#">Weather</a>
-                    </li>
-                    <li>
-                        <a href="#">Random Quote</a>
+                        <a href="#"><i class="fa fa-youtube-play"></i> Youtube</a>
                     </li>
                 </ul>
             </li>
             <li>
-                <a href="#feedSubmenu" data-toggle="collapse" aria-expanded="false">Feeds</a>
-                <ul class="collapse list-unstyled" id="feedSubmenu">
+                <a href="#componentSubmenu" data-toggle="collapse" aria-expanded="false"><i class="fa fa-briefcase"></i> Components</a>
+                <ul class="collapse list-unstyled" id="componentSubmenu">
                     <li>
-                        <a href="#">News</a>
+                        <a @click="setClock"><i class="fa fa-clock-o"></i> Clock</a>
                     </li>
                     <li>
-                        <a href="#">Sports</a>
+                        <a @click="setTodo"><i class="fa fa-list-ol"></i> To-Do</a>
                     </li>
                     <li>
-                        <a href="#">Youtube</a>
+                        <a @click="setWeather"><i class="fa fa-snowflake-o"></i> Weather</a>
+                    </li>
+                    <li>
+                        <a @click="setQuote"><i class="fa fa-commenting"></i> Inspirational Quote</a>
+                    </li>
+                    <li>
+                        <a @click="setEvent"><i class="fa fa-calendar"></i> Local Events</a>
                     </li>
                 </ul>
             </li>
@@ -59,12 +63,55 @@
 <script>
     export default {
         name: 'sidebar',
-        toggleClass: false,
+        data(){
+            return {
+                update: {
+
+                } 
+            }
+        },
+
         components: {
         },
         methods: {
             logout() {
                 this.$store.dispatch('logout')
+            },
+            setClock() {
+                var updateClock = {
+                    userId: this.user._id,
+                    clock: !this.user.clock
+                }
+                this.$store.dispatch('updateClock', updateClock)
+            },
+            setTodo() {
+                var updateTodo = {
+                    userId: this.user._id,
+                    todo: !this.user.todo
+                }
+                this.$store.dispatch('updateTodo', updateTodo)
+            },
+            setWeather() {
+                // $('#weather').toggleClass('active')
+                var updateWeather = {
+                    userId: this.user._id,
+                    weather: !this.user.weather
+                }
+                this.$store.dispatch('updateWeather', updateWeather)
+            },
+            setQuote() {
+                var updateQuote = {
+                    userId: this.user._id,
+                    quote: !this.user.quote
+                }
+                this.$store.dispatch('updateQuote', updateQuote)
+            },
+            setEvent() {
+                var updateEvent = {
+                    userId: this.user._id,
+                    event: !this.user.event
+                }
+                this.$store.dispatch('updateEvent', updateEvent)
             }
         },
         computed: {
@@ -76,26 +123,38 @@
 </script>
 
 <style scoped>
+    a {
+        cursor: pointer;
+    }
+
+    h1 {
+        margin-bottom: 2vh;
+    }
+
+    .fa-cog {
+        cursor: pointer;
+    }
+
     .userImage {
         border-radius: 50%;
         height: 12rem;
         width: 12rem;
     }
 
-    #sidebar {
-        min-width: 250px;
-        max-width: 250px;
-        min-height: 100vh;
-        z-index: 99999;
-    }
 
     #sidebar.active {
-        margin-left: -250px;
+        /* margin-left: 0px; */
+        /* animation-name: bounceInLeft; */
+        /* animation: 1s 0s 0.5 fadeInLeft; */
+        transform: translateX(255px);
+        transition: .7s ease-in-out;
+        opacity: 1;
     }
 
-    a[data-toggle="collapse"] {
+    /* a[data-toggle="collapse"] {
         position: relative;
-    }
+        
+    } */
 
     a[aria-expanded="false"]::before,
     a[aria-expanded="true"]::before {
@@ -142,23 +201,42 @@
 
     #sidebar {
         /* don't forget to add all the previously mentioned styles here too */
-        background: rgba(0, 1, 3, 1);
+        background: rgba(0, 0, 0, 0.9);
         color: #fff;
+        min-width: 250px;
+        max-width: 250px;
+        min-height: 85vh;
+        z-index: 99999 !important;
+        margin-left: -265px;
+        /* animation-name: fadeOutLeft; */
+        /* animation: 1s 0s 0.5 fadeOut; */
+        transform: translateX(0);
+        transition: .7s ease-in-out;
+        opacity: 0;
         /* transition: all 0.3s; */
     }
 
-    .fadeIn {
+    /* .fadeIn {
         animation-name: fadeIn;
         animation: 1s 0s 0.5 fadeIn;
+    } */
+
+    .fadeOut{
+        animation-name: fadeOut;
+        animation: 1s 0s 0.5 fadeOut;
     }
 
     #sidebar .sidebar-header {
-        padding: 20px;
-        background: rgb(0, 1, 2);
+        padding-top: 1px;
+        padding-bottom: 1px;
+        padding-right: 20px;
+        padding-left: 20px;
+        /* padding: 1px 20px 20px 20px; */
+        /* background: rgba(0, 0, 0, 0.7); */
     }
 
     #sidebar ul.components {
-        padding: 20px 0;
+        padding: 0px 0;
         border-bottom: 0px;
     }
 
@@ -189,4 +267,6 @@
         padding-left: 30px !important;
         background: rgba(0, 1, 3, 0.521);
     }
+
+
 </style>

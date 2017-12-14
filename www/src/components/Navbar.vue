@@ -1,17 +1,23 @@
 <template>
     <div class="row text-center">
         <nav class="navbar navbar-default navbar-fixed-top myNavbar">
-            <div class="col-sm-2 sidebar-button">
-                <a id="sidebarCollapse" data-toggle="collapse" data-target="#sidebar">
-                    <i class="fa fa-4x fa-bars menu" aria-hidden="true"></i>
+            <div class="text-left sidebar-button col-sm-4">
+                    <div id="stack" @click="toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                 </a>
             </div>
-            <div class="col-sm-8">
-                <h1 class="univ-rss">UNIV <i class="fa fa-rss"></i></h1>
+            <div class="col-sm-4">
+                <div class="panel-style text-center col-sm-4 col-sm-offset-5 animated fadeInLeftBig" v-if="user.clock">
+                    <h1>
+                        <Clock :blink="true" />
+                    </h1>
+                </div>
             </div>
-            <div class="col-sm-2 pull-right sidebar-button">
-                <h4>Welcome, {{user.name}}</h4>
-                <button type="button" class="btn btn-danger logout" @click="logout">Logout</button>
+            <div class="weather col-sm-4">
+                <weather></weather>
             </div>
         </nav>
     </div>
@@ -19,17 +25,22 @@
 
 
 <script>
+    import Weather from './Weather'
+    import Clock from 'vue-digital-clock'
     export default {
         name: 'navbar',
         methods: {
-            logout() {
-                this.$store.dispatch('logout')
+            toggle() {
+                $('#stack').toggleClass('open'),
+                $('#sidebar').toggleClass('active')
             }
         },
         components: {
+            Weather,
+            Clock
         },
-        computed:{
-            user(){
+        computed: {
+            user() {
                 return this.$store.state.user
             }
         }
@@ -40,18 +51,23 @@
 
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Bungee');
-    .univ-rss{
+    @import url('https://fonts.googleapis.com/css?family=Bungee');
+    .univ-rss {
         font-family: 'Bungee', cursive;
     }
+
+    .weather {
+        text-align: right !important;
+    }
+
     .myNavbar {
-        background-color: rgba(0, 1, 3, 1);
+        background-color: rgba(0, 1, 3, 0);
         color: white;
         display: flex;
         margin-bottom: 0px;
     }
 
-    .navbar{
+    .navbar {
         border: 0px;
     }
 
@@ -65,13 +81,65 @@
         border: 0px;
     }
 
-    .logout{
+    .logout {
         margin-bottom: 2vh
     }
 
-    .menu{
+    .menu {
         color: white;
-        margin-top: 2vh;
-        margin-left: 2vw;
+        margin-top: .5vh;
+        /* margin-left: .3vw; */
+        z-index: 99999;
+        cursor: pointer;
+    }
+
+    #stack {
+        width: 7vh;
+        height: 45px;
+        position: relative;
+        margin: 1.7vh 0vh;
+        transform: rotate(0deg);
+        transition: .5s ease-in-out;
+        cursor: pointer;
+    }
+
+    #stack span {
+        height: 6px;
+        width: 100%;
+        display: block;
+        position: absolute;
+        background: white;
+        border-radius: 9px;
+        opacity: 1;
+        left: 0;
+        transform: rotate(0deg);
+        transition: .25s ease-in-out;
+    }
+
+    #stack span:nth-child(1) {
+        top: 0px;
+    }
+
+    #stack span:nth-child(2) {
+        top: 17px;
+    }
+
+    #stack span:nth-child(3) {
+        top: 35px;
+    }
+
+    #stack.open span:nth-child(1) {
+        top: 17px; 
+        transform: rotate(135deg);
+    }
+
+    #stack.open span:nth-child(2) {
+        opacity: 0;
+        left: -40px;
+    }
+
+    #stack.open span:nth-child(3) {
+        top: 17px;
+        transform: rotate(-135deg);
     }
 </style>

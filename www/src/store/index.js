@@ -27,7 +27,8 @@ var store = new vuex.Store({
     error: {},
     user: {},
     weather: {},
-    quote: {}
+    events: {},
+    quote: {},
   },
   mutations: {
     handleError(state, err) {
@@ -38,6 +39,9 @@ var store = new vuex.Store({
     },
     setWeather(state, data) {
       state.weather = data
+    },
+    setEvent(state, data) {
+      state.events = data.events.event
     },
     setTodos(state, data) {
       state.todos = data
@@ -87,6 +91,18 @@ var store = new vuex.Store({
         })
     },
 
+    authenticateProfile({ commit, dispatch }) {
+      auth('authenticate')
+        .then(res => {
+          commit('setUser', res.data.data)
+          router.push({ name: 'Profile' })
+        })
+        .catch(err => {
+          router.push({ name: 'Login' })
+        })
+    },
+
+
     logout({ commit, dispatch }) {
       auth.delete('logout')
         .then(res => {
@@ -117,6 +133,7 @@ var store = new vuex.Store({
 
 
     },
+<<<<<<< HEAD
     getGoogleUser({ commit, dispatch }, token) {
         api('/google/' + token)
           .then(res => {
@@ -124,6 +141,29 @@ var store = new vuex.Store({
             dispatch('login', res.data)
           })
           .catch(commit('handleError', Error))
+=======
+    getEvents({ commit, dispatch }) {
+      // Get position if possible **Not possible on Chrome 50**
+      navigator.geolocation.getCurrentPosition(function (position) {
+        if (position) {
+          var location = {
+            lat: position.coords.latitude,
+            long: position.coords.longitude
+          }
+
+        }
+        api('/event/' + location.lat + '/' + location.long)
+          .then(res => {
+            // res = JSON.parse(res)
+            console.log(res)
+            // debugger
+            commit('setEvent', res.data)
+          })
+          .catch(commit('handleError', Error))
+      })
+
+
+>>>>>>> e97238e7639dfe2f45ab136381470b08c4f9b902
     },
     getTodos({ commit, dispatch }) {
       api('/usertodos')
@@ -169,10 +209,46 @@ var store = new vuex.Store({
       api.put('/users/' + payload.userId, payload)
         .then(res => {
           console.log(res)
+          dispatch('authenticateProfile')
+        })
+    },
+    //TOGGLE COMPONENTS
+    updateClock({ commit, dispatch }, payload) {
+      api.put('/users/' + payload.userId, payload)
+        .then(res => {
+          console.log(res)
+          dispatch('authenticate')
+        })
+    },
+    updateTodo({ commit, dispatch }, payload) {
+      api.put('/users/' + payload.userId, payload)
+        .then(res => {
+          console.log(res)
+          dispatch('authenticate')
+        })
+    },
+    updateWeather({ commit, dispatch }, payload) {
+      api.put('/users/' + payload.userId, payload)
+        .then(res => {
+          console.log(res)
+          dispatch('authenticate')
+        })
+    },
+    updateQuote({ commit, dispatch }, payload) {
+      api.put('/users/' + payload.userId, payload)
+        .then(res => {
+          console.log(res)
+          dispatch('authenticate')
+        })
+    },
+    updateEvent({ commit, dispatch }, payload) {
+      debugger
+      api.put('/users/' + payload.userId, payload)
+        .then(res => {
+          console.log(res)
           dispatch('authenticate')
         })
     }
-
   }
 
 
