@@ -24,11 +24,9 @@ module.exports = {
                 request('http://api.eventful.com/json/events/search?&where='+ req.params.lat +','+ req.params.long + '&within=25&app_key=j8PNS6tcSztxdnWS', function (error, response, body) {
                     console.log('error:', error)
                     console.log('statusCode:', response && response.statusCode)
-                res.send(body)
-                // '&app_key='+@key
-                // j8PNS6tcSztxdnWS
-            }).then(res.send(body)
-        )
+                    console.log(body)
+                    res.send(body)
+            })
         }
 
     },
