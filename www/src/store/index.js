@@ -230,6 +230,14 @@ var store = new vuex.Store({
           console.log(res)
           dispatch('authenticate')
         })
+    },
+    updateEvent({ commit, dispatch }, payload) {
+      debugger
+      api.put('/users/' + payload.userId, payload)
+        .then(res => {
+          console.log(res)
+          dispatch('authenticate')
+        })
     }
   }
 
