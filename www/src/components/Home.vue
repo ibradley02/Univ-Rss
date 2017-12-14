@@ -96,6 +96,9 @@
         return this.$store.state.user
       }
     },
+    mounted() {
+      this.$store.dispatch('getFeedly')
+    },
     methods: {
       move: function (i, newX, newY) {
         console.log("MOVING i=" + i + ", X=" + newX + ", Y=" + newY);

@@ -56,7 +56,6 @@ var store = new vuex.Store({
     login({ commit, dispatch }, user) {
       auth.post('login', user)
         .then(res => {
-          console.log('Response to login: ', res)
           if (!res.data.error) {
             commit('setUser', res.data.data)
             router.push({ name: 'Home' })
@@ -108,7 +107,6 @@ var store = new vuex.Store({
         .then(res => {
           commit('setUser', {})
           router.push({ name: 'Login' })
-          console.log(res)
         })
 
     },
@@ -116,7 +114,6 @@ var store = new vuex.Store({
     getWeather({ commit, dispatch }) {
       // Get position if possible **Not possible on Chrome 50**
       navigator.geolocation.getCurrentPosition(function (position) {
-        console.log(position);
         if (position) {
           var location = {
             lat: position.coords.latitude,
@@ -134,7 +131,6 @@ var store = new vuex.Store({
 
     },
     getEvents({ commit, dispatch }) {
-      // Get position if possible **Not possible on Chrome 50**
       navigator.geolocation.getCurrentPosition(function (position) {
         if (position) {
           var location = {
@@ -145,9 +141,6 @@ var store = new vuex.Store({
         }
         api('/event/' + location.lat + '/' + location.long)
           .then(res => {
-            // res = JSON.parse(res)
-            console.log(res)
-            // debugger
             commit('setEvent', res.data)
           })
           .catch(commit('handleError', Error))
@@ -198,7 +191,6 @@ var store = new vuex.Store({
       }
       api.put('/users/' + payload.userId, payload)
         .then(res => {
-          console.log(res)
           dispatch('authenticateProfile')
         })
     },
@@ -206,36 +198,39 @@ var store = new vuex.Store({
     updateClock({ commit, dispatch }, payload) {
       api.put('/users/' + payload.userId, payload)
         .then(res => {
-          console.log(res)
           dispatch('authenticate')
         })
     },
     updateTodo({ commit, dispatch }, payload) {
       api.put('/users/' + payload.userId, payload)
         .then(res => {
-          console.log(res)
           dispatch('authenticate')
         })
     },
     updateWeather({ commit, dispatch }, payload) {
       api.put('/users/' + payload.userId, payload)
         .then(res => {
-          console.log(res)
           dispatch('authenticate')
         })
     },
     updateQuote({ commit, dispatch }, payload) {
       api.put('/users/' + payload.userId, payload)
         .then(res => {
-          console.log(res)
           dispatch('authenticate')
         })
     },
     updateEvent({ commit, dispatch }, payload) {
       api.put('/users/' + payload.userId, payload)
         .then(res => {
-          console.log(res)
           dispatch('authenticate')
+        })
+    },
+    //FEEDLY
+
+    getFeedly({ commit, dispatch }) {
+      api('/feedly')
+        .then(res => {
+          console.log(res)
         })
     }
   }
