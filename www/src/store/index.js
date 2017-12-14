@@ -7,13 +7,13 @@ let base = window.location.host.indexOf('localhost') > -1 ? '//localhost:3000/' 
 
 let api = axios.create({
   baseURL: base + 'api/',
-  timeout: 2000,
+  timeout: 5000,
   withCredentials: true
 })
 
 let auth = axios.create({
   baseURL: base,
-  timeout: 2000,
+  timeout: 5000,
   withCredentials: true
 })
 
@@ -130,6 +130,13 @@ var store = new vuex.Store({
 
 
     },
+    getGoogleUser({ commit, dispatch }, token) {
+        api('/google/' + token)
+          .then(res => {
+            debugger
+            dispatch('login', res.data)
+          })
+          .catch(commit('handleError', Error))},
     getEvents({ commit, dispatch }) {
       navigator.geolocation.getCurrentPosition(function (position) {
         if (position) {

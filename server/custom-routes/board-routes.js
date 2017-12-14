@@ -70,6 +70,49 @@ module.exports = {
                 res.send(body)
             })
         }
+    },
+    getGoogleUser: {
+        path: '/google/:token',
+        reqType: 'get',
+        method(req, res, next) {
+            let action = 'make request to outside api and return data requested'
+            //aud: the client ID of the web component of the project
+            //azp: the client ID of the Android app component of project
+            var profileUrl = "https://www.googleapis.com/oauth2/v3/userinfo?alt=json&access_token="
+            var calenderUrl = "https://www.googleapis.com/calendar/v3/userinfo?alt=json&access_token="
+            var authCheckUrl = "https://www.googleapis.com/oauth2/v3/tokeninfo?access_token="
+            var authEmailUrl = "https://www.googleapis.com/gmail/v1/users/115581082286636298877/history?access_token="
+            var tokenInfoUrl = 'https://www.googleapis.com/oauth2/v1/tokeninfo?access_token='
+
+                request(tokenInfoUrl + req.params.token, function (error, response, body) {
+                    debugger
+                    body = JSON.parse(body)
+                    // console.log('statusCode:', response && response.statusCode)
+                    Users.findOneAndUpdate({email: body.email}, body, {upsert: true}).then(user => {
+                        console.log(user)
+                        res.send(user)
+
+                    })
+
+                })
+        }
+
+    },
+    getGoogleProfile: {
+        path: '/google/:payload',
+        reqType: 'get',
+        method(req, res, next) {
+            let action = 'make request to outside api and return data requested'
+            //aud: the client ID of the web component of the project
+            //azp: the client ID of the Android app component of project
+                request('https://www.googleapis.com/auth/userinfo.profile/oauth2/v3/tokeninfo?access_token=' + req.params.payload, function (error, response, body) {
+                    console.log(body)
+                    console.log('error:', error)
+                    // console.log('statusCode:', response && response.statusCode)
+                    res.send(body)
+                })
+        }
+
     }
 }
 
@@ -83,3 +126,8 @@ function handleResponse(action, data, error) {
     }
     return response
 }
+
+// https://www.googleapis.com/gmail/v1/users/115581082286636298877/history
+
+// "scope": "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.circles.members.read https://www.googleapis.com/auth/plus.profile.agerange.read https://www.googleapis.com/auth/plus.profile.language.read https://www.googleapis.com/auth/plus.moments.write"
+
