@@ -53,9 +53,12 @@
           "x": 2,
           "y": 0,
           "w": 4,
-          "h": 4,
+          "h": 10,
           "i": "0",
-          
+          "source": "Spotify",
+          "text": "If you have a Spotify account make sure you are logged in to enjoy our daily choice of playlist. (updated daily or whenever the fuck we feel like it)",
+          "imageLink": "<iframe src='https://open.spotify.com/embed/user/spotify/playlist/37i9dQZF1DX7KNKjOK0o75' width='300' height='380' frameborder='0' allowtransparency='true'></iframe>",
+          "title": "Playlist of the Day",
         }, {
           "x": 6,
           "y": 0,
