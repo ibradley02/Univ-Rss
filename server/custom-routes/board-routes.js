@@ -1,35 +1,17 @@
 let Users = require('../models/user')
 let request = require('request')
-let YUI = require('yui').use('yql', 'dataschema', 'datatype')
-let Feedly = require('feedly')
-
-var f = new Feedly({
-    client_id: 'd4600ded-885d-4173-b9ed-8f41592b1d6e',
-    client_secret: 'A3H3PsHe7hDKWyzRZJb2ycIV4FwIhzE0FbEMrBKIkNvIt8Ofoqy_u0zI95xDuzRuQd2niCZboEdwN89QH2DvSJrJmum9UoWLATkDzDdZa4VfgRjJSThRYtce_gOnGEIf6_NLEDqNogwJZuSF7OhLUYoersoJgcIF6x7CVWvHms5QSJeP5eNKsXxfzlB1HGL1Ozefm9tVrA_zzlDp7vtRtvDCBRln5lg:feedlydev',
-    port: 8080
-})
-
-var options = {
-    url: 'https://cloud.feedly.com/v3/profile',
-    headers: {
-        "Authorization": "OAuth A3H3PsHe7hDKWyzRZJb2ycIV4FwIhzE0FbEMrBKIkNvIt8Ofoqy_u0zI95xDuzRuQd2niCZboEdwN89QH2DvSJrJmum9UoWLATkDzDdZa4VfgRjJSThRYtce_gOnGEIf6_NLEDqNogwJZuSF7OhLUYoersoJgcIF6x7CVWvHms5QSJeP5eNKsXxfzlB1HGL1Ozefm9tVrA_zzlDp7vtRtvDCBRln5lg:feedlydev"
-    }
-}
-
 
 module.exports = {
-    getFeedly: {
-        path: '/feedly',
-        reqType: 'get',
+    getFeeds: {
+        path: '/feed',
+        reqType: 'post',
         method(req, res, next) {
+            let apiKey= 'u1le59ytbef1hkkspxk0ewbrd1lm3pcu1nuazvin'
             let action = 'make request to outside api and return data requested'
-            request(options, (err, response, body) => {
-                if (!err && response.statusCode == 200) {
-                    var info = JSON.parse(body)
-                    res.send(handleResponse(action, info))
-                }
-            }, error => {
-                res.status(401).send(handleResponse(action, null, error))
+            request('https://api.rss2json.com/v1/api.json?rss_url=' + req.body.url + '&api_key=' + apiKey, function (error, response, body) {
+                var info = JSON.parse(body)
+                console.log(info)
+                res.send(info)
             })
         }
     },
