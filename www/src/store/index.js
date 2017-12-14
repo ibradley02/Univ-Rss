@@ -232,7 +232,6 @@ var store = new vuex.Store({
         })
     },
     updateEvent({ commit, dispatch }, payload) {
-      debugger
       api.put('/users/' + payload.userId, payload)
         .then(res => {
           console.log(res)
