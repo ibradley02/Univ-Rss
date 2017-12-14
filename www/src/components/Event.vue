@@ -1,5 +1,5 @@
 <template>
-    <div class="row">
+    <div class="row" v-if="user.event">
         <div class="col-sm-12">
             <div class="panel panel-default panel-style">
                 <div class="panel-heading">
@@ -33,6 +33,9 @@
         computed: {
             events() {
                 return this.$store.state.events
+            },
+            user() {
+                return this.$store.state.user
             }
         }
     }
