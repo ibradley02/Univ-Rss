@@ -253,8 +253,7 @@ var store = new vuex.Store({
     },
     //FEEDS
     searchFeeds({ commit, dispatch }, payload) {
-      debugger
-      api.post('feed',  payload)
+      api.post('searchFeed',  payload)
         .then(res => {
             commit('setSearchResults', res.data)
         })
@@ -269,6 +268,7 @@ var store = new vuex.Store({
     addFeed({ commit, dispatch }, feed) {
       api.post('/feeds', feed)
         .then(res => {
+          debugger
           console.log(res)
           dispatch('getFeed', res.data)
         })

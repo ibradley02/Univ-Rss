@@ -4,7 +4,7 @@ let Feeds = require('../models/feed')
 
 module.exports = {
     searchFeed: {
-        path: '/feed',
+        path: '/searchFeed',
         reqType: 'post',
         method(req, res, next) {
           let action = 'Search Feeds'
