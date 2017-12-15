@@ -21,6 +21,10 @@ const actions = {
    todo: {
       name: 'Todo',
       endpoint: 'todos'
+    },
+    feed: {
+      name: 'Feed',
+      endpoint: 'feeds',
     }
   }
   

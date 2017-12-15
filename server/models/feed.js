@@ -1,9 +1,11 @@
-var  models = require('../config/constants').models
-let mongoose = require('mongoose')
-let ObjectId = mongoose.Schema.ObjectId
+var models = require ('../config/constants').models
+var mongoose = require('mongoose')
+var Schema = mongoose.Schema
+var ObjectId = Schema.Types.ObjectId
 
-var schema = new mongoose.Schema({
-    url: { type: String, required: true }
-});
+var schema = new Schema({
+    url: { type: String, required: true },
+  })
 
-module.exports = mongoose.model(models.feed.name, schema);
+
+  module.exports = mongoose.model('Feed', schema)
