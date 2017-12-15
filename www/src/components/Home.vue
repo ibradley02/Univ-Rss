@@ -62,7 +62,6 @@
   export default {
     data() {
       return {
-<<<<<<< HEAD
         // layout: [{
         //   "x": 4,
         //   "y": 8,
@@ -108,53 +107,6 @@
         //   "h": 4,
         //   "i": "5"
         // }],
-=======
-        layout: [{
-          "x": 4,
-          "y": 8,
-          "w": 4,
-          "h": 10,
-          "i": "0",
-          "source": "",
-          "text": "",
-          "imageLink": "",
-          "title": "Spotify",
-          // "mediaLink":"https://open.spotify.com/embed/user/spotify/playlist/37i9dQZF1DWTcqUzwhNmKv"
-        }, {
-          "x": 6,
-          "y": 0,
-          "w": 4,
-          "h": 8,
-          "i": "1",
-          "source": "",
-          "text": "",
-          "title": "",
-        }, {
-          "x": 10,
-          "y": 0,
-          "w": 4,
-          "h": 8,
-          "i": "2"
-        }, {
-          "x": 0,
-          "y": 0,
-          "w": 4,
-          "h": 4,
-          "i": "3"
-        }, {
-          "x": 0,
-          "y": 0,
-          "w": 4,
-          "h": 4,
-          "i": "4"
-        }, {
-          "x": 0,
-          "y": 0,
-          "w": 4,
-          "h": 4,
-          "i": "5"
-        }],
->>>>>>> 19350141c8118e84929d47b5f38ad3901fc83efa
       }
     },
     name: 'Home',
@@ -173,20 +125,13 @@
     computed: {
       user() {
         return this.$store.state.user
-<<<<<<< HEAD
       },
       boards() {
         return this.$store.state.boards
-=======
->>>>>>> 19350141c8118e84929d47b5f38ad3901fc83efa
       }
     },
     mounted(){
-<<<<<<< HEAD
       this.resized()
-=======
-      // resized()
->>>>>>> 19350141c8118e84929d47b5f38ad3901fc83efa
     },
     methods: {
       move: function (i, newX, newY) {
