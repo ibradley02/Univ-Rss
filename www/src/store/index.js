@@ -245,8 +245,6 @@ var store = new vuex.Store({
         })
     }
   }
-
-
 })
 
 
