@@ -1,10 +1,5 @@
 let Users = require('../models/user')
 let request = require('request')
-<<<<<<< HEAD
-let YUI = require('yui').use('yql', 'dataschema', 'datatype')
-
-module.exports = {
-=======
 
 module.exports = {
     getFeeds: {
@@ -20,7 +15,6 @@ module.exports = {
             })
         }
     },
->>>>>>> 31efe3c836791b6f75a3d47d5eaa6dde5f205bdc
     getWeather: {
         path: '/weather/:lat/:long',
         reqType: 'get',
