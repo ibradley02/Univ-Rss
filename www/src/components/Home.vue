@@ -41,9 +41,6 @@
     <div class="todo">
       <todo></todo>
     </div>
-    <div class="row">
-      <feed></feed>
-    </div>
   </div>
 </template>
 
@@ -56,7 +53,6 @@
   import Profile from './Profile'
   import Navbar from './Navbar'
   import VueGridLayout from 'vue-grid-layout'
-  import Feed from './Feed'
   var GridLayout = VueGridLayout.GridLayout;
   var GridItem = VueGridLayout.GridItem;
   export default {
@@ -120,7 +116,6 @@
       Event,
       Profile,
       Navbar,
-      Feed
     },
     computed: {
       user() {

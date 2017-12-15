@@ -1,22 +1,25 @@
 <template>
     <div class="row text-center">
         <nav class="navbar navbar-default navbar-fixed-top myNavbar">
-            <div class="text-left sidebar-button col-sm-4">
-                    <div id="stack" @click="toggle">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
+            <div class="text-left sidebar-button col-sm-1">
+                <div id="stack" @click="toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
                 </a>
             </div>
-            <div class="col-sm-4">
-                <div class="panel-style text-center col-sm-4 col-sm-offset-5 animated fadeInLeftBig" v-if="user.clock">
+            <div class="col-sm-2 feed">
+                    <feed></feed>
+            </div>
+            <div class="col-sm-7">
+                <div class="panel-style text-center animated fadeInLeftBig" v-if="user.clock">
                     <h1>
                         <Clock :blink="true" />
                     </h1>
                 </div>
             </div>
-            <div class="weather col-sm-4">
+            <div class="weather col-sm-2">
                 <weather></weather>
             </div>
         </nav>
@@ -27,17 +30,34 @@
 <script>
     import Weather from './Weather'
     import Clock from 'vue-digital-clock'
+    import Feed from './Feed'
     export default {
         name: 'navbar',
+        data() {
+            return {
+                searchFormActive: true,
+                search: {
+                    body: ''
+                }
+            }
+        },
         methods: {
             toggle() {
                 $('#stack').toggleClass('open'),
-                $('#sidebar').toggleClass('active')
+                    $('#sidebar').toggleClass('active')
+            },
+            searchFeeds() {
+                this.$store.dispatch('searchFeeds', {url : this.search.body})
+                this.search.body = ''
+            },
+            toggleFormState() {
+                this.searchFormActive = !this.searchFormActive
             }
         },
         components: {
             Weather,
-            Clock
+            Clock,
+            Feed
         },
         computed: {
             user() {
@@ -54,6 +74,10 @@
     @import url('https://fonts.googleapis.com/css?family=Bungee');
     .univ-rss {
         font-family: 'Bungee', cursive;
+    }
+
+    .feed {
+        color: black;
     }
 
     .weather {
@@ -129,7 +153,7 @@
     }
 
     #stack.open span:nth-child(1) {
-        top: 17px; 
+        top: 17px;
         transform: rotate(135deg);
     }
 

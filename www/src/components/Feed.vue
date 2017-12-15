@@ -2,14 +2,12 @@
     <div>
         <form type="submit" @submit.prevent="submitFeed">
             <div class="form-group">
-                <label for="Feed">Feed</label>
+                <label for="Feed">Create New Feed:</label>
                 <input type="text" placeholder="Feed URL Here" v-model="feed.url">
-            </div>
-            <div class="form-group">
-                <button type="submit">Submit</button>
+                <button type="submit"><i class="fa fa-search"></i> Search</button>
             </div>
         </form>
-        <div v-for="items in feeds">
+        <!-- <div v-for="items in feeds">
             <div class="panel panel-default col-xs-12 col-md-4">
                 <div class="panel-heading">
                     <h3>{{items.title}}</h3>
@@ -20,7 +18,7 @@
                     <a :href="items.link" target="_blank">Article link</a>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -53,7 +51,10 @@
     }
 </script>
 
-<style>
+<style scoped>
+    label {
+        display: block;
+    }
     input {
         width: 25%;
         text-align: center;

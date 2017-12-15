@@ -268,7 +268,6 @@ var store = new vuex.Store({
     addFeed({ commit, dispatch }, feed) {
       api.post('/feeds', feed)
         .then(res => {
-          debugger
           console.log(res)
           dispatch('getFeed', res.data)
         })
