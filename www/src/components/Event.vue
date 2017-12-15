@@ -1,11 +1,11 @@
 <template>
     <div class="row" v-if="user.event">
-        <div class="col-sm-12">
+        <div class="col-sm-12" >
             <div class="panel panel-default panel-style">
                 <div class="panel-heading">
                     <h4>Local Events</h4>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" v-bind:style="{maxHeight: height + 'px'}">
                     <div v-for="e in events">
                         <h5 class="title">{{ e.title }}</h5>
                         <ul>
@@ -25,6 +25,7 @@
 <script>
     export default {
         name: 'event',
+        props: ["i"],
         data() {
             return {
             }
@@ -35,6 +36,9 @@
             }
         },
         computed: {
+            height(){
+                return this.$store.state.height[this.i]
+            },
             events() {
                 return this.$store.state.events
             },
@@ -58,7 +62,7 @@
     .panel-body {
         margin-right: .3vw;
         overflow-y: auto;
-        max-height: 25vh;
+        /* max-height: 25vh; */
         text-align: left;
     }
 
@@ -69,7 +73,7 @@
     .panel,
     .panel-heading,
     .panel-footer {
-        background-color: rgba(0, 0, 0, 0.151);
+        background-color: rgba(0, 0, 0, 0);
         color: white;
         border: none
     }

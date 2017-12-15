@@ -11,7 +11,7 @@
             <div class="grid">
               <grid-layout :layout="layout" :col-num="16" :row-height="30" :is-draggable="true" :is-resizable="true" :vertical-compact="true"
                 :margin="[10, 10]" :use-css-transforms="true">
-                <grid-item class="grid-cell" v-for="item in layout" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i" :source="item.source" :ttle="item.title" :imageLink="item.imageLink"
+                <grid-item class="grid-cell" v-for="item in layout" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i" :source="item.source" :title="item.title" :imageLink="item.imageLink"
                   @resize="resize" @move="move" @resized="resized" @moved="moved">
                   <h3>
                     {{item.title}}
@@ -25,7 +25,7 @@
                   </div>
                  <p>{{item.text}}</p>
                  <div v-if="item.i == 2" id="event">
-                     <event></event>
+                     <event :i="item.i" ></event>
                 </div>
                 </grid-item>
               </grid-layout>
@@ -63,15 +63,15 @@
     data() {
       return {
         layout: [{
-          "x": 2,
-          "y": 0,
+          "x": 4,
+          "y": 8,
           "w": 4,
-          "h": 13,
+          "h": 10,
           "i": "0",
-          "source": "Spotify",
-          "text": "If you have a Spotify account make sure you are logged in to enjoy our daily choice of playlist. (updated daily or whenever the fuck we feel like it)",
+          "source": "",
+          "text": "",
           "imageLink": "",
-          "title": "Playlist of the Day",
+          "title": "Spotify",
           "mediaLink":"https://open.spotify.com/embed/user/spotify/playlist/37i9dQZF1DWTcqUzwhNmKv"
         }, {
           "x": 6,
@@ -86,8 +86,26 @@
           "x": 10,
           "y": 0,
           "w": 4,
-          "h": 4,
+          "h": 8,
           "i": "2"
+        }, {
+          "x": 0,
+          "y": 0,
+          "w": 4,
+          "h": 4,
+          "i": "3"
+        }, {
+          "x": 0,
+          "y": 0,
+          "w": 4,
+          "h": 4,
+          "i": "4"
+        }, {
+          "x": 0,
+          "y": 0,
+          "w": 4,
+          "h": 4,
+          "i": "5"
         }],
       }
     },
@@ -113,6 +131,9 @@
       }
 
     },
+    mounted(){
+      resized()
+    },
     methods: {
       move: function (i, newX, newY) {
         console.log("MOVING i=" + i + ", X=" + newX + ", Y=" + newY);
@@ -125,6 +146,7 @@
       },
       resized: function (i, newH, newW, newHPx, newWPx) {
         console.log("### RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
+        this.$store.dispatch('setHeight', {i: i, height: newHPx-100})
       },
     }
   }
@@ -207,8 +229,8 @@
  
 
   .vue-grid-item:not(.vue-grid-placeholder) {
-    background: #ccc;
-    border: 1px solid black;
+    /* background: #ccc; */
+    border: 1px solid white;
   }
 
   .vue-grid-item.resizing {

@@ -29,9 +29,14 @@ var store = new vuex.Store({
     weather: {},
     events: {},
     quote: {},
-    feeds: {}
+    feeds: {},
+    height: {}
   },
   mutations: {
+    setHeight(state, payload){
+      vue.set(state.height, payload.i, payload.height)
+    },
+
     handleError(state, err) {
       state.error = err
     },
@@ -56,6 +61,12 @@ var store = new vuex.Store({
 
   },
   actions: {
+    setHeight({commit, dispatch}, payload){
+      commit('setHeight', payload)
+    },
+
+
+
     //USER LOGIN/REGISTER/LOGOUT
     login({ commit, dispatch }, user) {
       auth.post('login', user)
