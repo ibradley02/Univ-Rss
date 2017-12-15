@@ -69,7 +69,6 @@
           "h": 13,
           "i": "0",
           "source": "Spotify",
-          "text": "If you have a Spotify account make sure you are logged in to enjoy our daily choice of playlist. (updated daily or whenever the fuck we feel like it)",
           "imageLink": "",
           "title": "Playlist of the Day",
           "mediaLink":"https://open.spotify.com/embed/user/spotify/playlist/37i9dQZF1DWTcqUzwhNmKv"
