@@ -19,6 +19,7 @@
       this.$store.dispatch('getTodos')
       this.$store.dispatch('getEvents')
       this.$store.dispatch('getQuote')
+      this.$store.dispatch('getBoards')
     },
     computed:{
       user(){

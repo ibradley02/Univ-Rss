@@ -9,10 +9,10 @@
               <sidebar></sidebar>
             </div>
             <div class="grid">
-              <grid-layout :layout="layout" :col-num="16" :row-height="30" :is-draggable="true" :is-resizable="true" :vertical-compact="true"
+              <grid-layout :layout="boards" :col-num="16" :row-height="30" :is-draggable="true" :is-resizable="true" :vertical-compact="true"
                 :margin="[10, 10]" :use-css-transforms="true">
-                <grid-item class="grid-cell" v-for="item in layout" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i" :source="item.source" :title="item.title" :imageLink="item.imageLink"
-                  @resize="resize" @move="move" @resized="resized" @moved="moved">
+                <grid-item class="grid-cell" v-for="item in boards" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i" :source="item.source" 
+                 @resize="resize" @move="move" @resized="resized" @moved="moved">
                   <h3>
                     {{item.title}}
                   </h3>
@@ -23,7 +23,7 @@
                   <div v-if="item.mediaLink">
                     <iframe  :src="item.mediaLink "width='200' height='300' frameborder='0' allowtransparency='true'></iframe>
                   </div>
-                 <p>{{item.text}}</p>
+                 <p>{{item._id}}</p>
                  <div v-if="item.i == 2" id="event">
                      <event :i="item.i" ></event>
                 </div>
@@ -58,51 +58,51 @@
   export default {
     data() {
       return {
-        layout: [{
-          "x": 4,
-          "y": 8,
-          "w": 4,
-          "h": 10,
-          "i": "0",
-          "source": "",
-          "text": "",
-          "imageLink": "",
-          "title": "Spotify",
-          // "mediaLink":"https://open.spotify.com/embed/user/spotify/playlist/37i9dQZF1DWTcqUzwhNmKv"
-        }, {
-          "x": 6,
-          "y": 0,
-          "w": 4,
-          "h": 8,
-          "i": "1",
-          "source": "",
-          "text": "",
-          "title": "",
-        }, {
-          "x": 10,
-          "y": 0,
-          "w": 4,
-          "h": 8,
-          "i": "2"
-        }, {
-          "x": 0,
-          "y": 0,
-          "w": 4,
-          "h": 4,
-          "i": "3"
-        }, {
-          "x": 0,
-          "y": 0,
-          "w": 4,
-          "h": 4,
-          "i": "4"
-        }, {
-          "x": 0,
-          "y": 0,
-          "w": 4,
-          "h": 4,
-          "i": "5"
-        }],
+        // layout: [{
+        //   "x": 4,
+        //   "y": 8,
+        //   "w": 4,
+        //   "h": 10,
+        //   "i": "0",
+        //   "source": "",
+        //   "text": "",
+        //   "imageLink": "",
+        //   "title": "Spotify",
+        //   "mediaLink":"https://open.spotify.com/embed/user/spotify/playlist/37i9dQZF1DWTcqUzwhNmKv"
+        // }, {
+        //   "x": 6,
+        //   "y": 0,
+        //   "w": 4,
+        //   "h": 8,
+        //   "i": "1",
+        //   "source": "",
+        //   "text": "",
+        //   "title": "",
+        // }, {
+        //   "x": 10,
+        //   "y": 0,
+        //   "w": 4,
+        //   "h": 8,
+        //   "i": "2"
+        // }, {
+        //   "x": 0,
+        //   "y": 0,
+        //   "w": 4,
+        //   "h": 4,
+        //   "i": "3"
+        // }, {
+        //   "x": 0,
+        //   "y": 0,
+        //   "w": 4,
+        //   "h": 4,
+        //   "i": "4"
+        // }, {
+        //   "x": 0,
+        //   "y": 0,
+        //   "w": 4,
+        //   "h": 4,
+        //   "i": "5"
+        // }],
       }
     },
     name: 'Home',
@@ -120,10 +120,13 @@
     computed: {
       user() {
         return this.$store.state.user
+      },
+      boards() {
+        return this.$store.state.boards
       }
     },
     mounted(){
-      // resized()
+      this.resized()
     },
     methods: {
       move: function (i, newX, newY) {
@@ -134,6 +137,7 @@
       },
       moved: function (i, newX, newY) {
         console.log("### MOVED i=" + i + ", X=" + newX + ", Y=" + newY);
+        this.$store.dispatch('updateBoard', {boardId: this.boards[i]._id, x: newX, y: newY})
       },
       resized: function (i, newH, newW, newHPx, newWPx) {
         console.log("### RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
