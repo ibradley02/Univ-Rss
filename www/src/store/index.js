@@ -35,6 +35,11 @@ var store = new vuex.Store({
   mutations: {
     setHeight(state, payload){
       vue.set(state.height, payload.i, payload.height)
+
+    },setBoards(state, boards){
+      debugger
+      state.boards = boards
+
     },
 
     handleError(state, err) {
@@ -61,6 +66,39 @@ var store = new vuex.Store({
 
   },
   actions: {
+
+
+    //*********BOARDS**********/
+    getBoards({commit, dispatch}){
+      api('userboards')
+      .then(res => {
+        commit('setBoards', res.data.data)
+      })
+      .catch(err => {
+        commit('handleError', err)
+      })
+    }, 
+    updateBoard({commit, dispatch}, payload){
+      api.put('boards/' + payload.boardId , payload)
+      .then(res => {
+        dispatch('getBoards', res.data.data)
+      })
+      .catch(err => {
+        commit('handleError', err)
+      })
+    },
+    
+    createBoard({commit, dispatch}, payload){
+      api.post('boards', payload)
+      .then(res => {
+        commit('setBoards', res.data.data)
+      })
+      .catch(err => {
+        commit('handleError', err)
+      })
+    },
+
+
     setHeight({commit, dispatch}, payload){
       commit('setHeight', payload)
     },
