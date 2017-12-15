@@ -7,10 +7,14 @@
                 </div>
                 <div class="panel-body">
                     <div v-for="e in events">
-                        <h6>{{ e.title }}</h6>
-                        <h6>{{ e.venue_name }}</h6>
-                        <h6>{{ e.venue_address }}</h6>
-                        <h6>{{ e.city_name }}</h6>
+                        <h5 class="title">{{ e.title }}</h5>
+                        <ul>
+                            <li>{{ e.venue_name }}</li>
+                            <li>
+                                {{ e.venue_address }} 
+                                <p>{{ e.city_name }}</p>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -61,13 +65,12 @@
     .panel-style {
         margin: 0 auto;
     }
-    
+
     .panel,
     .panel-heading,
     .panel-footer {
         background-color: rgba(0, 0, 0, 0.151);
         color: white;
         border: none
-
     }
 </style>

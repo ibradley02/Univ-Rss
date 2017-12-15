@@ -189,13 +189,6 @@
     max-width: 75vw;
   }
 
-  .event {
-    position: absolute;
-    bottom: 15vh;
-    left: 1px;
-    max-width: 75vw;
-  }
-
   .main {
     display: flex;
     margin-top: 10vh;
