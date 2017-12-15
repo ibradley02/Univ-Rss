@@ -72,7 +72,7 @@
           "text": "",
           "imageLink": "",
           "title": "Spotify",
-          "mediaLink":"https://open.spotify.com/embed/user/spotify/playlist/37i9dQZF1DWTcqUzwhNmKv"
+          // "mediaLink":"https://open.spotify.com/embed/user/spotify/playlist/37i9dQZF1DWTcqUzwhNmKv"
         }, {
           "x": 6,
           "y": 0,
@@ -125,14 +125,10 @@
     computed: {
       user() {
         return this.$store.state.user
-      },
-      layout() {
-        // return this.$store.state.layout
       }
-
     },
     mounted(){
-      resized()
+      // resized()
     },
     methods: {
       move: function (i, newX, newY) {

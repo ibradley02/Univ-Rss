@@ -25,6 +25,22 @@
             <li>
                 <a href="#feedSubmenu" data-toggle="collapse" aria-expanded="false"> <i class="fa fa-feed"></i> Feeds</a>
                 <ul class="collapse list-unstyled" id="feedSubmenu">
+                    <li v-if="searchFormActive">
+                        <a @click="toggleFormState"><i class="fa fa-search"></i> Search</a>
+                    </li>
+                    <li v-else>
+                        <form type="submit" @submit.prevent="searchFeeds">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search Feeds" v-model="search.body">
+                                <span>
+                                    <button @click="toggleFormState"><i class="fa fa-remove"></i></button>
+                                </span>
+                            </div>
+                        </form>
+                    </li>
+                    <li v-for="result in searchResults">
+                        <h6>{{result.url}} <i class="fa fa-plus" style="color: green"></i></h6>
+                    </li>
                     <li>
                         <a href="#"><i class="fa fa-newspaper-o"></i> News</a>
                     </li>
@@ -65,15 +81,23 @@
         name: 'sidebar',
         data(){
             return {
-                update: {
-
-                } 
+                searchFormActive: true,
+                search: {
+                    body: ''
+                }
             }
         },
 
         components: {
         },
         methods: {
+            searchFeeds() {
+                this.$store.dispatch('searchFeeds', {url : this.search.body})
+                this.search.body = ''
+            },
+            toggleFormState() {
+                this.searchFormActive = !this.searchFormActive
+            },
             logout() {
                 this.$store.dispatch('logout')
             },
@@ -117,12 +141,23 @@
         computed: {
             user() {
                 return this.$store.state.user
+            },
+            searchResults() {
+                return this.$store.state.searchResults
             }
         }
     }
 </script>
 
 <style scoped>
+    input {
+        width: 80%;
+        display: inline-block;
+    }
+
+    span {
+        color: black;
+    }
     a {
         cursor: pointer;
     }

@@ -5,7 +5,7 @@ var ObjectId = Schema.Types.ObjectId
 
 var schema = new Schema({
     url: { type: String, required: true },
-    creatorId: {type: ObjectId, ref: models.user.name, required: true }
+    boardId: { type: ObjectId, ref: models.board, required: true }
   })
 
 
