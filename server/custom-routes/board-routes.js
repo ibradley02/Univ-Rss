@@ -1,12 +1,26 @@
 let Users = require('../models/user')
 let request = require('request')
+let Feeds = require('../models/feed')
 
 module.exports = {
+    searchFeed: {
+        path: '/feed',
+        reqType: 'post',
+        method(req, res, next) {
+          let action = 'Search Feeds'
+          Feeds.find({ url: req.body.url })
+            .then(feeds => {
+              res.send(handleResponse(action, feeds))
+            }).catch(error => {
+              return next(handleResponse(action, null, error))
+            })
+        }
+      },
     submitFeed: {
         path: '/feed',
         reqType: 'post',
         method(req, res, next) {
-            let apiKey= 'u1le59ytbef1hkkspxk0ewbrd1lm3pcu1nuazvin'
+            let apiKey = 'u1le59ytbef1hkkspxk0ewbrd1lm3pcu1nuazvin'
             let action = 'make request to outside api and return data requested'
             request('https://api.rss2json.com/v1/api.json?rss_url=' + req.body.url + '&api_key=' + apiKey, function (error, response, body) {
                 var info = JSON.parse(body)

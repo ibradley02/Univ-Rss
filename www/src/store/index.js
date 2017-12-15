@@ -30,7 +30,8 @@ var store = new vuex.Store({
     events: {},
     quote: {},
     feeds: {},
-    height: {}
+    height: {},
+    searchResults: {}
   },
   mutations: {
     setHeight(state, payload){
@@ -62,6 +63,9 @@ var store = new vuex.Store({
     },
     setFeeds(state, data) {
       state.feeds = data.items
+    },
+    setSearchResults(state, data) {
+      state.searchResults = data.data
     }
 
   },
@@ -286,6 +290,13 @@ var store = new vuex.Store({
         })
     },
     //FEEDS
+    searchFeeds({ commit, dispatch }, payload) {
+      debugger
+      api.post('feed',  payload)
+        .then(res => {
+            commit('setSearchResults', res.data)
+        })
+    },
     getFeed({ commit, dispatch }, payload) {
       api.post('feed', payload.data)
         .then(res => {
