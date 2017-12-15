@@ -2,7 +2,7 @@ let Users = require('../models/user')
 let request = require('request')
 
 module.exports = {
-    getFeeds: {
+    submitFeed: {
         path: '/feed',
         reqType: 'post',
         method(req, res, next) {
