@@ -41,7 +41,7 @@
     <div class="todo">
       <todo></todo>
     </div>
-    <div>
+    <div class="row">
       <feed></feed>
     </div>
   </div>
