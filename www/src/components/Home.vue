@@ -24,8 +24,8 @@
                     <iframe  :src="item.mediaLink "width='200' height='300' frameborder='0' allowtransparency='true'></iframe>
                   </div>
                  <p>{{item.text}}</p>
-                 <div v-if="item.i == 2" class="event">
-                  <event></event>
+                 <div v-if="item.i == 2" id="event">
+                     <event></event>
                 </div>
                 </grid-item>
               </grid-layout>
