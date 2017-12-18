@@ -13,63 +13,81 @@
                 </h3>
             </div>
             <h6>{{user.email}}</h6>
-            <button type="button" class="btn btn-danger logout" @click="logout"> <i class="fa fa-power-off"></i> Logout</button>
+            <button type="button" class="btn btn-danger logout" @click="logout">
+                <i class="fa fa-power-off"></i> Logout</button>
         </div>
         <div class="scrollable">
             <ul class="list-unstyled components">
                 <li>
-                    <router-link to="Home"><i class="fa fa-home"></i> Home</router-link>
+                    <router-link to="Home">
+                        <i class="fa fa-home"></i> Home</router-link>
                 </li>
                 <li>
-                    <router-link to="Profile"> <i class="fa fa-cog"></i> Profile</router-link>
+                    <router-link to="Profile">
+                        <i class="fa fa-cog"></i> Profile</router-link>
                 </li>
                 <li>
-                    <a href="#feedSubmenu" data-toggle="collapse" aria-expanded="false"> <i class="fa fa-feed"></i> Feeds</a>
+                    <a href="#feedSubmenu" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-feed"></i> Feeds</a>
                     <ul class="collapse list-unstyled" id="feedSubmenu">
                         <li v-if="searchFormActive">
-                            <a @click="toggleFormState"><i class="fa fa-search"></i> Search</a>
+                            <a @click="toggleFormState">
+                                <i class="fa fa-search"></i> Search</a>
                         </li>
                         <li v-else>
                             <form type="submit" @submit.prevent="searchFeeds">
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Search Feeds" v-model="search.body">
                                     <span>
-                                        <button @click="toggleFormState"><i class="fa fa-remove"></i></button>
+                                        <button @click="toggleFormState">
+                                            <i class="fa fa-remove"></i>
+                                        </button>
                                     </span>
                                 </div>
                             </form>
                         </li>
                         <li v-for="result in searchResults">
-                            <h6>{{result.url}} <i class="fa fa-plus" style="color: green"></i></h6>
+                            <h6>{{result.url}}
+                                <i class="fa fa-plus" style="color: green"></i>
+                            </h6>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-newspaper-o"></i> News</a>
+                            <a href="#">
+                                <i class="fa fa-newspaper-o"></i> News</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-futbol-o"></i> Sports</a>
+                            <a href="#">
+                                <i class="fa fa-futbol-o"></i> Sports</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-youtube-play"></i> Youtube</a>
+                            <a href="#">
+                                <i class="fa fa-youtube-play"></i> Youtube</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#componentSubmenu" data-toggle="collapse" aria-expanded="false"><i class="fa fa-briefcase"></i> Components</a>
+                    <a href="#componentSubmenu" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-briefcase"></i> Components</a>
                     <ul class="collapse list-unstyled" id="componentSubmenu">
                         <li>
-                            <a @click="setClock"><i class="fa fa-clock-o"></i> Clock</a>
+                            <a @click="setClock">
+                                <i class="fa fa-clock-o"></i> Clock</a>
                         </li>
                         <li>
-                            <a @click="setTodo"><i class="fa fa-list-ol"></i> To-Do</a>
+                            <a @click="setTodo">
+                                <i class="fa fa-list-ol"></i> To-Do</a>
                         </li>
                         <li>
-                            <a @click="setWeather"><i class="fa fa-snowflake-o"></i> Weather</a>
+                            <a @click="setWeather">
+                                <i class="fa fa-snowflake-o"></i> Weather</a>
                         </li>
                         <li>
-                            <a @click="setQuote"><i class="fa fa-commenting"></i> Inspirational Quote</a>
+                            <a @click="setQuote">
+                                <i class="fa fa-commenting"></i> Inspirational Quote</a>
                         </li>
                         <li>
-                            <a @click="setEvent"><i class="fa fa-calendar"></i> Local Events</a>
+                            <a @click="setEvent">
+                                <i class="fa fa-calendar"></i> Local Events</a>
                         </li>
                     </ul>
                 </li>
@@ -81,7 +99,7 @@
 <script>
     export default {
         name: 'sidebar',
-        data(){
+        data() {
             return {
                 searchFormActive: true,
                 search: {
@@ -94,7 +112,7 @@
         },
         methods: {
             searchFeeds() {
-                this.$store.dispatch('searchFeeds', {url : this.search.body})
+                this.$store.dispatch('searchFeeds', { url: this.search.body })
                 this.search.body = ''
             },
             toggleFormState() {
@@ -160,6 +178,7 @@
     span {
         color: black;
     }
+
     a {
         cursor: pointer;
     }
@@ -171,7 +190,24 @@
     .scrollable {
         overflow-y: auto;
         max-height: 35vh;
+
     }
+
+    ::-webkit-scrollbar {
+        width: 1em;
+    }
+
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        box-shadow: inset 0 0 6px rgba(0,0,0,0.3)
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: rgb(95, 94, 94);
+        outline: 1px solid slategray;
+    }
+
+
 
     .fa-cog {
         cursor: pointer;
@@ -263,7 +299,7 @@
         animation: 1s 0s 0.5 fadeIn;
     } */
 
-    .fadeOut{
+    .fadeOut {
         animation-name: fadeOut;
         animation: 1s 0s 0.5 fadeOut;
     }
@@ -309,6 +345,4 @@
         padding-left: 30px !important;
         background: rgba(0, 1, 3, 0.521);
     }
-
-
 </style>
