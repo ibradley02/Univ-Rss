@@ -15,64 +15,66 @@
             <h6>{{user.email}}</h6>
             <button type="button" class="btn btn-danger logout" @click="logout"> <i class="fa fa-power-off"></i> Logout</button>
         </div>
-        <ul class="list-unstyled components">
-            <li>
-                <router-link to="Home"><i class="fa fa-home"></i> Home</router-link>
-            </li>
-            <li>
-                <router-link to="Profile"> <i class="fa fa-cog"></i> Profile</router-link>
-            </li>
-            <li>
-                <a href="#feedSubmenu" data-toggle="collapse" aria-expanded="false"> <i class="fa fa-feed"></i> Feeds</a>
-                <ul class="collapse list-unstyled" id="feedSubmenu">
-                    <li v-if="searchFormActive">
-                        <a @click="toggleFormState"><i class="fa fa-search"></i> Search</a>
-                    </li>
-                    <li v-else>
-                        <form type="submit" @submit.prevent="searchFeeds">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Search Feeds" v-model="search.body">
-                                <span>
-                                    <button @click="toggleFormState"><i class="fa fa-remove"></i></button>
-                                </span>
-                            </div>
-                        </form>
-                    </li>
-                    <li v-for="result in searchResults">
-                        <h6>{{result.url}} <i class="fa fa-plus" style="color: green"></i></h6>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-newspaper-o"></i> News</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-futbol-o"></i> Sports</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-youtube-play"></i> Youtube</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#componentSubmenu" data-toggle="collapse" aria-expanded="false"><i class="fa fa-briefcase"></i> Components</a>
-                <ul class="collapse list-unstyled" id="componentSubmenu">
-                    <li>
-                        <a @click="setClock"><i class="fa fa-clock-o"></i> Clock</a>
-                    </li>
-                    <li>
-                        <a @click="setTodo"><i class="fa fa-list-ol"></i> To-Do</a>
-                    </li>
-                    <li>
-                        <a @click="setWeather"><i class="fa fa-snowflake-o"></i> Weather</a>
-                    </li>
-                    <li>
-                        <a @click="setQuote"><i class="fa fa-commenting"></i> Inspirational Quote</a>
-                    </li>
-                    <li>
-                        <a @click="setEvent"><i class="fa fa-calendar"></i> Local Events</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+        <div class="scrollable">
+            <ul class="list-unstyled components">
+                <li>
+                    <router-link to="Home"><i class="fa fa-home"></i> Home</router-link>
+                </li>
+                <li>
+                    <router-link to="Profile"> <i class="fa fa-cog"></i> Profile</router-link>
+                </li>
+                <li>
+                    <a href="#feedSubmenu" data-toggle="collapse" aria-expanded="false"> <i class="fa fa-feed"></i> Feeds</a>
+                    <ul class="collapse list-unstyled" id="feedSubmenu">
+                        <li v-if="searchFormActive">
+                            <a @click="toggleFormState"><i class="fa fa-search"></i> Search</a>
+                        </li>
+                        <li v-else>
+                            <form type="submit" @submit.prevent="searchFeeds">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Search Feeds" v-model="search.body">
+                                    <span>
+                                        <button @click="toggleFormState"><i class="fa fa-remove"></i></button>
+                                    </span>
+                                </div>
+                            </form>
+                        </li>
+                        <li v-for="result in searchResults">
+                            <h6>{{result.url}} <i class="fa fa-plus" style="color: green"></i></h6>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-newspaper-o"></i> News</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-futbol-o"></i> Sports</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-youtube-play"></i> Youtube</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#componentSubmenu" data-toggle="collapse" aria-expanded="false"><i class="fa fa-briefcase"></i> Components</a>
+                    <ul class="collapse list-unstyled" id="componentSubmenu">
+                        <li>
+                            <a @click="setClock"><i class="fa fa-clock-o"></i> Clock</a>
+                        </li>
+                        <li>
+                            <a @click="setTodo"><i class="fa fa-list-ol"></i> To-Do</a>
+                        </li>
+                        <li>
+                            <a @click="setWeather"><i class="fa fa-snowflake-o"></i> Weather</a>
+                        </li>
+                        <li>
+                            <a @click="setQuote"><i class="fa fa-commenting"></i> Inspirational Quote</a>
+                        </li>
+                        <li>
+                            <a @click="setEvent"><i class="fa fa-calendar"></i> Local Events</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </nav>
 </template>
 
@@ -164,6 +166,11 @@
 
     h1 {
         margin-bottom: 2vh;
+    }
+
+    .scrollable {
+        overflow-y: auto;
+        max-height: 35vh;
     }
 
     .fa-cog {
