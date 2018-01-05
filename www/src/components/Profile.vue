@@ -14,7 +14,7 @@
                     <router-link to="/Home">
                         <i class="fa fa-window-close fa-3x pull-right"></i>
                     </router-link>
-                    <h2>Your Profile</h2>
+                    <h2>{{user.name}}'s Profile</h2>
                 </div>
                 <div class="panel-body">
                     <div class="col-sm-6 text-left">
