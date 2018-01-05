@@ -189,7 +189,7 @@
 
     .scrollable {
         overflow-y: auto;
-        max-height: 35vh;
+        max-height: 45vh;
 
     }
 
@@ -283,9 +283,9 @@
         color: #fff;
         min-width: 250px;
         max-width: 250px;
-        min-height: 85vh;
+        min-height: 90vh;
         z-index: 99999 !important;
-        margin-left: -265px;
+        margin-left: -270px;
         /* animation-name: fadeOutLeft; */
         /* animation: 1s 0s 0.5 fadeOut; */
         transform: translateX(0);
