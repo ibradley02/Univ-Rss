@@ -38,7 +38,6 @@ var store = new vuex.Store({
       vue.set(state.height, payload.i, payload.height)
 
     },setBoards(state, boards){
-      debugger
       state.boards = boards
 
     },
@@ -190,7 +189,6 @@ var store = new vuex.Store({
     getGoogleUser({ commit, dispatch }, token) {
         api('/google/' + token)
           .then(res => {
-            debugger
             dispatch('login', res.data)
           })
           .catch(commit('handleError', Error))},
@@ -291,12 +289,14 @@ var store = new vuex.Store({
     },
     //FEEDS
     searchFeeds({ commit, dispatch }, payload) {
+      debugger
       api.post('searchFeed',  payload)
         .then(res => {
             commit('setSearchResults', res.data)
         })
     },
     getFeed({ commit, dispatch }, payload) {
+      debugger
       api.post('feed', payload.data)
         .then(res => {
           console.log(res)
@@ -304,6 +304,7 @@ var store = new vuex.Store({
         })
     },
     addFeed({ commit, dispatch }, feed) {
+      debugger
       api.post('/feeds', feed)
         .then(res => {
           console.log(res)

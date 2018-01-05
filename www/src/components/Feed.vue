@@ -2,9 +2,7 @@
     <div>
         <form type="submit" @submit.prevent="submitFeed">
             <div class="form-group">
-                <label for="Feed">Create New Feed:</label>
-                <input type="text" placeholder="Feed URL Here" v-model="feed.url">
-                <button type="submit"><i class="fa fa-search"></i> Search</button>
+                <input type="text"  class="form-control" placeholder="Feed URL" v-model="feed.url">
             </div>
         </form>
         <!-- <div v-for="items in feeds">
@@ -52,11 +50,12 @@
 </script>
 
 <style scoped>
-    label {
-        display: block;
-    }
     input {
-        width: 25%;
+        width: 80%;
         text-align: center;
+        margin: 0 auto;
+    }
+    button{
+        color: black;
     }
 </style>

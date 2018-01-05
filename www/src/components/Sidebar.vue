@@ -38,18 +38,42 @@
                             <form type="submit" @submit.prevent="searchFeeds">
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Search Feeds" v-model="search.body">
-                                    <span>
-                                        <button @click="toggleFormState">
-                                            <i class="fa fa-remove"></i>
-                                        </button>
-                                    </span>
                                 </div>
                             </form>
+                            <span>
+                                <button @click="toggleFormState">
+                                    <i class="fa fa-remove"></i>
+                                </button>
+                            </span>
                         </li>
                         <li v-for="result in searchResults">
                             <h6>{{result.url}}
                                 <i class="fa fa-plus" style="color: green"></i>
                             </h6>
+                        </li>
+                        <li v-if="createFormActive">
+                            <a @click="toggleCreateFormState">
+                                <i class="fa fa-rss"></i> Create</a>
+                        </li>
+                        <li v-else>
+                            <!-- <form type="submit" @submit.prevent="submitFeed">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Feed URL" v-model="create.body">
+                                    <span>
+                                        <button @click="toggleCreateFormState">
+                                            <i class="fa fa-remove"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form> -->
+                            <div class="input">
+                                <feed></feed>
+                            </div>
+                            <span>
+                                <button @click="toggleCreateFormState">
+                                    <i class="fa fa-remove"></i>
+                                </button>
+                            </span>
                         </li>
                         <li>
                             <a href="#">
@@ -97,26 +121,41 @@
 </template>
 
 <script>
+    import Feed from './Feed'
     export default {
         name: 'sidebar',
         data() {
             return {
                 searchFormActive: true,
+                createFormActive: true,
                 search: {
+                    body: ''
+                },
+                create: {
                     body: ''
                 }
             }
         },
 
         components: {
+            Feed
         },
         methods: {
             searchFeeds() {
                 this.$store.dispatch('searchFeeds', { url: this.search.body })
                 this.search.body = ''
             },
+            submitFeed() {
+                this.$store.dispatch('addFeed', this.create.body)
+                this.feed = {
+                    url: ''
+                }
+            },
             toggleFormState() {
                 this.searchFormActive = !this.searchFormActive
+            },
+            toggleCreateFormState() {
+                this.createFormActive = !this.createFormActive
             },
             logout() {
                 this.$store.dispatch('logout')
@@ -164,6 +203,9 @@
             },
             searchResults() {
                 return this.$store.state.searchResults
+            },
+            feeds() {
+                return this.$store.state.feeds
             }
         }
     }
@@ -172,10 +214,18 @@
 <style scoped>
     input {
         width: 80%;
-        display: inline-block;
+        text-align: center;
+        margin: 0 auto;
+    }
+    .input{
+        display: inline-flex;
+    }
+    form{
+        display: inline-flex;
     }
 
     span {
+        display: inline-flex;
         color: black;
     }
 
@@ -198,8 +248,8 @@
     }
 
     ::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-        box-shadow: inset 0 0 6px rgba(0,0,0,0.3)
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3)
     }
 
     ::-webkit-scrollbar-thumb {
@@ -237,7 +287,7 @@
     a[aria-expanded="false"]::before,
     a[aria-expanded="true"]::before {
         content: '\e259';
-        position: absolute;
+        position: relative;
         right: 20px;
         font-family: 'Glyphicons Halflings';
         font-size: 0.6em;
@@ -245,6 +295,7 @@
 
     a[aria-expanded="true"]::before {
         content: '\e260';
+        position: relative;
     }
 
     @media (max-width: 768px) {
