@@ -292,14 +292,12 @@ var store = new vuex.Store({
     },
     //FEEDS
     searchFeeds({ commit, dispatch }, payload) {
-      debugger
       api.post('searchFeed', payload)
         .then(res => {
           commit('setSearchResults', res.data)
         })
     },
     getFeed({ commit, dispatch }, payload) {
-      debugger
       api.post('feed', payload.data)
         .then(res => {
           console.log(res)
@@ -307,7 +305,6 @@ var store = new vuex.Store({
         })
     },
     addFeed({ commit, dispatch }, feed) {
-      debugger
       api.post('/feeds', feed)
         .then(res => {
           console.log(res)
@@ -315,15 +312,27 @@ var store = new vuex.Store({
         })
     },
     createCategory({ commit, dispatch }, payload) {
-      debugger
       api.post('categories', payload)
         .then(res => {
-          commit('setCategories', res.data)
+          dispatch('getCategories')
         })
         .catch(err => {
           commit('handleError', err)
         })
-    }
+    },
+    getCategories({ commit, dispatch }) {
+      api('usercategories')
+        .then(res => {
+          commit('setCategories', res.data.data)
+        })
+        .catch(commit('handleError', Error))
+    },
+    removeCategory({ commit, dispatch }, id) {
+      api.delete('/categories/' + id)
+        .then(res => {
+          dispatch('getCategories')
+        })
+    },
   }
 })
 

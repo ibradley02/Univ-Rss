@@ -68,26 +68,16 @@
                                     <i class="fa fa-remove"></i>
                                 </button>
                             </span>
-                            <!-- <div class="input">
-                                <feed></feed>
+                        </li>
+                        <li v-for="category in categories">
+                            <div class="categoryStyle">
+                                <a href="#">
+                                    {{category.name}}
+                                </a>
                             </div>
-                            <span>
-                                <button @click="toggleCreateFormState">
-                                    <i class="fa fa-remove"></i>
-                                </button>
-                            </span> -->
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-newspaper-o"></i> News</a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-futbol-o"></i> Sports</a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-youtube-play"></i> Youtube</a>
+                            <div class="delete">
+                                <i class="fa fa-remove pull-right" @click="removeCategory(category._id)"></i>
+                            </div>
                         </li>
                     </ul>
                 </li>
@@ -143,6 +133,9 @@
         components: {
             Feed
         },
+        mounted() {
+            this.$store.dispatch('getCategories')
+        },
         methods: {
             searchFeeds() {
                 this.$store.dispatch('searchFeeds', { url: this.search.body })
@@ -164,6 +157,9 @@
                     name: '',
                     creatorId: ''
                 }
+            },
+            removeCategory(category) {
+                this.$store.dispatch('removeCategory', category)
             },
             toggleFormState() {
                 this.searchFormActive = !this.searchFormActive
@@ -220,6 +216,9 @@
             },
             feeds() {
                 return this.$store.state.feeds
+            },
+            categories() {
+                return this.$store.state.categories
             }
         }
     }
@@ -231,10 +230,12 @@
         text-align: center;
         margin: 0 auto;
     }
-    .input{
+
+    .input {
         display: inline-flex;
     }
-    form{
+
+    form {
         display: inline-flex;
     }
 
@@ -324,6 +325,14 @@
         font-weight: 300;
         line-height: 1.7em;
         color: #999;
+    }
+
+    .categoryStyle{
+        display: inline-flex;
+    }
+    .delete{
+        display: inline-flex;
+        color: white;
     }
 
     a,
