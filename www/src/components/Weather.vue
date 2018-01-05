@@ -7,7 +7,9 @@
             <div class="temp">
                 <h4>{{weather.main.temp}}°F</h4>
             </div>
-            <p>{{weather.name}}</p>
+            <div class="weatherName">
+                <h4>{{weather.name}}</h4>
+            </div>
         </div>
     </div>
 </template>
@@ -31,6 +33,12 @@
 </script>
 
 <style scoped>
+    .weatherName{
+        margin: 0 auto !important;
+        float: none;
+        padding: 0 auto;
+        color: lightgray;
+    }
     .temp {
         display: inline-block;
     }

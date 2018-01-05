@@ -1,6 +1,7 @@
 let Boards = require('../models/board')
 let Users = require('../models/user')
 let Todos = require('../models/todo')
+let Categories = require('../models/category')
 
 module.exports = {
   userBoards: {
@@ -11,6 +12,19 @@ module.exports = {
       Boards.find({ creatorId: req.session.uid })
         .then(boards => {
           res.send(handleResponse(action, boards))
+        }).catch(error => {
+          return next(handleResponse(action, null, error))
+        })
+    }
+  },
+  userCategories: {
+    path: '/usercategories',
+    reqType: 'get',
+    method(req, res, next) {
+      let action = 'Find User Categories'
+      Categories.find({ creatorId: req.session.uid })
+        .then(categories => {
+          res.send(handleResponse(action, categories))
         }).catch(error => {
           return next(handleResponse(action, null, error))
         })

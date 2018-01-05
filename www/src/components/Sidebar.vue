@@ -38,30 +38,46 @@
                             <form type="submit" @submit.prevent="searchFeeds">
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Search Feeds" v-model="search.body">
-                                    <span>
-                                        <button @click="toggleFormState">
-                                            <i class="fa fa-remove"></i>
-                                        </button>
-                                    </span>
                                 </div>
                             </form>
+                            <span>
+                                <button @click="toggleFormState">
+                                    <i class="fa fa-remove"></i>
+                                </button>
+                            </span>
                         </li>
                         <li v-for="result in searchResults">
                             <h6>{{result.url}}
                                 <i class="fa fa-plus" style="color: green"></i>
                             </h6>
                         </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-newspaper-o"></i> News</a>
+                        <li v-if="createFormActive">
+                            <a @click="toggleCreateFormState">
+                                <i class="fa fa-plus"></i> Create Category</a>
                         </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-futbol-o"></i> Sports</a>
+                        <li v-else>
+                            <div class="input">
+                                <form type="submit" @submit.prevent="createCategory">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Add Category" v-model="category.name">
+                                    </div>
+                                </form>
+                            </div>
+                            <span>
+                                <button @click="toggleCreateFormState">
+                                    <i class="fa fa-remove"></i>
+                                </button>
+                            </span>
                         </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-youtube-play"></i> Youtube</a>
+                        <li v-for="category in categories">
+                            <div class="categoryStyle">
+                                <a href="#">
+                                    {{category.name}}
+                                </a>
+                            </div>
+                            <div class="delete">
+                                <i class="fa fa-remove pull-right" @click="removeCategory(category._id)"></i>
+                            </div>
                         </li>
                     </ul>
                 </li>
@@ -97,26 +113,59 @@
 </template>
 
 <script>
+    import Feed from './Feed'
     export default {
         name: 'sidebar',
         data() {
             return {
                 searchFormActive: true,
+                createFormActive: true,
                 search: {
                     body: ''
+                },
+                category: {
+                    name: '',
+                    creatorId: ''
                 }
             }
         },
 
         components: {
+            Feed
+        },
+        mounted() {
+            this.$store.dispatch('getCategories')
         },
         methods: {
             searchFeeds() {
                 this.$store.dispatch('searchFeeds', { url: this.search.body })
                 this.search.body = ''
             },
+            submitFeed() {
+                this.$store.dispatch('addFeed', this.create.body)
+                this.feed = {
+                    url: ''
+                }
+            },
+            createCategory() {
+                var newCategory = {
+                    creatorId: this.user._id,
+                    name: this.category.name
+                }
+                this.$store.dispatch('createCategory', newCategory)
+                this.category = {
+                    name: '',
+                    creatorId: ''
+                }
+            },
+            removeCategory(category) {
+                this.$store.dispatch('removeCategory', category)
+            },
             toggleFormState() {
                 this.searchFormActive = !this.searchFormActive
+            },
+            toggleCreateFormState() {
+                this.createFormActive = !this.createFormActive
             },
             logout() {
                 this.$store.dispatch('logout')
@@ -164,6 +213,12 @@
             },
             searchResults() {
                 return this.$store.state.searchResults
+            },
+            feeds() {
+                return this.$store.state.feeds
+            },
+            categories() {
+                return this.$store.state.categories
             }
         }
     }
@@ -172,10 +227,20 @@
 <style scoped>
     input {
         width: 80%;
-        display: inline-block;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .input {
+        display: inline-flex;
+    }
+
+    form {
+        display: inline-flex;
     }
 
     span {
+        display: inline-flex;
         color: black;
     }
 
@@ -189,7 +254,7 @@
 
     .scrollable {
         overflow-y: auto;
-        max-height: 35vh;
+        max-height: 45vh;
 
     }
 
@@ -198,8 +263,8 @@
     }
 
     ::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-        box-shadow: inset 0 0 6px rgba(0,0,0,0.3)
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3)
     }
 
     ::-webkit-scrollbar-thumb {
@@ -221,23 +286,15 @@
 
 
     #sidebar.active {
-        /* margin-left: 0px; */
-        /* animation-name: bounceInLeft; */
-        /* animation: 1s 0s 0.5 fadeInLeft; */
         transform: translateX(255px);
         transition: .7s ease-in-out;
         opacity: 1;
     }
 
-    /* a[data-toggle="collapse"] {
-        position: relative;
-        
-    } */
-
     a[aria-expanded="false"]::before,
     a[aria-expanded="true"]::before {
         content: '\e259';
-        position: absolute;
+        position: relative;
         right: 20px;
         font-family: 'Glyphicons Halflings';
         font-size: 0.6em;
@@ -245,6 +302,7 @@
 
     a[aria-expanded="true"]::before {
         content: '\e260';
+        position: relative;
     }
 
     @media (max-width: 768px) {
@@ -269,6 +327,14 @@
         color: #999;
     }
 
+    .categoryStyle{
+        display: inline-flex;
+    }
+    .delete{
+        display: inline-flex;
+        color: white;
+    }
+
     a,
     a:hover,
     a:focus {
@@ -283,9 +349,9 @@
         color: #fff;
         min-width: 250px;
         max-width: 250px;
-        min-height: 85vh;
+        min-height: 90vh;
         z-index: 99999 !important;
-        margin-left: -265px;
+        margin-left: -270px;
         /* animation-name: fadeOutLeft; */
         /* animation: 1s 0s 0.5 fadeOut; */
         transform: translateX(0);

@@ -32,8 +32,7 @@ var store = new vuex.Store({
     feeds: {},
     height: {},
     searchResults: {},
-    layoutTest: []
-
+    categories: {}
   },
   mutations: {
     setHeight(state, payload) {
@@ -66,8 +65,8 @@ var store = new vuex.Store({
     setSearchResults(state, data) {
       state.searchResults = data.data
     },
-    setLayout(state, data) {
-      state.layoutTest = data
+    setCategories(state, data) {
+      state.categories = data
     }
 
   },
@@ -343,6 +342,28 @@ var store = new vuex.Store({
         .then(res => {
           console.log(res)
           dispatch('getFeed', res.data)
+        })
+    },
+    createCategory({ commit, dispatch }, payload) {
+      api.post('categories', payload)
+        .then(res => {
+          dispatch('getCategories')
+        })
+        .catch(err => {
+          commit('handleError', err)
+        })
+    },
+    getCategories({ commit, dispatch }) {
+      api('usercategories')
+        .then(res => {
+          commit('setCategories', res.data.data)
+        })
+        .catch(commit('handleError', Error))
+    },
+    removeCategory({ commit, dispatch }, id) {
+      api.delete('/categories/' + id)
+        .then(res => {
+          dispatch('getCategories')
         })
     },
   }
