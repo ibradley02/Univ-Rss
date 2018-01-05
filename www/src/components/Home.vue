@@ -23,13 +23,14 @@
                   <div v-if="item.mediaLink">
                     <iframe  :src="item.mediaLink "width='200' height='300' frameborder='0' allowtransparency='true'></iframe>
                   </div>
-                 <p>{{item._id}}</p>
+                 <!-- <p>{{item._id}}</p> -->
                  <div v-if="item.i == 2" id="event">
                      <event :i="item.i" ></event>
                 </div>
                 </grid-item>
               </grid-layout>
             </div>
+            <div style="color:white;"><i @click="saveLayout" class="fa fa-recycle" style="color:white;"></i> Save </div>
             <router-view/>
           </div>
         </div>
@@ -68,7 +69,7 @@
         //   "text": "",
         //   "imageLink": "",
         //   "title": "Spotify",
-        //   "mediaLink":"https://open.spotify.com/embed/user/spotify/playlist/37i9dQZF1DWTcqUzwhNmKv"
+        //   "mediaLink":"https://open.spotify.com/embed/user/spotify/playlist/37i9dQZF1DWT6MhXz0jw61"
         // }, {
         //   "x": 6,
         //   "y": 0,
@@ -123,10 +124,12 @@
       },
       boards() {
         return this.$store.state.boards
-      }
+      },
     },
-    mounted(){
-      this.resized()
+    watch:{
+      boards: function(){
+        this.layout = this.boards
+      }
     },
     methods: {
       move: function (i, newX, newY) {
@@ -137,12 +140,16 @@
       },
       moved: function (i, newX, newY) {
         console.log("### MOVED i=" + i + ", X=" + newX + ", Y=" + newY);
-        this.$store.dispatch('updateBoard', {boardId: this.boards[i]._id, x: newX, y: newY})
+        // this.$store.dispatch('updateBoard', {boardId: this.boards[i]._id, x: newX, y: newY})
       },
       resized: function (i, newH, newW, newHPx, newWPx) {
         console.log("### RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
         this.$store.dispatch('setHeight', {i: i, height: newHPx-100})
       },
+      saveLayout(){
+        debugger
+        this.$store.dispatch('saveLayout')
+      }
     }
   }
 
