@@ -37,8 +37,8 @@ var store = new vuex.Store({
   mutations: {
     setHeight(state, payload) {
       vue.set(state.height, payload.i, payload.height)
-
-    }, setBoards(state, boards) {
+    },
+    setBoards(state, boards) {
       state.boards = boards
     },
     handleError(state, err) {
@@ -78,19 +78,53 @@ var store = new vuex.Store({
       api('userboards')
         .then(res => {
           commit('setBoards', res.data.data)
+          console.log("data: ", res.data.data)
+          dispatch('setHeight', res.data.data)
         })
         .catch(err => {
           commit('handleError', err)
         })
     },
+    setHeight({ commit, dispatch }, payload) {
+      if (Array.isArray(payload)){
+        for (let i = 0; i < payload.length; i++) {
+          var item = payload[i];
+          if (item.i == 2){
+           var  test = {}
+            test.height = ((item.h *39) - 100)
+            test.i = 2
+            console.log("payload array: ", test)
+            commit('setHeight', test)
+            return
+          }
+        }
+      }
+ console.log("payload object : " ,payload)
+      commit('setHeight', payload)
+    },
     updateBoard({ commit, dispatch }, payload) {
-      api.put('boards/' + payload.boardId, payload)
-        .then(res => {
-          dispatch('getBoards', res.data.data)
-        })
-        .catch(err => {
-          commit('handleError', err)
-        })
+      commit('setBoards', payload)
+
+
+      // api.put('boards/' + payload.boardId , payload)
+      // .then(res => {
+      //   dispatch('getBoards', res.data.data)
+      // })
+      // .catch(err => {
+      //   commit('handleError', err)
+      // })
+    },
+    saveLayout({ commit, diapatch }, ) {
+      var boards = store.state.boards
+      for (let i = 0; i < boards.length; i++) {
+        var board = boards[i];
+        api.put('boards/' + board._id, board)
+          .then(res => {
+          })
+          .catch(err => {
+            commit('handleError', err)
+          })
+      }
     },
 
     createBoard({ commit, dispatch }, payload) {
@@ -104,12 +138,11 @@ var store = new vuex.Store({
     },
 
 
-    setHeight({ commit, dispatch }, payload) {
-      commit('setHeight', payload)
+
+
+    upadeLayout({ commit, dispatch }, layout) {
+      commit('setLayout', layout)
     },
-
-
-
     //USER LOGIN/REGISTER/LOGOUT
     login({ commit, dispatch }, user) {
       auth.post('login', user)
