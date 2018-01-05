@@ -25,6 +25,10 @@ const actions = {
     feed: {
       name: 'Feed',
       endpoint: 'feeds',
+    },
+    category: {
+      name: 'Category',
+      endpoint: 'categories'
     }
   }
   

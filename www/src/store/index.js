@@ -31,17 +31,16 @@ var store = new vuex.Store({
     quote: {},
     feeds: {},
     height: {},
-    searchResults: {}
+    searchResults: {},
+    categories: {}
   },
   mutations: {
-    setHeight(state, payload){
+    setHeight(state, payload) {
       vue.set(state.height, payload.i, payload.height)
 
-    },setBoards(state, boards){
+    }, setBoards(state, boards) {
       state.boards = boards
-
     },
-
     handleError(state, err) {
       state.error = err
     },
@@ -65,6 +64,9 @@ var store = new vuex.Store({
     },
     setSearchResults(state, data) {
       state.searchResults = data.data
+    },
+    setCategories(state, data) {
+      state.categories = data
     }
 
   },
@@ -72,37 +74,37 @@ var store = new vuex.Store({
 
 
     //*********BOARDS**********/
-    getBoards({commit, dispatch}){
+    getBoards({ commit, dispatch }) {
       api('userboards')
-      .then(res => {
-        commit('setBoards', res.data.data)
-      })
-      .catch(err => {
-        commit('handleError', err)
-      })
-    }, 
-    updateBoard({commit, dispatch}, payload){
-      api.put('boards/' + payload.boardId , payload)
-      .then(res => {
-        dispatch('getBoards', res.data.data)
-      })
-      .catch(err => {
-        commit('handleError', err)
-      })
+        .then(res => {
+          commit('setBoards', res.data.data)
+        })
+        .catch(err => {
+          commit('handleError', err)
+        })
     },
-    
-    createBoard({commit, dispatch}, payload){
+    updateBoard({ commit, dispatch }, payload) {
+      api.put('boards/' + payload.boardId, payload)
+        .then(res => {
+          dispatch('getBoards', res.data.data)
+        })
+        .catch(err => {
+          commit('handleError', err)
+        })
+    },
+
+    createBoard({ commit, dispatch }, payload) {
       api.post('boards', payload)
-      .then(res => {
-        commit('setBoards', res.data.data)
-      })
-      .catch(err => {
-        commit('handleError', err)
-      })
+        .then(res => {
+          commit('setBoards', res.data.data)
+        })
+        .catch(err => {
+          commit('handleError', err)
+        })
     },
 
 
-    setHeight({commit, dispatch}, payload){
+    setHeight({ commit, dispatch }, payload) {
       commit('setHeight', payload)
     },
 
@@ -187,11 +189,12 @@ var store = new vuex.Store({
 
     },
     getGoogleUser({ commit, dispatch }, token) {
-        api('/google/' + token)
-          .then(res => {
-            dispatch('login', res.data)
-          })
-          .catch(commit('handleError', Error))},
+      api('/google/' + token)
+        .then(res => {
+          dispatch('login', res.data)
+        })
+        .catch(commit('handleError', Error))
+    },
     getEvents({ commit, dispatch }) {
       navigator.geolocation.getCurrentPosition(function (position) {
         if (position) {
@@ -290,9 +293,9 @@ var store = new vuex.Store({
     //FEEDS
     searchFeeds({ commit, dispatch }, payload) {
       debugger
-      api.post('searchFeed',  payload)
+      api.post('searchFeed', payload)
         .then(res => {
-            commit('setSearchResults', res.data)
+          commit('setSearchResults', res.data)
         })
     },
     getFeed({ commit, dispatch }, payload) {
@@ -311,6 +314,16 @@ var store = new vuex.Store({
           dispatch('getFeed', res.data)
         })
     },
+    createCategory({ commit, dispatch }, payload) {
+      debugger
+      api.post('categories', payload)
+        .then(res => {
+          commit('setCategories', res.data)
+        })
+        .catch(err => {
+          commit('handleError', err)
+        })
+    }
   }
 })
 

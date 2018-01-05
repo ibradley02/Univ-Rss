@@ -53,27 +53,29 @@
                         </li>
                         <li v-if="createFormActive">
                             <a @click="toggleCreateFormState">
-                                <i class="fa fa-rss"></i> Create</a>
+                                <i class="fa fa-plus"></i> Create Category</a>
                         </li>
                         <li v-else>
-                            <!-- <form type="submit" @submit.prevent="submitFeed">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Feed URL" v-model="create.body">
-                                    <span>
-                                        <button @click="toggleCreateFormState">
-                                            <i class="fa fa-remove"></i>
-                                        </button>
-                                    </span>
-                                </div>
-                            </form> -->
                             <div class="input">
-                                <feed></feed>
+                                <form type="submit" @submit.prevent="createCategory">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Add Category" v-model="category.name">
+                                    </div>
+                                </form>
                             </div>
                             <span>
                                 <button @click="toggleCreateFormState">
                                     <i class="fa fa-remove"></i>
                                 </button>
                             </span>
+                            <!-- <div class="input">
+                                <feed></feed>
+                            </div>
+                            <span>
+                                <button @click="toggleCreateFormState">
+                                    <i class="fa fa-remove"></i>
+                                </button>
+                            </span> -->
                         </li>
                         <li>
                             <a href="#">
@@ -131,8 +133,9 @@
                 search: {
                     body: ''
                 },
-                create: {
-                    body: ''
+                category: {
+                    name: '',
+                    creatorId: ''
                 }
             }
         },
@@ -149,6 +152,17 @@
                 this.$store.dispatch('addFeed', this.create.body)
                 this.feed = {
                     url: ''
+                }
+            },
+            createCategory() {
+                var newCategory = {
+                    creatorId: this.user._id,
+                    name: this.category.name
+                }
+                this.$store.dispatch('createCategory', newCategory)
+                this.category = {
+                    name: '',
+                    creatorId: ''
                 }
             },
             toggleFormState() {
@@ -271,18 +285,10 @@
 
 
     #sidebar.active {
-        /* margin-left: 0px; */
-        /* animation-name: bounceInLeft; */
-        /* animation: 1s 0s 0.5 fadeInLeft; */
         transform: translateX(255px);
         transition: .7s ease-in-out;
         opacity: 1;
     }
-
-    /* a[data-toggle="collapse"] {
-        position: relative;
-        
-    } */
 
     a[aria-expanded="false"]::before,
     a[aria-expanded="true"]::before {

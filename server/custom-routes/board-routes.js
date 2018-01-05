@@ -7,15 +7,15 @@ module.exports = {
         path: '/searchFeed',
         reqType: 'post',
         method(req, res, next) {
-          let action = 'Search Feeds'
-          Feeds.find({ url: req.body.url })
-            .then(feeds => {
-              res.send(handleResponse(action, feeds))
-            }).catch(error => {
-              return next(handleResponse(action, null, error))
-            })
+            let action = 'Search Feeds'
+            Feeds.find({ url: req.body.url })
+                .then(feeds => {
+                    res.send(handleResponse(action, feeds))
+                }).catch(error => {
+                    return next(handleResponse(action, null, error))
+                })
         }
-      },
+    },
     submitFeed: {
         path: '/feed',
         reqType: 'post',
@@ -34,11 +34,11 @@ module.exports = {
         reqType: 'get',
         method(req, res, next) {
             let action = 'make request to outside api and return data requested'
-                request('https://api.openweathermap.org/data/2.5/weather?lat=' + req.params.lat + '&lon=' + req.params.long + '&units=imperial&&appid=8d7d6f68ddb8370dd6ae5712e11ca530', function (error, response, body) {
-                    console.log('error:', error)
-                    console.log('statusCode:', response && response.statusCode)
-                    res.send(body)
-                })
+            request('https://api.openweathermap.org/data/2.5/weather?lat=' + req.params.lat + '&lon=' + req.params.long + '&units=imperial&&appid=8d7d6f68ddb8370dd6ae5712e11ca530', function (error, response, body) {
+                console.log('error:', error)
+                console.log('statusCode:', response && response.statusCode)
+                res.send(body)
+            })
         }
 
     },
@@ -47,10 +47,10 @@ module.exports = {
         reqType: 'get',
         method(req, res, next) {
             let action = 'make request to outside api and return data requested'
-                request('http://api.eventful.com/json/events/search?&where='+ req.params.lat +','+ req.params.long + '&within=25&app_key=j8PNS6tcSztxdnWS', function (error, response, body) {
-                    console.log('error:', error)
-                    console.log('statusCode:', response && response.statusCode)
-                    res.send(body)
+            request('http://api.eventful.com/json/events/search?&where=' + req.params.lat + ',' + req.params.long + '&within=25&app_key=j8PNS6tcSztxdnWS', function (error, response, body) {
+                console.log('error:', error)
+                console.log('statusCode:', response && response.statusCode)
+                res.send(body)
             })
         }
 
@@ -80,20 +80,20 @@ module.exports = {
             var authEmailUrl = "https://www.googleapis.com/gmail/v1/users/115581082286636298877/history?access_token="
             var tokenInfoUrl = 'https://www.googleapis.com/oauth2/v1/tokeninfo?access_token='
 
-                request(tokenInfoUrl + req.params.token, function (error, response, body) {
-                    debugger
+            request(tokenInfoUrl + req.params.token, function (error, response, body) {
+                debugger
 
-                    // body = JSON.parse(body)
-                    // var parsedBody = body
-                    // debugger
-                    // console.log('statusCode:', response && response.statusCode)
-                    Users.findOneAndUpdate({email: body.email}, body, {upsert: true}).then(user => {
-                        console.log(user)
-                        res.send(user)
-
-                    })
+                // body = JSON.parse(body)
+                // var parsedBody = body
+                // debugger
+                // console.log('statusCode:', response && response.statusCode)
+                Users.findOneAndUpdate({ email: body.email }, body, { upsert: true }).then(user => {
+                    console.log(user)
+                    res.send(user)
 
                 })
+
+            })
         }
 
     },
@@ -104,12 +104,12 @@ module.exports = {
             let action = 'make request to outside api and return data requested'
             //aud: the client ID of the web component of the project
             //azp: the client ID of the Android app component of project
-                request('https://www.googleapis.com/auth/userinfo.profile/oauth2/v3/tokeninfo?access_token=' + req.params.payload, function (error, response, body) {
-                    console.log(body)
-                    console.log('error:', error)
-                    // console.log('statusCode:', response && response.statusCode)
-                    res.send(body)
-                })
+            request('https://www.googleapis.com/auth/userinfo.profile/oauth2/v3/tokeninfo?access_token=' + req.params.payload, function (error, response, body) {
+                console.log(body)
+                console.log('error:', error)
+                // console.log('statusCode:', response && response.statusCode)
+                res.send(body)
+            })
         }
 
     }
