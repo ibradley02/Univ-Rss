@@ -60,7 +60,16 @@
                     create = false
                     return
                 }
-        
+                var url1 = ""
+                var url2 = ""
+                for (var i = 0; i < spotify.link.length; i++) {
+                    var char = spotify.link[i];
+                    if(url1 != "https://open.spotify.com"){
+                        url1 += char
+                    }else{
+                        url2 += char
+                    }
+                }
                 if (create) {
                     this.newBoard = {
                         x: 7,
@@ -68,10 +77,10 @@
                         w: 3,
                         h: 10,
                         i: boards.toString(),
-                        mediaLink: spotify.link,
+                        mediaLink: url1 + "/embed" + url2,
                         title: spotify.title
                     }
-              
+
                     this.$store.dispatch('createBoard', this.newBoard)
                     this.spotify = {}
                 }
