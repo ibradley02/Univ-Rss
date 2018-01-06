@@ -137,9 +137,15 @@ var store = new vuex.Store({
           commit('handleError', err)
         })
     },
-
-
-
+    removeBoard({ commit, dispatch }, board) {
+      api.delete('boards/' + board._id)
+        .then(res => {
+          dispatch('getBoards')
+        })
+        .catch(err => {
+          commit('handleError', err)
+        })
+    },
 
     upadeLayout({ commit, dispatch }, layout) {
       commit('setLayout', layout)
