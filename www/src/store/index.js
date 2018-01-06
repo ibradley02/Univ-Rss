@@ -63,13 +63,11 @@ var store = new vuex.Store({
       state.feeds = data.items
     },
     setSearchResults(state, data) {
-      debugger
       state.searchResults = data.data
     },
     setCategories(state, data) {
       state.categories = data
     }
-
   },
   actions: {
 
@@ -131,7 +129,6 @@ var store = new vuex.Store({
     createBoard({ commit, dispatch }, payload) {
       api.post('boards', payload)
         .then(res => {
-          debugger
           dispatch('getBoards')
         })
         .catch(err => {

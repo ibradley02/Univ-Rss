@@ -51,11 +51,5 @@
         opacity: 1;
         /* transform: translate(0); */
         /* transition: .3s ease-in-out;  */
-
     }
-    /* .weather-panel{
-        opacity:0;
-        transform: translate(-86vw,90vh);
-        transition: .3s ease-in-out;
-    } */
 </style>
