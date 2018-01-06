@@ -67,16 +67,12 @@
     }
 
     .panel-body::-webkit-scrollbar {
-        width: 1em;
+        width: .75em;
     }
 
-    .panel-body::-webkit-scrollbar-track {
-        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    }
 
     .panel-body::-webkit-scrollbar-thumb {
-        background-color: rgb(2, 2, 2);
-        outline: 1px solid rgb(55, 56, 56);
+        background-color: rgba(2, 2, 2, 0.151);
     }
 
     .panel-style {
