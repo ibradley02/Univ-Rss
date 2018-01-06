@@ -13,6 +13,7 @@
                 :margin="[10, 10]" :use-css-transforms="true">
                 <grid-item class="grid-cell" v-for="item in boards" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i"
                   :source="item.source" @resize="resize" @move="move" @resized="resized" @moved="moved">
+                  <i @click="removeBoard(item)" class="fa fa-times pull-right"></i>
                   <h3>
                     {{item.title}}
                   </h3>
@@ -24,7 +25,7 @@
                     <iframe :src="item.mediaLink " width='200' height='300' frameborder='0' allowtransparency='true'></iframe>
                   </div>
                   <!-- <p>{{item._id}}</p> -->
-                  <div v-if="item.i == 2" id="event">
+                  <div v-if="item.i == 0" id="event">
                     <event :i="item.i"></event>
                   </div>
                 </grid-item>
@@ -62,51 +63,6 @@
   export default {
     data() {
       return {
-        // layout: [{
-        //   "x": 4,
-        //   "y": 8,
-        //   "w": 4,
-        //   "h": 10,
-        //   "i": "0",
-        //   "source": "",
-        //   "text": "",
-        //   "imageLink": "",
-        //   "title": "Spotify",
-        //   "mediaLink":"https://open.spotify.com/embed/user/spotify/playlist/37i9dQZF1DWT6MhXz0jw61"
-        // }, {
-        //   "x": 6,
-        //   "y": 0,
-        //   "w": 4,
-        //   "h": 8,
-        //   "i": "1",
-        //   "source": "",
-        //   "text": "",
-        //   "title": "",
-        // }, {
-        //   "x": 10,
-        //   "y": 0,
-        //   "w": 4,
-        //   "h": 8,
-        //   "i": "2"
-        // }, {
-        //   "x": 0,
-        //   "y": 0,
-        //   "w": 4,
-        //   "h": 4,
-        //   "i": "3"
-        // }, {
-        //   "x": 0,
-        //   "y": 0,
-        //   "w": 4,
-        //   "h": 4,
-        //   "i": "4"
-        // }, {
-        //   "x": 0,
-        //   "y": 0,
-        //   "w": 4,
-        //   "h": 4,
-        //   "i": "5"
-        // }],
       }
     },
     name: 'Home',
@@ -153,6 +109,9 @@
         this.$store.dispatch('setHeight', {i: i, height: newHPx-100})
         this.$store.dispatch('saveLayout')
       },
+      removeBoard(board) {
+        this.$store.dispatch('removeBoard', board)
+      }
     }
   }
 
@@ -264,5 +223,10 @@
 
   .vue-grid-item .add {
     cursor: pointer;
+  }
+
+  .fa-times {
+    padding-right: 10px;
+    padding-top: 10px
   }
 </style>
