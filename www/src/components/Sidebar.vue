@@ -37,7 +37,7 @@
                         <li v-else>
                             <form type="submit" @submit.prevent="searchFeeds">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Search Feeds" v-model="search.body">
+                                    <input type="text" class="form-control" placeholder="Search Feeds" v-model="search.name">
                                 </div>
                             </form>
                             <span>
@@ -47,7 +47,7 @@
                             </span>
                         </li>
                         <li v-for="result in searchResults">
-                            <h6>{{result.url}}
+                            <h6>{{result.name}}
                                 <i class="fa fa-plus" style="color: green"></i>
                             </h6>
                         </li>
@@ -75,6 +75,30 @@
                             </div>
                             <span>
                                 <button @click="toggleCreateFormState">
+                                    <i class="fa fa-remove"></i>
+                                </button>
+                            </span>
+                        </li>
+                        <li v-if="createFeedActive">
+                            <a @click="toggleCreateFeedState">
+                                <i class="fa fa-plus"></i> Create Feed</a>
+                        </li>
+                        <li v-else>
+                            <div class="input">
+                                <form type="submit" @submit.prevent="createFeed">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Add Name" v-model="feed.name">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Add URL" v-model="feed.url">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit">SUBMIT</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <span>
+                                <button @click="toggleCreateFeedState">
                                     <i class="fa fa-remove"></i>
                                 </button>
                             </span>
@@ -120,12 +144,17 @@
             return {
                 searchFormActive: true,
                 createFormActive: true,
+                createFeedActive: true,
                 search: {
-                    body: ''
+                    name: ''
                 },
                 category: {
                     name: '',
                     creatorId: ''
+                },
+                feed: {
+                    name: '',
+                    url: ''
                 }
             }
         },
@@ -138,12 +167,17 @@
         },
         methods: {
             searchFeeds() {
-                this.$store.dispatch('searchFeeds', { url: this.search.body })
-                this.search.body = ''
+                this.$store.dispatch('searchFeeds', { name: this.search.name })
+                this.search.name = ''
             },
-            submitFeed() {
-                this.$store.dispatch('addFeed', this.create.body)
+            createFeed() {
+                var newFeed = {
+                    name: this.feed.name,
+                    url: this.feed.url
+                }
+                this.$store.dispatch('addFeed', newFeed)
                 this.feed = {
+                    name: '',
                     url: ''
                 }
             },
@@ -167,6 +201,9 @@
             toggleCreateFormState() {
                 this.createFormActive = !this.createFormActive
             },
+            toggleCreateFeedState() {
+                this.createFeedActive = !this.createFeedActive
+            },
             logout() {
                 this.$store.dispatch('logout')
             },
@@ -185,7 +222,6 @@
                 this.$store.dispatch('updateTodo', updateTodo)
             },
             setWeather() {
-                // $('#weather').toggleClass('active')
                 var updateWeather = {
                     userId: this.user._id,
                     weather: !this.user.weather
@@ -327,10 +363,11 @@
         color: #999;
     }
 
-    .categoryStyle{
+    .categoryStyle {
         display: inline-flex;
     }
-    .delete{
+
+    .delete {
         display: inline-flex;
         color: white;
     }
