@@ -19,13 +19,13 @@
                   </h3>
                   <p>{{item.source}}</p>
                   <div v-if="item.imageLink">
-                    <img :src="item.imageLink" alt="">
+                    <img style='width:100%;' :src="item.imageLink" alt="">
                   </div>
                   <div v-if="item.mediaLink">
                     <iframe :src="item.mediaLink " width='200' height='300' frameborder='0' allowtransparency='true'></iframe>
                   </div>
                   <!-- <p>{{item._id}}</p> -->
-                  <div v-if="item.i == 0" id="event">
+                  <div v-if="item.component == 'events'" id="event">
                     <event :i="item.i"></event>
                   </div>
                 </grid-item>

@@ -3,6 +3,7 @@ import vue from 'vue'
 import vuex from 'vuex'
 import router from '../router'
 import $ from 'jquery'
+import index from 'vue';
 let base = window.location.host.indexOf('localhost') > -1 ? '//localhost:3000/' : '/'
 
 let api = axios.create({
@@ -76,30 +77,41 @@ var store = new vuex.Store({
     getBoards({ commit, dispatch }) {
       api('userboards')
         .then(res => {
-          commit('setBoards', res.data.data)
-          console.log("data: ", res.data.data)
-          dispatch('setHeight', res.data.data)
+          dispatch('modBoards', res.data.data)
+          // dispatch('setHeight', res.data.data)
         })
         .catch(err => {
           commit('handleError', err)
         })
     },
     setHeight({ commit, dispatch }, payload) {
-      if (Array.isArray(payload)){
+      if (Array.isArray(payload)) {
         for (let i = 0; i < payload.length; i++) {
           var item = payload[i];
-          if (item.i == 0){
-           var  test = {}
-            test.height = ((item.h *39) - 100)
-            test.i = 0
+          if (item.component == "events") {
+            var test = {}
+            test.height = ((item.h * 39) - 100)
+            test.i = item.i
             console.log("payload array: ", test)
             commit('setHeight', test)
             return
           }
         }
       }
- console.log("payload object : " ,payload)
       commit('setHeight', payload)
+    },
+
+    modBoards({commit, dispatch}, boards){
+      var newBoards = []
+      var newIndex = 0
+      for (var i = 0; i < boards.length; i++) {
+        var board = boards[i];
+        board.i = newIndex.toString()
+        newBoards.push(board)
+        newIndex++
+      }
+      commit('setBoards', newBoards)
+      dispatch('setHeight', newBoards)
     },
     updateBoard({ commit, dispatch }, payload) {
       commit('setBoards', payload)

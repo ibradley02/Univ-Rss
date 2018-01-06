@@ -89,7 +89,7 @@
                         </li>
                         <li>
                             <a data-toggle="modal" data-target="#spotifyModal">
-                                <i class="fa fa-spotify fa-lg"></i> Spotify 
+                                <i class="fa fa-spotify fa-lg"></i> Spotify
                             </a>
                         </li>
                         <!-- <li>
@@ -179,7 +179,7 @@
                 var create = true
                 for (let j = 0; j < boards.length; j++) {
                     var board = boards[j];
-                    if (board.i == "0") {
+                    if (board.component == "events") {
                         create = false
                         return
                     }
@@ -190,7 +190,8 @@
                         y: 0,
                         w: 3,
                         h: 10,
-                        i: "0",
+                        i: boards.length,
+                        component: "events"
                     };
                     this.$store.dispatch('createBoard', this.newBoard)
 
@@ -217,7 +218,7 @@
             //                 title: "Weekly Playlist" 
             //             };
             //             this.$store.dispatch('createBoard', this.newBoard)
-                       
+
             //         }
             // }
         },
