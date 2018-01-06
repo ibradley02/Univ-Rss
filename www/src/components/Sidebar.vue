@@ -72,9 +72,14 @@
                                 <i class="fa fa-calendar"></i> Local Events</a>
                         </li>
                         <li>
+                            <a data-toggle="modal" data-target="#spotifyModal">
+                                <i class="fa fa-spotify fa-lg"></i> Spotify 
+                            </a>
+                        </li>
+                        <!-- <li>
                             <a @click="createSpotify">
                                 <i class="fa fa-spotify fa-lg"></i> Spotify </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
             </ul>
@@ -84,6 +89,7 @@
 
 <script>
     import Feed from './Feed'
+    import Spotify from './Spotify'
     export default {
         name: 'sidebar',
         data() {
@@ -103,7 +109,8 @@
         },
 
         components: {
-            Feed
+            Feed,
+            Spotify
         },
         mounted() {
             this.$store.dispatch('getCategories')
@@ -172,30 +179,30 @@
                        
                     }
             },
-            createSpotify() {
-                var boards = this.$store.state.boards
-                var create = true
-                for (let j = 0; j < boards.length; j++) {
-                    var board = boards[j];
-                    if (board.i == "1") {
-                        create = false
-                        return
-                    }
-                }
-                if(create){
-                        this.newBoard = {
-                            x: 7,
-                            y: 0,
-                            w: 3,
-                            h: 10,
-                            i: "1",
-                            mediaLink:"https://open.spotify.com/embed/user/spotify/playlist/37i9dQZF1DWT6MhXz0jw61", 
-                            title: "Weekly Playlist" 
-                        };
-                        this.$store.dispatch('createBoard', this.newBoard)
+            // createSpotify() {
+            //     var boards = this.$store.state.boards
+            //     var create = true
+            //     for (let j = 0; j < boards.length; j++) {
+            //         var board = boards[j];
+            //         if (board.i == "1") {
+            //             create = false
+            //             return
+            //         }
+            //     }
+            //     if(create){
+            //             this.newBoard = {
+            //                 x: 7,
+            //                 y: 0,
+            //                 w: 3,
+            //                 h: 10,
+            //                 i: "1",
+            //                 mediaLink:"https://open.spotify.com/embed/user/spotify/playlist/37i9dQZF1DWT6MhXz0jw61",
+            //                 title: "Weekly Playlist" 
+            //             };
+            //             this.$store.dispatch('createBoard', this.newBoard)
                        
-                    }
-            }
+            //         }
+            // }
         },
         computed: {
             user() {

@@ -39,6 +39,9 @@
     <div>
       <feed></feed>
     </div>
+    <div>
+      <spotify></spotify>
+    </div>
     <div class="quote">
       <quote></quote>
     </div>
@@ -58,6 +61,7 @@
   import Navbar from './Navbar'
   import VueGridLayout from 'vue-grid-layout'
   import Feed from './Feed'
+  import Spotify from './Spotify'
   var GridLayout = VueGridLayout.GridLayout;
   var GridItem = VueGridLayout.GridItem;
   export default {
@@ -76,7 +80,8 @@
       Event,
       Profile,
       Navbar,
-      Feed
+      Feed,
+      Spotify
     },
     computed: {
       user() {
