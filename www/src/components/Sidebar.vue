@@ -73,7 +73,7 @@
                         </li>
                         <li>
                             <a @click="createSpotify">
-                                <i class="fa fa-spotify"></i> Spotify </a>
+                                <i class="fa fa-spotify fa-lg"></i> Spotify </a>
                         </li>
                     </ul>
                 </li>
