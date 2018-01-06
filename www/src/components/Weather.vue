@@ -7,8 +7,8 @@
             <div class="temp">
                 <h4>{{weather.main.temp}}°F</h4>
             </div>
-            <div class="weatherName">
-                <h4>{{weather.name}}</h4>
+            <div>
+                <h4 class="weatherName">{{weather.name}}</h4>
             </div>
         </div>
     </div>
