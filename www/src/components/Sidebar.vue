@@ -71,6 +71,10 @@
                             <a @click="createEvent">
                                 <i class="fa fa-calendar"></i> Local Events</a>
                         </li>
+                        <li>
+                            <a @click="createSpotify">
+                                <i class="fa fa-spotify"></i> Spotify </a>
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -160,16 +164,38 @@
                         this.newBoard = {
                             x: 4,
                             y: 0,
-                            w: 4,
-                            h: 6,
+                            w: 3,
+                            h: 10,
                             i: "0",
                         };
                         this.$store.dispatch('createBoard', this.newBoard)
                        
                     }
-                
-
             },
+            createSpotify() {
+                var boards = this.$store.state.boards
+                var create = true
+                for (let j = 0; j < boards.length; j++) {
+                    var board = boards[j];
+                    if (board.i == "1") {
+                        create = false
+                        return
+                    }
+                }
+                if(create){
+                        this.newBoard = {
+                            x: 8,
+                            y: 0,
+                            w: 3,
+                            h: 10,
+                            i: "1",
+                            mediaLink:"https://open.spotify.com/embed/user/spotify/playlist/37i9dQZF1DWT6MhXz0jw61", 
+                            title: "Weekly Playlist" 
+                        };
+                        this.$store.dispatch('createBoard', this.newBoard)
+                       
+                    }
+            }
         },
         computed: {
             user() {

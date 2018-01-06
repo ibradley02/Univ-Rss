@@ -10,7 +10,7 @@ var schema = new mongoose.Schema({
   i: { type: String, required: true },
   source:{type: String,},
   mediaLink:{ type: String},
-  titleLink:{type: String},
+  title:{type: String},
   imageLink:{type: String},
   created: { type: Number, default: Date.now() },
   creatorId: { type: ObjectId, ref: models.user.name, required: true },
