@@ -233,8 +233,6 @@
         outline: 1px solid slategray;
     }
 
-
-
     .fa-cog {
         cursor: pointer;
     }

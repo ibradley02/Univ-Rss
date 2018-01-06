@@ -11,7 +11,7 @@
             <div class="grid">
               <grid-layout :layout="boards" :col-num="16" :row-height="30" :is-draggable="true" :is-resizable="true" :vertical-compact="true"
                 :margin="[10, 10]" :use-css-transforms="true">
-                <grid-item class="grid-cell grid-style" v-for="item in boards" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i"
+                <grid-item class="grid-cell grid-style scrollable" v-for="item in boards" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i"
                   :source="item.source" @resize="resize" @move="move" @resized="resized" @moved="moved">
                   <i @click="removeBoard(item)" class="fa fa-times pull-right"></i>
                   <h3>
@@ -196,8 +196,6 @@
   .main-body {
     flex-grow: 1;
   }
-
-
 
   .vue-grid-item:not(.vue-grid-placeholder) {
     /* background: #ccc; */
