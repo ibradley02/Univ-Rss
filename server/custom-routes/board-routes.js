@@ -8,7 +8,7 @@ module.exports = {
         reqType: 'post',
         method(req, res, next) {
             let action = 'Search Feeds'
-            Feeds.find({ url: req.body.url })
+            Feeds.find({ name: req.body.name })
                 .then(feeds => {
                     res.send(handleResponse(action, feeds))
                 }).catch(error => {
