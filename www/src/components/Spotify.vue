@@ -55,13 +55,12 @@
                 var boards = this.$store.state.boards.length
                 var create = true
                 var spotify = this.spotify
-                debugger
                 var res = spotify.link.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
                 if (res == null) {
                     create = false
                     return
                 }
-                debugger
+        
                 if (create) {
                     this.newBoard = {
                         x: 7,
@@ -70,9 +69,9 @@
                         h: 10,
                         i: boards.toString(),
                         mediaLink: spotify.link,
-                        title: "Spotify Playlist"
+                        title: spotify.title
                     }
-                    debugger
+              
                     this.$store.dispatch('createBoard', this.newBoard)
                     this.spotify = {}
                 }
