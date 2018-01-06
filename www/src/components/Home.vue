@@ -30,7 +30,6 @@
                 </grid-item>
               </grid-layout>
             </div>
-            <div style="color:white;"><i @click="saveLayout" class="fa fa-recycle" style="color:white;"></i> Save </div>
             <router-view/>
           </div>
         </div>
@@ -141,15 +140,13 @@
       moved: function (i, newX, newY) {
         console.log("### MOVED i=" + i + ", X=" + newX + ", Y=" + newY);
         // this.$store.dispatch('updateBoard', {boardId: this.boards[i]._id, x: newX, y: newY})
+        this.$store.dispatch('saveLayout')
       },
       resized: function (i, newH, newW, newHPx, newWPx) {
         console.log("### RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
         this.$store.dispatch('setHeight', {i: i, height: newHPx-100})
-      },
-      saveLayout(){
-        debugger
         this.$store.dispatch('saveLayout')
-      }
+      },
     }
   }
 

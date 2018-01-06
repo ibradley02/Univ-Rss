@@ -7,8 +7,11 @@ var schema = new mongoose.Schema({
   y: { type: Number, required: true },
   w: { type: Number, required: true },
   h: { type: Number, required: true },
-  i: { type: Number, required: true },
-  source:{type: String, required: true},
+  i: { type: String, required: true },
+  source:{type: String,},
+  mediaLink:{ type: String},
+  titleLink:{type: String},
+  imageLink:{type: String},
   created: { type: Number, default: Date.now() },
   creatorId: { type: ObjectId, ref: models.user.name, required: true },
 });
