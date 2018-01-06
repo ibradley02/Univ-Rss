@@ -184,7 +184,7 @@
                 }
                 if(create){
                         this.newBoard = {
-                            x: 8,
+                            x: 7,
                             y: 0,
                             w: 3,
                             h: 10,
