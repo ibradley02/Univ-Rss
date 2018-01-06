@@ -41,6 +41,16 @@
                                     <form type="submit" @submit.prevent="createFeed">
                                         <div class="form-group">
                                             <label>Create Feed:</label>
+                                            <div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-12 dropdown-style" title="choose category">
+                                                        <select class="form-control text-center row" id="select">
+                                                            <option class="col-sm-12">Category</option>
+                                                            <option class="col-sm-12" v-for="category in categories">{{category.name}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <input type="text" class="form-control" placeholder="Feed Name" v-model="feed.name">
                                         </div>
                                         <div class="form-group">
@@ -171,7 +181,26 @@
         margin: 0 auto;
     }
 
+    .dropdown-style {
+        margin-bottom: 1em;
+        text-align: center !important;
+        width: 60%;
+        margin: 0 auto;
+        float: none;
+    }
+
+    .dropdown-menu-center {
+        left: 50% !important;
+        right: auto !important;
+        text-align: center !important;
+        transform: translate(-50%, 0) !important;
+    }
+
     button {
         color: black;
+    }
+
+    .modal-fade {
+        z-index: 100 !important;
     }
 </style>
