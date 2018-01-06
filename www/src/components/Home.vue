@@ -11,7 +11,7 @@
             <div class="grid">
               <grid-layout :layout="boards" :col-num="16" :row-height="30" :is-draggable="true" :is-resizable="true" :vertical-compact="true"
                 :margin="[10, 10]" :use-css-transforms="true">
-                <grid-item class="grid-cell" v-for="item in boards" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i"
+                <grid-item class="grid-cell grid-style" v-for="item in boards" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i"
                   :source="item.source" @resize="resize" @move="move" @resized="resized" @moved="moved">
                   <i @click="removeBoard(item)" class="fa fa-times pull-right"></i>
                   <h3>
@@ -34,10 +34,10 @@
             <router-view/>
           </div>
         </div>
-        <div>
-          <feed></feed>
-        </div>
       </div>
+    </div>
+    <div>
+      <feed></feed>
     </div>
     <div class="quote">
       <quote></quote>
@@ -106,7 +106,7 @@
       },
       resized: function (i, newH, newW, newHPx, newWPx) {
         console.log("### RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
-        this.$store.dispatch('setHeight', {i: i, height: newHPx-100})
+        this.$store.dispatch('setHeight', { i: i, height: newHPx - 100 })
         this.$store.dispatch('saveLayout')
       },
       removeBoard(board) {
@@ -166,6 +166,13 @@
     background-color: rgba(5, 0, 0, 0.25);
     width: 15vw;
     height: 8vh;
+  }
+
+  .grid-style {
+    color: white;
+    background-color: rgba(5, 0, 0, 0.25);
+    outline: none !important;
+    border: none !important;
   }
 
   .quote {

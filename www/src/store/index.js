@@ -129,7 +129,6 @@ var store = new vuex.Store({
     createBoard({ commit, dispatch }, payload) {
       api.post('boards', payload)
         .then(res => {
-          debugger
           dispatch('getBoards')
         })
         .catch(err => {
