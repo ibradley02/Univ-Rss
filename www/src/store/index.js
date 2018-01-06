@@ -60,7 +60,7 @@ var store = new vuex.Store({
       state.quote = data
     },
     setFeeds(state, data) {
-      state.feeds = data.items
+      state.feeds = data.data
     },
     setSearchResults(state, data) {
       state.searchResults = data.data
@@ -342,7 +342,14 @@ var store = new vuex.Store({
           commit('setFeeds', res.data)
         })
     },
+    getFeeds({ commit, dispatch }) {
+      api('/feeds')
+        .then(res => {
+          commit('setFeeds', res.data)
+        })
+    },
     addFeed({ commit, dispatch }, feed) {
+      debugger
       api.post('/feeds', feed)
         .then(res => {
           console.log(res)

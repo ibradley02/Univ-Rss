@@ -44,9 +44,9 @@
                                             <div>
                                                 <div class="form-group">
                                                     <div class="col-sm-12 dropdown-style" title="choose category">
-                                                        <select class="form-control text-center row" id="select">
-                                                            <option class="col-sm-12">Category</option>
-                                                            <option class="col-sm-12" v-for="category in categories">{{category.name}}</option>
+                                                        <select class="form-control text-center row" v-model="category.Id">
+                                                            <option class="col-sm-12" selected disabled>Select Category</option>
+                                                            <option class="col-sm-12" v-for="category in categories" :value="category._id">{{category.name}}</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -100,7 +100,8 @@
                 },
                 category: {
                     name: '',
-                    creatorId: ''
+                    creatorId: '',
+                    Id: ''
                 },
                 feed: {
                     name: '',
@@ -134,7 +135,8 @@
             createFeed() {
                 var newFeed = {
                     name: this.feed.name,
-                    url: this.feed.url
+                    url: this.feed.url,
+                    categoryId: this.category.Id
                 }
                 this.$store.dispatch('addFeed', newFeed)
                 this.feed = {
