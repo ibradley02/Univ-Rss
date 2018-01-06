@@ -89,7 +89,7 @@
                         </li>
                         <li>
                             <a @click="createSpotify">
-                                <i class="fa fa-spotify"></i> Spotify </a>
+                                <i class="fa fa-spotify fa-lg"></i> Spotify </a>
                         </li>
                     </ul>
                 </li>
@@ -199,19 +199,19 @@
                         return
                     }
                 }
-                if (create) {
-                    this.newBoard = {
-                        x: 8,
-                        y: 0,
-                        w: 3,
-                        h: 10,
-                        i: "1",
-                        mediaLink: "https://open.spotify.com/embed/user/spotify/playlist/37i9dQZF1DWT6MhXz0jw61",
-                        title: "Weekly Playlist"
-                    };
-                    this.$store.dispatch('createBoard', this.newBoard)
-
-                }
+                if(create){
+                        this.newBoard = {
+                            x: 7,
+                            y: 0,
+                            w: 3,
+                            h: 10,
+                            i: "1",
+                            mediaLink:"https://open.spotify.com/embed/user/spotify/playlist/37i9dQZF1DWT6MhXz0jw61", 
+                            title: "Weekly Playlist" 
+                        };
+                        this.$store.dispatch('createBoard', this.newBoard)
+                       
+                    }
             }
         },
         computed: {
