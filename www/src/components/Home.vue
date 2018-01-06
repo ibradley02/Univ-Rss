@@ -11,22 +11,22 @@
             <div class="grid">
               <grid-layout :layout="boards" :col-num="16" :row-height="30" :is-draggable="true" :is-resizable="true" :vertical-compact="true"
                 :margin="[10, 10]" :use-css-transforms="true">
-                <grid-item class="grid-cell" v-for="item in boards" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i" :source="item.source" 
-                 @resize="resize" @move="move" @resized="resized" @moved="moved">
+                <grid-item class="grid-cell" v-for="item in boards" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i"
+                  :source="item.source" @resize="resize" @move="move" @resized="resized" @moved="moved">
                   <h3>
                     {{item.title}}
                   </h3>
                   <p>{{item.source}}</p>
                   <div v-if="item.imageLink">
-                  <img :src="item.imageLink" alt="">
+                    <img :src="item.imageLink" alt="">
                   </div>
                   <div v-if="item.mediaLink">
-                    <iframe  :src="item.mediaLink "width='200' height='300' frameborder='0' allowtransparency='true'></iframe>
+                    <iframe :src="item.mediaLink " width='200' height='300' frameborder='0' allowtransparency='true'></iframe>
                   </div>
-                 <!-- <p>{{item._id}}</p> -->
-                 <div v-if="item.i == 2" id="event">
-                     <event :i="item.i" ></event>
-                </div>
+                  <!-- <p>{{item._id}}</p> -->
+                  <div v-if="item.i == 2" id="event">
+                    <event :i="item.i"></event>
+                  </div>
                 </grid-item>
               </grid-layout>
             </div>
@@ -125,8 +125,8 @@
         return this.$store.state.boards
       },
     },
-    watch:{
-      boards: function(){
+    watch: {
+      boards: function () {
         this.layout = this.boards
       }
     },
@@ -139,6 +139,7 @@
       },
       moved: function (i, newX, newY) {
         console.log("### MOVED i=" + i + ", X=" + newX + ", Y=" + newY);
+        $("#save-layout").removeClass("active")
         // this.$store.dispatch('updateBoard', {boardId: this.boards[i]._id, x: newX, y: newY})
         this.$store.dispatch('saveLayout')
       },
@@ -173,9 +174,9 @@
     color: #42b983;
   }
 
-  .image-style >>> .wp-post-image{
+  .image-style>>>.wp-post-image {
     height: 35vh !important;
-    width: 20vw !important;    
+    width: 20vw !important;
 
   }
 
@@ -225,7 +226,7 @@
     flex-grow: 1;
   }
 
- 
+
 
   .vue-grid-item:not(.vue-grid-placeholder) {
     /* background: #ccc; */
