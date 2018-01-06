@@ -90,10 +90,10 @@ var store = new vuex.Store({
       if (Array.isArray(payload)){
         for (let i = 0; i < payload.length; i++) {
           var item = payload[i];
-          if (item.i == 2){
+          if (item.i == 0){
            var  test = {}
             test.height = ((item.h *39) - 100)
-            test.i = 2
+            test.i = 0
             console.log("payload array: ", test)
             commit('setHeight', test)
             return
@@ -131,7 +131,8 @@ var store = new vuex.Store({
     createBoard({ commit, dispatch }, payload) {
       api.post('boards', payload)
         .then(res => {
-          commit('setBoards', res.data.data)
+          debugger
+          dispatch('getBoards')
         })
         .catch(err => {
           commit('handleError', err)

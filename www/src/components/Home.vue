@@ -25,7 +25,7 @@
                     <iframe :src="item.mediaLink " width='200' height='300' frameborder='0' allowtransparency='true'></iframe>
                   </div>
                   <!-- <p>{{item._id}}</p> -->
-                  <div v-if="item.i == 2" id="event">
+                  <div v-if="item.i == 0" id="event">
                     <event :i="item.i"></event>
                   </div>
                 </grid-item>
@@ -105,7 +105,6 @@
         this.$store.dispatch('saveLayout')
       },
       removeBoard(board) {
-        debugger
         this.$store.dispatch('removeBoard', board)
       }
     }

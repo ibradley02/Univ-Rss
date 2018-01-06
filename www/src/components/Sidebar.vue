@@ -126,7 +126,7 @@
                                 <i class="fa fa-commenting"></i> Inspirational Quote</a>
                         </li>
                         <li>
-                            <a @click="setEvent">
+                            <a @click="createEvent">
                                 <i class="fa fa-calendar"></i> Local Events</a>
                         </li>
                     </ul>
@@ -235,13 +235,37 @@
                 }
                 this.$store.dispatch('updateQuote', updateQuote)
             },
-            setEvent() {
-                var updateEvent = {
-                    userId: this.user._id,
-                    event: !this.user.event
+            // setEvent() {
+            //     var updateEvent = {
+            //         userId: this.user._id,
+            //         event: !this.user.event
+            //     }
+            //     this.$store.dispatch('updateEvent', updateEvent)
+            // },
+            createEvent() {
+                var boards = this.$store.state.boards
+                var create = true
+                for (let j = 0; j < boards.length; j++) {
+                    var board = boards[j];
+                    if (board.i == "0") {
+                        create = false
+                        return
+                    }
                 }
-                this.$store.dispatch('updateEvent', updateEvent)
-            }
+                if(create){
+                        this.newBoard = {
+                            x: 4,
+                            y: 0,
+                            w: 4,
+                            h: 4,
+                            i: "0",
+                        };
+                        this.$store.dispatch('createBoard', this.newBoard)
+                       
+                    }
+                
+
+            },
         },
         computed: {
             user() {
