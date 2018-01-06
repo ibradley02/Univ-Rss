@@ -33,6 +33,9 @@
             <router-view/>
           </div>
         </div>
+        <div>
+          <feed></feed>
+        </div>
       </div>
     </div>
     <div class="quote">
@@ -53,6 +56,7 @@
   import Profile from './Profile'
   import Navbar from './Navbar'
   import VueGridLayout from 'vue-grid-layout'
+  import Feed from './Feed'
   var GridLayout = VueGridLayout.GridLayout;
   var GridItem = VueGridLayout.GridItem;
   export default {
@@ -116,6 +120,7 @@
       Event,
       Profile,
       Navbar,
+      Feed
     },
     computed: {
       user() {

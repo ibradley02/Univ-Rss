@@ -30,26 +30,10 @@
                     <a href="#feedSubmenu" data-toggle="collapse" aria-expanded="false">
                         <i class="fa fa-feed"></i> Feeds</a>
                     <ul class="collapse list-unstyled" id="feedSubmenu">
-                        <li v-if="searchFormActive">
-                            <a @click="toggleFormState">
-                                <i class="fa fa-search"></i> Search</a>
-                        </li>
-                        <li v-else>
-                            <form type="submit" @submit.prevent="searchFeeds">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Search Feeds" v-model="search.name">
-                                </div>
-                            </form>
-                            <span>
-                                <button @click="toggleFormState">
-                                    <i class="fa fa-remove"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li v-for="result in searchResults">
-                            <h6>{{result.name}}
-                                <i class="fa fa-plus" style="color: green"></i>
-                            </h6>
+                        <li>
+                            <a data-toggle="modal" data-target="#editFeedModal">
+                                <i class="fa fa-gear"> Edit Feeds</i>
+                            </a>
                         </li>
                         <li v-for="category in categories">
                             <div class="categoryStyle">
@@ -60,48 +44,6 @@
                             <div class="delete">
                                 <i class="fa fa-remove pull-right" @click="removeCategory(category._id)"></i>
                             </div>
-                        </li>
-                        <li v-if="createFormActive">
-                            <a @click="toggleCreateFormState">
-                                <i class="fa fa-plus"></i> Create Category</a>
-                        </li>
-                        <li v-else>
-                            <div class="input">
-                                <form type="submit" @submit.prevent="createCategory">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Add Category" v-model="category.name">
-                                    </div>
-                                </form>
-                            </div>
-                            <span>
-                                <button @click="toggleCreateFormState">
-                                    <i class="fa fa-remove"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li v-if="createFeedActive">
-                            <a @click="toggleCreateFeedState">
-                                <i class="fa fa-plus"></i> Create Feed</a>
-                        </li>
-                        <li v-else>
-                            <div class="input">
-                                <form type="submit" @submit.prevent="createFeed">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Add Name" v-model="feed.name">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Add URL" v-model="feed.url">
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit">SUBMIT</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <span>
-                                <button @click="toggleCreateFeedState">
-                                    <i class="fa fa-remove"></i>
-                                </button>
-                            </span>
                         </li>
                     </ul>
                 </li>
@@ -142,9 +84,6 @@
         name: 'sidebar',
         data() {
             return {
-                searchFormActive: true,
-                createFormActive: true,
-                createFeedActive: true,
                 search: {
                     name: ''
                 },
@@ -166,43 +105,8 @@
             this.$store.dispatch('getCategories')
         },
         methods: {
-            searchFeeds() {
-                this.$store.dispatch('searchFeeds', { name: this.search.name })
-                this.search.name = ''
-            },
-            createFeed() {
-                var newFeed = {
-                    name: this.feed.name,
-                    url: this.feed.url
-                }
-                this.$store.dispatch('addFeed', newFeed)
-                this.feed = {
-                    name: '',
-                    url: ''
-                }
-            },
-            createCategory() {
-                var newCategory = {
-                    creatorId: this.user._id,
-                    name: this.category.name
-                }
-                this.$store.dispatch('createCategory', newCategory)
-                this.category = {
-                    name: '',
-                    creatorId: ''
-                }
-            },
             removeCategory(category) {
                 this.$store.dispatch('removeCategory', category)
-            },
-            toggleFormState() {
-                this.searchFormActive = !this.searchFormActive
-            },
-            toggleCreateFormState() {
-                this.createFormActive = !this.createFormActive
-            },
-            toggleCreateFeedState() {
-                this.createFeedActive = !this.createFeedActive
             },
             logout() {
                 this.$store.dispatch('logout')
@@ -246,9 +150,6 @@
         computed: {
             user() {
                 return this.$store.state.user
-            },
-            searchResults() {
-                return this.$store.state.searchResults
             },
             feeds() {
                 return this.$store.state.feeds
