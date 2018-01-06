@@ -1,5 +1,5 @@
 <template>
-    <nav id="sidebar">
+    <nav id="sidebar" class="row">
         <div class="sidebar-header">
             <h1 class="univ-rss">UNIV
                 <i class="fa fa-rss"></i>
@@ -35,14 +35,30 @@
                                 <i class="fa fa-gear"> Edit Feeds</i>
                             </a>
                         </li>
-                        <li v-for="category in categories">
-                            <div class="categoryStyle">
-                                <a href="#categorySubmenu" data-toggle="collapse" aria-expanded="false">
-                                    {{category.name}}
-                                </a>
-                            </div>
-                            <div class="delete">
-                                <i class="fa fa-remove pull-right" @click="removeCategory(category._id)"></i>
+                        <li v-for="category in categories" class="col-sm-12">
+                            <div>
+                                <div class="categoryStyle">
+                                    <a :href="'#'+category._id" data-toggle="collapse" aria-expanded="false">
+                                        <h5>{{category.name}}</h5>
+                                    </a>
+                                    <div class="delete">
+                                        <i class="fa fa-remove pull-right" @click="removeCategory(category._id)"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <ul class="collapse list unstyled" :id="category._id">
+                                        <li v-for="feed in feeds">
+                                            <div v-if="category._id == feed.categoryId">
+                                                <!-- <div class="form-check ">
+                                                   <input type="checkbox" class="form-check-input" :id="feed._id">
+                                               </div> -->
+                                                <div class="feedStyle">
+                                                    <h6>{{feed.name}}</h6>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </li>
                     </ul>
@@ -99,7 +115,7 @@
                 },
                 category: {
                     name: '',
-                    creatorId: ''
+                    creatorId: '',
                 },
                 feed: {
                     name: '',
@@ -113,7 +129,8 @@
             Spotify
         },
         mounted() {
-            this.$store.dispatch('getCategories')
+            this.$store.dispatch('getCategories'),
+                this.$store.dispatch('getFeeds')
         },
         methods: {
             removeCategory(category) {
@@ -167,17 +184,17 @@
                         return
                     }
                 }
-                if(create){
-                        this.newBoard = {
-                            x: 4,
-                            y: 0,
-                            w: 3,
-                            h: 10,
-                            i: "0",
-                        };
-                        this.$store.dispatch('createBoard', this.newBoard)
-                       
-                    }
+                if (create) {
+                    this.newBoard = {
+                        x: 4,
+                        y: 0,
+                        w: 3,
+                        h: 10,
+                        i: "0",
+                    };
+                    this.$store.dispatch('createBoard', this.newBoard)
+
+                }
             },
             // createSpotify() {
             //     var boards = this.$store.state.boards
@@ -227,6 +244,10 @@
 
     .input {
         display: inline-flex;
+    }
+
+    ul {
+        list-style-type: none;
     }
 
     form {
@@ -321,10 +342,18 @@
 
     .categoryStyle {
         display: inline-flex;
+        padding: 0 auto;
+    }
+
+    .feedStyle {
+        margin: 0 auto;
+        display: inline-flex;
     }
 
     .delete {
-        display: inline-flex;
+        float: none;
+        padding: 0 auto;
+        margin: auto auto;
         color: white;
     }
 
