@@ -73,6 +73,7 @@
 
     .panel-body::-webkit-scrollbar-thumb {
         background-color: rgba(2, 2, 2, 0.151);
+        border-radius: 20px;
     }
 
     .panel-style {

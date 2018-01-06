@@ -161,7 +161,7 @@
                             x: 4,
                             y: 0,
                             w: 4,
-                            h: 4,
+                            h: 6,
                             i: "0",
                         };
                         this.$store.dispatch('createBoard', this.newBoard)
@@ -229,8 +229,8 @@
     }
 
     ::-webkit-scrollbar-thumb {
-        background-color: rgb(95, 94, 94);
-        outline: 1px solid slategray;
+        background-color: rgba(129, 127, 127, 0.315);
+        border-radius: 20px;
     }
 
     .fa-cog {
