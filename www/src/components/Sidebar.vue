@@ -51,6 +51,16 @@
                                 <i class="fa fa-plus" style="color: green"></i>
                             </h6>
                         </li>
+                        <li v-for="category in categories">
+                            <div class="categoryStyle">
+                                <a href="#categorySubmenu" data-toggle="collapse" aria-expanded="false">
+                                    {{category.name}}
+                                </a>
+                            </div>
+                            <div class="delete">
+                                <i class="fa fa-remove pull-right" @click="removeCategory(category._id)"></i>
+                            </div>
+                        </li>
                         <li v-if="createFormActive">
                             <a @click="toggleCreateFormState">
                                 <i class="fa fa-plus"></i> Create Category</a>
@@ -68,16 +78,6 @@
                                     <i class="fa fa-remove"></i>
                                 </button>
                             </span>
-                        </li>
-                        <li v-for="category in categories">
-                            <div class="categoryStyle">
-                                <a href="#">
-                                    {{category.name}}
-                                </a>
-                            </div>
-                            <div class="delete">
-                                <i class="fa fa-remove pull-right" @click="removeCategory(category._id)"></i>
-                            </div>
                         </li>
                     </ul>
                 </li>
