@@ -41,7 +41,7 @@
         methods: {
             toggle() {
                 $('#stack').toggleClass('open'),
-                    $('#sidebar').toggleClass('active')
+                $('#sidebar').toggleClass('active')
             },
             searchFeeds() {
                 this.$store.dispatch('searchFeeds', {url : this.search.body})

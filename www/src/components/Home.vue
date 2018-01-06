@@ -30,8 +30,6 @@
                 </grid-item>
               </grid-layout>
             </div>
-            <div class="save-layout" @click="saveLayout" id="save-layout">
-              <i i class="save-layout fa fa-window-restore"></i> Save </div>
             <router-view/>
           </div>
         </div>
@@ -143,15 +141,12 @@
         console.log("### MOVED i=" + i + ", X=" + newX + ", Y=" + newY);
         $("#save-layout").removeClass("active")
         // this.$store.dispatch('updateBoard', {boardId: this.boards[i]._id, x: newX, y: newY})
+        this.$store.dispatch('saveLayout')
       },
       resized: function (i, newH, newW, newHPx, newWPx) {
         console.log("### RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
-        this.$store.dispatch('setHeight', { i: i, height: newHPx - 100 })
-        $("#save-layout").removeClass("active")
-      },
-      saveLayout() {
+        this.$store.dispatch('setHeight', {i: i, height: newHPx-100})
         this.$store.dispatch('saveLayout')
-        $("#save-layout").addClass("active")
       },
     }
   }
@@ -264,14 +259,5 @@
 
   .vue-grid-item .add {
     cursor: pointer;
-  }
-
-  #save-layout {
-    cursor: pointer;
-    color: antiquewhite
-  }
-
-  #save-layout.active {
-    color: #42b983
   }
 </style>
