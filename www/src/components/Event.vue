@@ -2,13 +2,14 @@
     <div class="row" v-if="user.event">
         <div class="col-sm-12">
             <div class="panel panel-default panel-style">
-                <div class="panel-heading">
+                <!-- <div class="panel-heading">
                     <h4>Local Events</h4>
-                </div>
+                </div> -->
                 <div class="panel-body" v-bind:style="{maxHeight: height + 'px'}">
                     <div v-for="e in events">
-                        <h5 class="title">{{ e.title }}</h5>
+                        <h5 class="title" @click="addTodo(e.title)">{{ e.title }}</h5>
                         <ul>
+                            <li>{{e.start_time }}</li>
                             <li>{{ e.venue_name }}</li>
                             <li>
                                 {{ e.venue_address }}
@@ -33,7 +34,13 @@
         methods: {
             getEvents() {
                 this.$store.dispatch('getEvents')
-            }
+            },
+            addTodo(string) {
+                var todo = {
+                    name: string
+                }
+                this.$store.dispatch('addTodo', todo)
+            },
         },
         computed: {
             height() {
@@ -51,6 +58,10 @@
 </script>
 
 <style scoped>
+    .title{
+        cursor: pointer;
+    }
+
     .temp {
         display: inline-block;
     }

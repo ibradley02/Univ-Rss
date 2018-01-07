@@ -47,7 +47,7 @@ module.exports = {
         reqType: 'get',
         method(req, res, next) {
             let action = 'make request to outside api and return data requested'
-            request('http://api.eventful.com/json/events/search?&where=' + req.params.lat + ',' + req.params.long + '&within=25&app_key=j8PNS6tcSztxdnWS', function (error, response, body) {
+            request('http://api.eventful.com/json/events/search?&where=' + req.params.lat + ',' + req.params.long + '&within=25&when=this+week&sort_order=popularity&page_size=250&app_key=j8PNS6tcSztxdnWS', function (error, response, body) {
                 console.log('error:', error)
                 console.log('statusCode:', response && response.statusCode)
                 res.send(body)

@@ -191,6 +191,7 @@
                         w: 3,
                         h: 10,
                         i: boards.length,
+                        title: "Local Events",
                         component: "events"
                     };
                     this.$store.dispatch('createBoard', this.newBoard)
