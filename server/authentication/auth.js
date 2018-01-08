@@ -64,6 +64,10 @@ router.get('/authenticate', (req, res) => {
 
     return res.send({
       data: user
+<<<<<<< HEAD
+=======
+
+>>>>>>> 56962f3fd5da1f5e1061d56f6498911f5ac62f73
     })
   }).catch(err => {
     return res.status(500).send({

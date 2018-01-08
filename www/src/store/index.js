@@ -162,6 +162,7 @@ var store = new vuex.Store({
 
     // USER LOGIN/REGISTER/LOGOUT
     login({ commit, dispatch }, user) {
+      debugger
       auth.post('login', user)
         .then(res => {
           if (!res.data.error) {
@@ -196,6 +197,22 @@ var store = new vuex.Store({
           router.push({ name: 'Login' })
         })
     },
+    getCal({ commit, dispatch }) {
+      api('/g-cal').then(res => console.log(res)).catch(err => console.log(err))
+    },
+
+    // authenticateProfile({ commit, dispatch }) {
+    //   auth('authenticate')
+    //     .then(res => {
+    //       commit('setUser', res.data.data)
+    //       router.push({ name: 'Profile' })
+    //     })
+    //     .catch(err => {
+    //       router.push({ name: 'Login' })
+    //     })
+    // },
+
+
     authenticateProfile({ commit, dispatch }) {
       auth('authenticate')
         .then(res => {
@@ -207,6 +224,7 @@ var store = new vuex.Store({
         })
     },
     logout({ commit, dispatch }) {
+      debugger
       auth.delete('logout')
         .then(res => {
           commit('setUser', {})
