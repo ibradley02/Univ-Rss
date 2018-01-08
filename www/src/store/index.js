@@ -48,7 +48,7 @@ var store = new vuex.Store({
       state.error = err
     },
     setUser(state, data) {
-      state.user = data.user
+      state.user = data
       state.oauth = data.oauth
     },
     setWeather(state, data) {
@@ -102,27 +102,16 @@ var store = new vuex.Store({
       if (Array.isArray(payload)) {
         for (let i = 0; i < payload.length; i++) {
           var item = payload[i];
-<<<<<<< HEAD
-          if (item.i == 0) {
-            var test = {}
-            test.height = ((item.h * 39) - 100)
-            test.i = 0
-=======
           if (item.component == "events") {
             var test = {}
             test.height = ((item.h * 39) - 80)
             test.i = item.i
->>>>>>> 87c01d1c63b3f0a3f09d7e46a3d2232d24a88ad9
             console.log("payload array: ", test)
             commit('setHeight', test)
             return
           }
         }
       }
-<<<<<<< HEAD
-      console.log("payload object : ", payload)
-=======
->>>>>>> 87c01d1c63b3f0a3f09d7e46a3d2232d24a88ad9
       commit('setHeight', payload)
     },
     createBoard({ commit, dispatch }, payload) {
@@ -207,24 +196,6 @@ var store = new vuex.Store({
           router.push({ name: 'Login' })
         })
     },
-<<<<<<< HEAD
-    getCal({ commit, dispatch }) {
-      api('/g-cal').then(res => console.log(res)).catch(err => console.log(err))
-    },
-
-    // authenticateProfile({ commit, dispatch }) {
-    //   auth('authenticate')
-    //     .then(res => {
-    //       commit('setUser', res.data.data)
-    //       router.push({ name: 'Profile' })
-    //     })
-    //     .catch(err => {
-    //       router.push({ name: 'Login' })
-    //     })
-    // },
-
-
-=======
     authenticateProfile({ commit, dispatch }) {
       auth('authenticate')
         .then(res => {
@@ -235,7 +206,6 @@ var store = new vuex.Store({
           router.push({ name: 'Login' })
         })
     },
->>>>>>> 87c01d1c63b3f0a3f09d7e46a3d2232d24a88ad9
     logout({ commit, dispatch }) {
       auth.delete('logout')
         .then(res => {

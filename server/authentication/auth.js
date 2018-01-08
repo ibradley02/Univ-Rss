@@ -63,7 +63,7 @@ router.get('/authenticate', (req, res) => {
     }
 
     return res.send({
-      data: { user, oauth: req.session.oauth }
+      data: user
     })
   }).catch(err => {
     return res.status(500).send({

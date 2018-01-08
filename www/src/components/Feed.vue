@@ -6,7 +6,13 @@
                 <!-- Modal EDIT FEED WINDOW -->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <div class="col-sm-3">
+                        <div class="col-sm-2 pull-right">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="col-sm-12">
+                            <h3>Edit Feeds</h3>
+                        </div>
+                        <!-- <div class="col-sm-3">
                             <a @click="toggleFormState">
                                 <i class="fa fa-search"></i> Search Feeds
                             </a>
@@ -20,10 +26,7 @@
                             <a @click="toggleCreateFormState">
                                 <i class="fa fa-plus"></i> Create Category
                             </a>
-                        </div>
-                        <div class="col-sm-2">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- CREAT CATEGORY FORM -->
                     <div class="modal-body">
@@ -33,6 +36,9 @@
                                     <div class="form-group">
                                         <label>Create Category</label>
                                         <input type="text" class="form-control" placeholder="Category Name" v-model="category.name">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit">Create</button>
                                     </div>
                                 </form>
                             </div>
@@ -68,6 +74,10 @@
                                 <div class="form-group">
                                     <label>Search Feeds:</label>
                                     <input type="text" class="form-control" placeholder="Search Feed Name" v-model="search.name">
+                                </div>
+                                <div class="form-group">
+                                    <button>
+                                        <i class="fa fa-search"></i> Search</button>
                                 </div>
                             </form>
                         </div>

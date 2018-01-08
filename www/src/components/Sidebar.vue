@@ -36,30 +36,26 @@
                             </a>
                         </li>
                         <li v-for="category in categories" class="col-sm-12">
-                            <div>
-                                <div class="categoryStyle">
-                                    <a :href="'#'+category._id" data-toggle="collapse" aria-expanded="false">
-                                        <h5>{{category.name}}</h5>
-                                    </a>
-                                    <div class="delete">
-                                        <i class="fa fa-remove pull-right" @click="removeCategory(category._id)"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <ul class="collapse list unstyled" :id="category._id">
-                                        <li v-for="feed in feeds">
-                                            <div v-if="category._id == feed.categoryId">
-                                                <!-- <div class="form-check ">
-                                                   <input type="checkbox" class="form-check-input" :id="feed._id">
-                                               </div> -->
-                                                <div class="feedStyle">
-                                                    <h6>{{feed.name}}</h6>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
+                            <div class="categoryStyle">
+                                <a :href="'#'+ category._id" data-toggle="collapse" aria-expanded="false">
+                                    <h5>{{category.name}}</h5>
+                                </a>
+                                <div class="delete">
+                                    <i class="fa fa-remove pull-right" @click="removeCategory(category._id)"></i>
                                 </div>
                             </div>
+                                <ul class="collapse list unstyled" :id="category._id">
+                                    <li v-for="feed in feeds">
+                                        <div v-if="category._id == feed.categoryId" class="row">
+                                            <div class="form-check col-sm-4">
+                                                   <input type="checkbox" class="form-check-input" :id="feed._id">
+                                               </div>
+                                            <div class="feedStyle col-sm-8">
+                                                <h5>{{feed.name}}</h5>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
                         </li>
                     </ul>
                 </li>
@@ -90,14 +86,11 @@
                         <li>
                             <a data-toggle="modal" data-target="#spotifyModal">
                                 <i class="fa fa-spotify fa-lg"></i> Spotify
-<<<<<<< HEAD
                             </a>
                         </li>
                         <li>
                             <a @click="getCal">
                                 <i class="fa fa-calendar fa-lg"></i> Get Google Calendar
-=======
->>>>>>> 87c01d1c63b3f0a3f09d7e46a3d2232d24a88ad9
                             </a>
                         </li>
                         <!-- <li>
@@ -175,7 +168,7 @@
                 }
                 this.$store.dispatch('updateQuote', updateQuote)
             },
-            getCal(){
+            getCal() {
                 this.$store.dispatch('getCal')
             },
             // setEvent() {
