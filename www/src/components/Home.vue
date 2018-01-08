@@ -11,21 +11,21 @@
             <div class="grid">
               <grid-layout :layout="boards" :col-num="16" :row-height="30" :is-draggable="true" :is-resizable="true" :vertical-compact="true"
                 :margin="[10, 10]" :use-css-transforms="true">
-                <grid-item class="grid-cell grid-style scrollable" v-for="item in boards" :key="item.i" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i"
-                  :source="item.source" @resize="resize" @move="move" @resized="resized" @moved="moved">
+                <grid-item class="grid-cell grid-style scrollable" v-for="item in boards" :key="item.i" :x="item.x" :y="item.y" :w="item.w"
+                  :h="item.h" :i="item.i" :source="item.source" @resize="resize" @move="move" @resized="resized" @moved="moved">
                   <i @click="removeBoard(item)" class="fa fa-times pull-right"></i>
-                  <h3>
+                  <h3 class="item-title">
                     {{item.title}}
                   </h3>
                   <p>{{item.source}}</p>
                   <div v-if="item.imageLink">
-                    <img :src="item.imageLink" alt="">
+                    <img style='width:100%;' :src="item.imageLink" alt="">
                   </div>
                   <div v-if="item.mediaLink">
                     <iframe :src="item.mediaLink " width='200' height='300' frameborder='0' allowtransparency='true'></iframe>
                   </div>
                   <!-- <p>{{item._id}}</p> -->
-                  <div v-if="item.i == 0" id="event">
+                  <div v-if="item.component == 'events'" id="event">
                     <event :i="item.i"></event>
                   </div>
                 </grid-item>
@@ -106,12 +106,11 @@
       moved: function (i, newX, newY) {
         console.log("### MOVED i=" + i + ", X=" + newX + ", Y=" + newY);
         $("#save-layout").removeClass("active")
-        // this.$store.dispatch('updateBoard', {boardId: this.boards[i]._id, x: newX, y: newY})
         this.$store.dispatch('saveLayout')
       },
       resized: function (i, newH, newW, newHPx, newWPx) {
         console.log("### RESIZED i=" + i + ", H=" + newH + ", W=" + newW + ", H(px)=" + newHPx + ", W(px)=" + newWPx);
-        this.$store.dispatch('setHeight', { i: i, height: newHPx - 100 })
+        this.$store.dispatch('setHeight', { i: i, height: newHPx - 80 })
         this.$store.dispatch('saveLayout')
       },
       removeBoard(board) {

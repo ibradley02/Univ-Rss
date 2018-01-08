@@ -77,6 +77,7 @@
                         w: 3,
                         h: 10,
                         i: boards.toString(),
+                        component: "spotify",
                         mediaLink: url1 + "/embed" + url2,
                         title: spotify.title
                     }

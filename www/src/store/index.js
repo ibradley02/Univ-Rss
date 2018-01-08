@@ -3,11 +3,12 @@ import vue from 'vue'
 import vuex from 'vuex'
 import router from '../router'
 import $ from 'jquery'
+import index from 'vue';
 let base = window.location.host.indexOf('localhost') > -1 ? '//localhost:3000/' : '/'
 
 let api = axios.create({
   baseURL: base + 'api/',
-  timeout: 5000,
+  timeout: 20000,
   withCredentials: true
 })
 
@@ -54,7 +55,7 @@ var store = new vuex.Store({
       state.weather = data
     },
     setEvent(state, data) {
-      state.events = data.events.event
+      state.events = data
     },
     setTodos(state, data) {
       state.todos = data
@@ -63,6 +64,7 @@ var store = new vuex.Store({
       state.quote = data
     },
     setFeeds(state, data) {
+      console.log("setFeeds: ", data.data)
       state.feeds = data.data
     },
     setSearchResults(state, data) {
@@ -73,36 +75,73 @@ var store = new vuex.Store({
     }
   },
   actions: {
-
-
     //*********BOARDS**********/
     getBoards({ commit, dispatch }) {
       api('userboards')
         .then(res => {
-          commit('setBoards', res.data.data)
-          console.log("data: ", res.data.data)
-          dispatch('setHeight', res.data.data)
+          dispatch('modBoards', res.data.data)
+          // dispatch('setHeight', res.data.data)
         })
         .catch(err => {
           commit('handleError', err)
         })
     },
+    modBoards({commit, dispatch}, boards){
+      var newBoards = []
+      var newIndex = 0
+      for (var i = 0; i < boards.length; i++) {
+        var board = boards[i];
+        board.i = newIndex.toString()
+        newBoards.push(board)
+        newIndex++
+      }
+      commit('setBoards', newBoards)
+      dispatch('setHeight', newBoards)
+    },
     setHeight({ commit, dispatch }, payload) {
       if (Array.isArray(payload)) {
         for (let i = 0; i < payload.length; i++) {
           var item = payload[i];
+<<<<<<< HEAD
           if (item.i == 0) {
             var test = {}
             test.height = ((item.h * 39) - 100)
             test.i = 0
+=======
+          if (item.component == "events") {
+            var test = {}
+            test.height = ((item.h * 39) - 80)
+            test.i = item.i
+>>>>>>> 87c01d1c63b3f0a3f09d7e46a3d2232d24a88ad9
             console.log("payload array: ", test)
             commit('setHeight', test)
             return
           }
         }
       }
+<<<<<<< HEAD
       console.log("payload object : ", payload)
+=======
+>>>>>>> 87c01d1c63b3f0a3f09d7e46a3d2232d24a88ad9
       commit('setHeight', payload)
+    },
+    createBoard({ commit, dispatch }, payload) {
+      api.post('boards', payload)
+        .then(res => {
+          dispatch('getBoards')
+        })
+        .catch(err => {
+          commit('handleError', err)
+        })
+    },
+    removeBoard({ commit, dispatch }, board) {
+      api.delete('boards/' + board._id)
+        .then(res => {
+          dispatch('getBoards')
+        })
+        .catch(err => {
+          commit('handleError', err)
+        })
     },
     updateBoard({ commit, dispatch }, payload) {
       commit('setBoards', payload)
@@ -128,30 +167,11 @@ var store = new vuex.Store({
           })
       }
     },
-
-    createBoard({ commit, dispatch }, payload) {
-      api.post('boards', payload)
-        .then(res => {
-          dispatch('getBoards')
-        })
-        .catch(err => {
-          commit('handleError', err)
-        })
-    },
-    removeBoard({ commit, dispatch }, board) {
-      api.delete('boards/' + board._id)
-        .then(res => {
-          dispatch('getBoards')
-        })
-        .catch(err => {
-          commit('handleError', err)
-        })
-    },
-
     upadeLayout({ commit, dispatch }, layout) {
       commit('setLayout', layout)
     },
-    //USER LOGIN/REGISTER/LOGOUT
+
+    // USER LOGIN/REGISTER/LOGOUT
     login({ commit, dispatch }, user) {
       auth.post('login', user)
         .then(res => {
@@ -166,7 +186,6 @@ var store = new vuex.Store({
           commit('handleError', err)
         })
     },
-
     register({ commit, dispatch }, payload) {
       if (payload.image === '') {
         delete payload.image
@@ -177,7 +196,6 @@ var store = new vuex.Store({
           dispatch('authenticate')
         })
     },
-
     authenticate({ commit, dispatch }) {
       auth('authenticate')
         .then(res => {
@@ -189,6 +207,7 @@ var store = new vuex.Store({
           router.push({ name: 'Login' })
         })
     },
+<<<<<<< HEAD
     getCal({ commit, dispatch }) {
       api('/g-cal').then(res => console.log(res)).catch(err => console.log(err))
     },
@@ -205,6 +224,18 @@ var store = new vuex.Store({
     // },
 
 
+=======
+    authenticateProfile({ commit, dispatch }) {
+      auth('authenticate')
+        .then(res => {
+          commit('setUser', res.data.data)
+          router.push({ name: 'Profile' })
+        })
+        .catch(err => {
+          router.push({ name: 'Login' })
+        })
+    },
+>>>>>>> 87c01d1c63b3f0a3f09d7e46a3d2232d24a88ad9
     logout({ commit, dispatch }) {
       auth.delete('logout')
         .then(res => {
@@ -213,7 +244,8 @@ var store = new vuex.Store({
         })
 
     },
-    //GET API DATA
+
+    // Weather
     getWeather({ commit, dispatch }) {
       // Get position if possible **Not possible on Chrome 50**
       navigator.geolocation.getCurrentPosition(function (position) {
@@ -233,6 +265,8 @@ var store = new vuex.Store({
 
 
     },
+    
+    // Google oAuth2
     getGoogleUser({ commit, dispatch }, token) {
       api('/google/' + token)
         .then(res => {
@@ -240,6 +274,8 @@ var store = new vuex.Store({
         })
         .catch(commit('handleError', Error))
     },
+
+    // Events
     getEvents({ commit, dispatch }) {
       navigator.geolocation.getCurrentPosition(function (position) {
         if (position) {
@@ -251,13 +287,63 @@ var store = new vuex.Store({
         }
         api('/event/' + location.lat + '/' + location.long)
           .then(res => {
-            commit('setEvent', res.data)
+            console.log("events: ",res.data.events)
+            dispatch('modifyEventTime', res.data.events.event)
           })
           .catch(commit('handleError', Error))
       })
-
-
     },
+    modifyEventTime({commit, dispatch}, data){
+      var newData = []
+      var newTime = ""
+      // loop to find the time in event
+      for (let i = 0; i < data.length; i++) {
+        var time = data[i].start_time;
+        // Function to change time
+        (function(){
+          var D= new Date('2011-06-02T09:34:29+02:00');
+          if(!D || +D!==1307000069000){
+              Date.fromISO= function(s){
+                  var day, tz,
+                  rx=/^(\d{4}\-\d\d\-\d\d([tT][\d:\.]*)?)([zZ]|([+\-])(\d\d):(\d\d))?$/,
+                  p= rx.exec(s) || [];
+                  if(p[1]){
+                      day= p[1].split(/\D/);
+                      for(var i=0,L=day.length;i<L;i++){
+                      day[i]=parseInt(day[i], 10) || 0;
+                      };
+                      day[1]-= 1;
+                      day= new Date(Date.UTC.apply(Date, day));
+                      if(!day.getDate()) return NaN;
+                      if(p[5]){
+                          tz= (parseInt(p[5], 10)*60);
+                          if(p[6]) tz+= parseInt(p[6], 10);
+                          if(p[4]== '+') tz*= -1;
+                          if(tz) day.setUTCMinutes(day.getUTCMinutes()+ tz);
+                      }
+                      return day;
+                  }
+                  return NaN;
+              }
+              // shim implemented;
+          }
+          else{
+              Date.fromISO= function(s){
+                  return new Date(s);
+              }
+              //native ISO Date implemented;
+          }
+      })()
+      // call Function to change time
+      newTime = Date.fromISO(time).toLocaleString();
+      // insert new time in event and push to newData
+      data[i].start_time = newTime
+      newData.push(data[i])
+      }
+      commit('setEvent', newData)
+    },
+
+    // Todos
     getTodos({ commit, dispatch }) {
       api('/usertodos')
         .then(res => {
@@ -277,6 +363,8 @@ var store = new vuex.Store({
           dispatch('getTodos')
         })
     },
+
+    // Quote
     getQuote({ commit, dispatch }) {
       api('/quote')
         .then(res => {
@@ -285,7 +373,7 @@ var store = new vuex.Store({
         .catch(commit('handleError', Error))
     },
 
-    //Profile
+    // Profile
     updateProfile({ commit, dispatch }, payload) {
       if (payload.image === '') {
         delete payload.image
@@ -304,7 +392,8 @@ var store = new vuex.Store({
           dispatch('authenticateProfile')
         })
     },
-    //TOGGLE COMPONENTS
+
+    // TOGGLE COMPONENTS
     updateClock({ commit, dispatch }, payload) {
       api.put('/users/' + payload.userId, payload)
         .then(res => {
@@ -335,31 +424,33 @@ var store = new vuex.Store({
           dispatch('authenticate')
         })
     },
-    //FEEDS
+
+    // FEEDS
     searchFeeds({ commit, dispatch }, payload) {
       api.post('searchFeed', payload)
         .then(res => {
+          console.log("feed search: ", res.data)
           commit('setSearchResults', res.data)
         })
     },
     getFeed({ commit, dispatch }, payload) {
       api.post('feed', payload.data)
         .then(res => {
-          console.log(res)
+          console.log("feed get: ", res)
           commit('setFeeds', res.data)
         })
     },
     getFeeds({ commit, dispatch }) {
       api('/feeds')
         .then(res => {
+          console.log("feeds get: ", res.data)
           commit('setFeeds', res.data)
         })
     },
     addFeed({ commit, dispatch }, feed) {
-      debugger
       api.post('/feeds', feed)
         .then(res => {
-          console.log(res)
+          console.log("add feed: ", res)
           dispatch('getFeed', res.data)
         })
     },
@@ -375,6 +466,7 @@ var store = new vuex.Store({
     getCategories({ commit, dispatch }) {
       api('usercategories')
         .then(res => {
+          console.log("feed category: ", res.data)
           commit('setCategories', res.data.data)
         })
         .catch(commit('handleError', Error))

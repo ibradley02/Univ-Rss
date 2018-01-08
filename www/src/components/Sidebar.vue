@@ -90,11 +90,14 @@
                         <li>
                             <a data-toggle="modal" data-target="#spotifyModal">
                                 <i class="fa fa-spotify fa-lg"></i> Spotify
+<<<<<<< HEAD
                             </a>
                         </li>
                         <li>
                             <a @click="getCal">
                                 <i class="fa fa-calendar fa-lg"></i> Get Google Calendar
+=======
+>>>>>>> 87c01d1c63b3f0a3f09d7e46a3d2232d24a88ad9
                             </a>
                         </li>
                         <!-- <li>
@@ -187,7 +190,7 @@
                 var create = true
                 for (let j = 0; j < boards.length; j++) {
                     var board = boards[j];
-                    if (board.i == "0") {
+                    if (board.component == "events") {
                         create = false
                         return
                     }
@@ -198,7 +201,9 @@
                         y: 0,
                         w: 3,
                         h: 10,
-                        i: "0",
+                        i: boards.length,
+                        title: "Local Events",
+                        component: "events"
                     };
                     this.$store.dispatch('createBoard', this.newBoard)
 
