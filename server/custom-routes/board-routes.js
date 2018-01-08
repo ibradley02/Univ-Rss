@@ -81,14 +81,15 @@ module.exports = {
             var tokenInfoUrl = 'https://www.googleapis.com/oauth2/v1/tokeninfo?access_token='
 
             request(tokenInfoUrl + req.params.token, function (error, response, body) {
-                debugger
-
-                // body = JSON.parse(body)
-                // var parsedBody = body
-                // debugger
+                body = JSON.parse(body)
                 // console.log('statusCode:', response && response.statusCode)
                 Users.findOneAndUpdate({ email: body.email }, body, { upsert: true }).then(user => {
-                    console.log(user)
+                    console.log("UserObject: ", user)
+                    req.session.user = user
+                    req.session.oauth = body
+                    req.session.access_token = req.params.token
+                    req.session.uid = user._id
+                    req.session.save()
                     res.send(user)
 
                 })
@@ -112,6 +113,25 @@ module.exports = {
             })
         }
 
+    },
+    getGoogleCalendar: {
+        path: '/g-cal',
+        reqType: 'get',
+        method(req, res, next) {
+            var calendarUrl = "https://www.googleapis.com/calendar/v3/users/me/calendarList?&alt=json&access_token=" + req.session.access_token
+            // var calendarUrl = "https://content.googleapis.com/calendar/v3/primary?alt=json&key="
+            // var calendarUrl = "https://content.googleapis.com/auth/userinfo.calendar/oauth2/v3/tokeninfo?alt=json&access_token=" + req.session.access_token
+            // var calendarUrl = "https://www.googleapis.com/auth/drive.readonly?access_token=" + req.session.access_token
+            // var calendarUrl = "https://www.googleapis.com/calendar/v2/calendarList?minAccessRole=writer&access_token=" + req.session.access_token
+
+
+            // Request URL:https://content.googleapis.com/calendar/v3/calendars/primary?key=AIzaSyD-a9IF8KKYgoC3cpgS-Al7hLQDbugrDcw
+
+            request(calendarUrl, (err, resp, body) => {
+                console.log('CALENDAR?', body)
+                res.send(body)
+            })
+        }
     }
 }
 

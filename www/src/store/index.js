@@ -24,7 +24,9 @@ var store = new vuex.Store({
     boards: [],
     todos: [],
     activeBoard: {},
+
     error: {},
+    oauth: {},
     user: {},
     weather: {},
     events: {},
@@ -44,8 +46,9 @@ var store = new vuex.Store({
     handleError(state, err) {
       state.error = err
     },
-    setUser(state, user) {
-      state.user = user
+    setUser(state, data) {
+      state.user = data.user
+      state.oauth = data.oauth
     },
     setWeather(state, data) {
       state.weather = data
@@ -85,12 +88,12 @@ var store = new vuex.Store({
         })
     },
     setHeight({ commit, dispatch }, payload) {
-      if (Array.isArray(payload)){
+      if (Array.isArray(payload)) {
         for (let i = 0; i < payload.length; i++) {
           var item = payload[i];
-          if (item.i == 0){
-           var  test = {}
-            test.height = ((item.h *39) - 100)
+          if (item.i == 0) {
+            var test = {}
+            test.height = ((item.h * 39) - 100)
             test.i = 0
             console.log("payload array: ", test)
             commit('setHeight', test)
@@ -98,7 +101,7 @@ var store = new vuex.Store({
           }
         }
       }
- console.log("payload object : " ,payload)
+      console.log("payload object : ", payload)
       commit('setHeight', payload)
     },
     updateBoard({ commit, dispatch }, payload) {
@@ -179,23 +182,27 @@ var store = new vuex.Store({
       auth('authenticate')
         .then(res => {
           commit('setUser', res.data.data)
+
           router.push({ name: 'Home' })
         })
         .catch(err => {
           router.push({ name: 'Login' })
         })
     },
-
-    authenticateProfile({ commit, dispatch }) {
-      auth('authenticate')
-        .then(res => {
-          commit('setUser', res.data.data)
-          router.push({ name: 'Profile' })
-        })
-        .catch(err => {
-          router.push({ name: 'Login' })
-        })
+    getCal({ commit, dispatch }) {
+      api('/g-cal').then(res => console.log(res)).catch(err => console.log(err))
     },
+
+    // authenticateProfile({ commit, dispatch }) {
+    //   auth('authenticate')
+    //     .then(res => {
+    //       commit('setUser', res.data.data)
+    //       router.push({ name: 'Profile' })
+    //     })
+    //     .catch(err => {
+    //       router.push({ name: 'Login' })
+    //     })
+    // },
 
 
     logout({ commit, dispatch }) {
@@ -229,7 +236,7 @@ var store = new vuex.Store({
     getGoogleUser({ commit, dispatch }, token) {
       api('/google/' + token)
         .then(res => {
-          dispatch('login', res.data)
+          dispatch('authenticate')
         })
         .catch(commit('handleError', Error))
     },

@@ -24,8 +24,8 @@ router.post('/login', (req, res) => {
     .then(user => {
       user.validatePassword(req.body.password)
         .then(valid => {
-          if(!valid){
-            return res.status(401).send({error: 'Invalid Email or Password'})
+          if (!valid) {
+            return res.status(401).send({ error: 'Invalid Email or Password' })
           }
           req.session.uid = user._id;
           req.session.save()
@@ -56,17 +56,18 @@ router.delete('/logout', (req, res) => {
 })
 
 
-router.get('/authenticate', (req,res) => {
+router.get('/authenticate', (req, res) => {
   Users.findById(req.session.uid).then(user => {
-    if(!user){
-      return res.status(401).send({"error": "Please Login"})
+    if (!user) {
+      return res.status(401).send({ "error": "Please Login" })
     }
-    return res.send ({
-      data: user
+
+    return res.send({
+      data: { user, oauth: req.session.oauth }
     })
-  }).catch(err=>{
+  }).catch(err => {
     return res.status(500).send({
-      error:err
+      error: err
     })
   })
 })

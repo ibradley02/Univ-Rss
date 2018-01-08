@@ -89,7 +89,12 @@
                         </li>
                         <li>
                             <a data-toggle="modal" data-target="#spotifyModal">
-                                <i class="fa fa-spotify fa-lg"></i> Spotify 
+                                <i class="fa fa-spotify fa-lg"></i> Spotify
+                            </a>
+                        </li>
+                        <li>
+                            <a @click="getCal">
+                                <i class="fa fa-calendar fa-lg"></i> Get Google Calendar
                             </a>
                         </li>
                         <!-- <li>
@@ -167,6 +172,9 @@
                 }
                 this.$store.dispatch('updateQuote', updateQuote)
             },
+            getCal(){
+                this.$store.dispatch('getCal')
+            },
             // setEvent() {
             //     var updateEvent = {
             //         userId: this.user._id,
@@ -217,7 +225,7 @@
             //                 title: "Weekly Playlist" 
             //             };
             //             this.$store.dispatch('createBoard', this.newBoard)
-                       
+
             //         }
             // }
         },
