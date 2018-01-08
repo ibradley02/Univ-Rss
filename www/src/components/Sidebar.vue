@@ -90,14 +90,11 @@
                         <li>
                             <a data-toggle="modal" data-target="#spotifyModal">
                                 <i class="fa fa-spotify fa-lg"></i> Spotify
-<<<<<<< HEAD
                             </a>
                         </li>
                         <li>
                             <a @click="getCal">
                                 <i class="fa fa-calendar fa-lg"></i> Get Google Calendar
-=======
->>>>>>> 87c01d1c63b3f0a3f09d7e46a3d2232d24a88ad9
                             </a>
                         </li>
                         <!-- <li>
