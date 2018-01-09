@@ -8,14 +8,14 @@
                     <span></span>
                 </div>
             </div>
-            <div class="col-sm-9">
+            <div class="col-sm-10">
                 <div class="panel-style text-center animated fadeInLeftBig" v-if="user.clock">
                     <h1>
                         <Clock :blink="true" />
                     </h1>
                 </div>
             </div>
-            <div class="weather col-sm-2">
+            <div class="weather col-sm-1">
                 <weather></weather>
             </div>
         </nav>

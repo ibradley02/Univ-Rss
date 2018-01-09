@@ -1,14 +1,14 @@
 <template>
-    <div id="weather" class="weather-panel animated fadeInLeftBig" v-if="user.weather">
+    <div id="weather" class="weather-panel animated fadeInRightBig row" v-if="user.weather">
         <div v-if="weather.weather">
-            <div class="icon">
+            <div class="icon col-sm-6">
                 <img :src="'http://openweathermap.org/img/w/'+ weather.weather[0].icon +'.png'">
             </div>
-            <div class="temp">
-                <h4>{{weather.main.temp}}°F</h4>
+            <div class="temp col-sm-6">
+                <h4>{{weather.main.temp}}°</h4>
             </div>
-            <div>
-                <h4 class="weatherName">{{weather.name}}</h4>
+            <div class="weatherName col-sm-12 text-center">
+                <h5>{{weather.name}}</h5>
             </div>
         </div>
     </div>
@@ -18,7 +18,11 @@
     export default {
         name: 'weather',
         data() {
-            return {}
+            return {
+                weatherFormat: {
+                    temp: 0
+                }
+            }
         },
         computed: {
             weather() {
@@ -33,12 +37,13 @@
 </script>
 
 <style scoped>
-    .weatherName{
+    .weatherName {
         margin: 0 auto !important;
         float: none;
         padding: 0 auto;
         color: lightgray;
     }
+
     .temp {
         display: inline-block;
     }
@@ -46,10 +51,9 @@
     .icon {
         display: inline-block;
     }
-    .weather-panel{
-        margin-right: .3vw;
+
+    .weather-panel {
+        /* margin-right: .3vw; */
         opacity: 1;
-        /* transform: translate(0); */
-        /* transition: .3s ease-in-out;  */
     }
 </style>

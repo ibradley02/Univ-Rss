@@ -33,7 +33,7 @@
                     <ul class="collapse list-unstyled" id="feedSubmenu">
                         <li>
                             <a data-toggle="modal" data-target="#editFeedModal">
-                                <i class="fa fa-gear"></i>Edit Feeds</a>
+                                <i class="fa fa-gear"></i> Edit Feeds</a>
                         </li>
                         <li v-for="category in categories">
                             <a :href="'#'+ category._id" data-toggle="collapse" aria-expanded="false">

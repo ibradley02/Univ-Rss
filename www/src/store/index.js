@@ -51,7 +51,7 @@ var store = new vuex.Store({
       state.user = data
       // state.oauth = data
     },
-  
+
     setWeather(state, data) {
       state.weather = data
     },
@@ -211,18 +211,6 @@ var store = new vuex.Store({
     getCal({ commit, dispatch }) {
       api('/g-cal').then(res => console.log("calender: ", res)).catch(err => console.log(err))
     },
-
-    // authenticateProfile({ commit, dispatch }) {
-    //   auth('authenticate')
-    //     .then(res => {
-    //       commit('setUser', res.data.data)
-    //       router.push({ name: 'Profile' })
-    //     })
-    //     .catch(err => {
-    //       router.push({ name: 'Login' })
-    //     })
-    // },
-
     authenticateProfile({ commit, dispatch }) {
       auth('authenticate')
         .then(res => {
@@ -271,6 +259,10 @@ var store = new vuex.Store({
         }
         api('/weather/' + location.lat + '/' + location.long)
           .then(res => {
+            var number = res.data.main.temp;
+            var factor = Math.pow(10, 0);
+            var test = Math.round(number * factor) / factor;
+            res.data.main.temp = test;
             commit('setWeather', res.data)
           })
           .catch(commit('handleError', Error))
