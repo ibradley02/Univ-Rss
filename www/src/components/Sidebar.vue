@@ -23,21 +23,23 @@
                         <i class="fa fa-home"></i> Home</router-link>
                 </li>
                 <li>
-                    <a data-toggle="modal" data-target="#editProfileModal">
+                    <a data-toggle="modal" data-target="#editProfileModal" data-dismiss="#editFeedModal">
                         <i class="fa fa-cog"> Profile</i>
                     </a>
                 </li>
-                <!-- <li>
-                    <router-link to="Profile">
-                        <i class="fa fa-cog"></i> Profile</router-link>
-                </li> -->
                 <li>
                     <a href="#feedSubmenu" data-toggle="collapse" aria-expanded="false">
                         <i class="fa fa-feed"></i> Feeds</a>
                     <ul class="collapse list-unstyled" id="feedSubmenu">
                         <li>
+<<<<<<< HEAD
                             <a data-toggle="modal" data-target="#editFeedModal">
                                 <i class="fa fa-gear"></i>Edit Feeds</a>
+=======
+                            <a data-toggle="modal" data-target="#editFeedModal" data-dismiss="#editProfileModal">
+                                <i class="fa fa-gear"> Edit Feeds</i>
+                            </a>
+>>>>>>> 1c4a500d103adf6ad115e3fd574c486f4cd26bbc
                         </li>
                         <li v-for="category in categories">
                             <a :href="'#'+ category._id" data-toggle="collapse" aria-expanded="false">

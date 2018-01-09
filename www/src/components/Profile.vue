@@ -45,111 +45,113 @@
                 </div>
                 <!-- MODAL CLOSE -->
                 <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-danger btn-center" data-dismiss="modal">Close</button> -->
+                    <button type="button" class="btn btn-danger btn-center" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
-    </div>
 </template>
 
 <script>
-    import Navbar from './Navbar'
-    import Sidebar from './Sidebar'
-    export default {
-        name: "profile",
-        data() {
-            return {
-                profile: {
-                    name: '',
-                    username: '',
-                    image: '',
-                    background: ''
-                },
-            }
-        },
-        components: {
-            Sidebar,
-            Navbar
-        },
-        methods: {
-            updateProfile() {
-                var update = {
-                    userId: this.user._id,
-                    name: this.profile.name,
-                    password: this.profile.password,
-                    image: this.profile.image,
-                    background: this.profile.background
-                }
-                this.$store.dispatch('updateProfile', update)
-                this.profile = {
-                    name: '',
-                    email: '',
-                    username: '',
-                    image: '',
-                    background: ''
-                }
-            }
-        },
-        computed: {
-            user() {
-                return this.$store.state.user
-            }
-        }
-    }  
+import Navbar from "./Navbar";
+import Sidebar from "./Sidebar";
+export default {
+  name: "profile",
+  data() {
+    return {
+      profile: {
+        name: "",
+        username: "",
+        image: "",
+        background: ""
+      }
+    };
+  },
+  components: {
+    Sidebar,
+    Navbar
+  },
+  methods: {
+    updateProfile() {
+      var update = {
+        userId: this.user._id,
+        name: this.profile.name,
+        password: this.profile.password,
+        image: this.profile.image,
+        background: this.profile.background
+      };
+      this.$store.dispatch("updateProfile", update);
+      this.profile = {
+        name: "",
+        email: "",
+        username: "",
+        image: "",
+        background: ""
+      };
+    }
+  },
+  computed: {
+    user() {
+      return this.$store.state.user;
+    }
+  }
+};
 </script>
 
 <style scoped>
-    .modal-content {
-        background-color: black;
-        color: white;
-    }
-    input {
-        text-align: center;
-    }
+.close{
+    color: white;
+}
+.modal-content {
+  background-color: black;
+  color: white;
+}
+input {
+  text-align: center;
+}
 
-    .fa {
-        color: black;
-    }
+.fa {
+  color: black;
+}
 
-    .backgroundImage {
-        height: 12rem;
-        width: 15rem;
-    }
+.backgroundImage {
+  height: 12rem;
+  width: 15rem;
+}
 
-    .userImage {
-        border-radius: 50%;
-        height: 12rem;
-        width: 12rem;
-    }
+.userImage {
+  border-radius: 50%;
+  height: 12rem;
+  width: 12rem;
+}
 
-    .background {
-        background: no-repeat;
-        background-position: center;
-        background-size: cover;
-        background-attachment: fixed;
-        margin: 0px 0px 0px 0px;
-        height: 100vh;
-    }
+.background {
+  background: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  margin: 0px 0px 0px 0px;
+  height: 100vh;
+}
 
-    .menu {
-        cursor: pointer;
-        margin-left: 2vw;
-        color: white;
-        position: fixed;
-        z-index: 1;
-        top: 10px;
-        left: 10px;
-    }
+.menu {
+  cursor: pointer;
+  margin-left: 2vw;
+  color: white;
+  position: fixed;
+  z-index: 1;
+  top: 10px;
+  left: 10px;
+}
 
-    .sidebar-container {
-        margin-top: 10vh;
-        display: relative;
-        position: fixed;
-    }
+.sidebar-container {
+  margin-top: 10vh;
+  display: relative;
+  position: fixed;
+}
 
-    .panel {
-        width: 50%;
-        margin: 10vh auto;
-    }
+.panel {
+  width: 50%;
+  margin: 10vh auto;
+}
 </style>
