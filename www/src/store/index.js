@@ -217,7 +217,6 @@ var store = new vuex.Store({
       auth('authenticate')
         .then(res => {
           commit('setUser', res.data.data)
-          router.push({ name: 'Profile' })
         })
         .catch(err => {
           router.push({ name: 'Login' })

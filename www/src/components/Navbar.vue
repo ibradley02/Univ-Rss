@@ -7,7 +7,6 @@
                     <span></span>
                     <span></span>
                 </div>
-                </a>
             </div>
             <div class="col-sm-9">
                 <div class="panel-style text-center animated fadeInLeftBig" v-if="user.clock">

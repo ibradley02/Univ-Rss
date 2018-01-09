@@ -12,21 +12,6 @@
                         <div class="col-sm-12">
                             <h3>Edit Feeds</h3>
                         </div>
-                        <!-- <div class="col-sm-3">
-                            <a @click="toggleFormState">
-                                <i class="fa fa-search"></i> Search Feeds
-                            </a>
-                        </div>
-                        <div class="col-sm-3">
-                            <a @click="toggleCreateFeedState">
-                                <i class="fa fa-plus"></i> Create Feed
-                            </a>
-                        </div>
-                        <div class="col-sm-4">
-                            <a @click="toggleCreateFormState">
-                                <i class="fa fa-plus"></i> Create Category
-                            </a>
-                        </div> -->
                     </div>
                     <!-- CREAT CATEGORY FORM -->
                     <div class="modal-body">
@@ -63,7 +48,7 @@
                                             <input type="text" class="form-control" placeholder="Feed URL" v-model="feed.url">
                                         </div>
                                         <div class="form-group">
-                                            <button type="submit">SUBMIT</button>
+                                            <button type="submit">Submit</button>
                                         </div>
                                     </form>
                                 </div>
@@ -89,7 +74,7 @@
                     </div>
                     <!-- MODAL CLOSE -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger btn-center" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger btn-center close-style" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
@@ -218,9 +203,11 @@
     }
 
     .close {
-        color: white;
+        color: white !important;
     }
-
+    .close-style {
+        color: white !important;
+    }
     .modal-fade {
         z-index: 100 !important;
     }
