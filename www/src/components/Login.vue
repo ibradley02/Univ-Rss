@@ -84,6 +84,7 @@
                 Vue.googleAuth().signIn(this.onSignInSuccess, this.onSignInError)
             },
             onSignInSuccess: function (authorizationCode) {
+                console.log("User: ", authorizationCode)
                 this.toggleLoading()
                 this.resetResponse()
                 this.$store.dispatch('getGoogleUser', authorizationCode)
