@@ -25,7 +25,6 @@ var store = new vuex.Store({
     boards: [],
     todos: [],
     activeBoard: {},
-
     error: {},
     oauth: {},
     user: {},
@@ -165,6 +164,7 @@ var store = new vuex.Store({
       auth.post('login', user)
         .then(res => {
           if (!res.data.error) {
+            dispatch('getAll')
             commit('setUser', res.data.data)
             router.push({ name: 'Home' })
           } else {
@@ -188,8 +188,8 @@ var store = new vuex.Store({
     authenticate({ commit, dispatch }) {
       auth('authenticate')
         .then(res => {
+          dispatch('getAll')
           commit('setUser', res.data.data)
-
           router.push({ name: 'Home' })
         })
         .catch(err => {
@@ -199,16 +199,30 @@ var store = new vuex.Store({
     googleAuthenticate({ commit, dispatch }, newData) {
       auth('authenticate')
         .then(res => {
-          res.data.data.name = newData.ig
-          res.data.data.image = newData.Paa
           console.log("googleToken: ", newData)
-          dispatch('updateProfile', res.data.data)
-          commit('setUser', res.data.data)
-          router.push({ name: 'Home' })
+          dispatch('getAll')
+          if(res.data.data.name == undefined){
+            res.data.data.name = newData.ig
+            res.data.data.image = newData.Paa
+            dispatch('updateProfile', res.data.data)
+            commit('setUser', res.data.data)
+            router.push({ name: 'Home' })
+          }else{
+
+            commit('setUser', res.data.data)
+            router.push({ name: 'Home' })
+          }
         })
         .catch(err => {
           router.push({ name: 'Login' })
         })
+    },
+    getAll({commit, dispatch}){
+      dispatch('getWeather')
+      dispatch('getTodos')
+      dispatch('getEvents')
+      dispatch('getQuote')
+      dispatch('getBoards')
     },
     getCal({ commit, dispatch }) {
       api('/g-cal').then(res => console.log("calender: ", res)).catch(err => console.log(err))
@@ -226,6 +240,7 @@ var store = new vuex.Store({
       auth.delete('logout')
         .then(res => {
           commit('setUser', {})
+          commit('setBoards', [])
           router.push({ name: 'Login' })
         })
 
