@@ -25,7 +25,6 @@ var store = new vuex.Store({
     boards: [],
     todos: [],
     activeBoard: {},
-
     error: {},
     oauth: {},
     user: {},
@@ -165,6 +164,7 @@ var store = new vuex.Store({
       auth.post('login', user)
         .then(res => {
           if (!res.data.error) {
+            dispatch('getAll')
             commit('setUser', res.data.data)
             router.push({ name: 'Home' })
           } else {
@@ -188,8 +188,8 @@ var store = new vuex.Store({
     authenticate({ commit, dispatch }) {
       auth('authenticate')
         .then(res => {
+          dispatch('getAll')
           commit('setUser', res.data.data)
-
           router.push({ name: 'Home' })
         })
         .catch(err => {
@@ -203,12 +203,20 @@ var store = new vuex.Store({
           res.data.data.image = newData.Paa
           console.log("googleToken: ", newData)
           dispatch('updateProfile', res.data.data)
+          dispatch('getAll')
           commit('setUser', res.data.data)
           router.push({ name: 'Home' })
         })
         .catch(err => {
           router.push({ name: 'Login' })
         })
+    },
+    getAll({commit, dispatch}){
+      dispatch('getWeather')
+      dispatch('getTodos')
+      dispatch('getEvents')
+      dispatch('getQuote')
+      dispatch('getBoards')
     },
     getCal({ commit, dispatch }) {
       api('/g-cal').then(res => console.log("calender: ", res)).catch(err => console.log(err))
@@ -238,6 +246,7 @@ var store = new vuex.Store({
       auth.delete('logout')
         .then(res => {
           commit('setUser', {})
+          commit('setBoards', [])
           router.push({ name: 'Login' })
         })
 
