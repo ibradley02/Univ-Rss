@@ -199,13 +199,19 @@ var store = new vuex.Store({
     googleAuthenticate({ commit, dispatch }, newData) {
       auth('authenticate')
         .then(res => {
-          res.data.data.name = newData.ig
-          res.data.data.image = newData.Paa
           console.log("googleToken: ", newData)
-          dispatch('updateProfile', res.data.data)
           dispatch('getAll')
-          commit('setUser', res.data.data)
-          router.push({ name: 'Home' })
+          if(res.data.data.name == undefined){
+            res.data.data.name = newData.ig
+            res.data.data.image = newData.Paa
+            dispatch('updateProfile', res.data.data)
+            commit('setUser', res.data.data)
+            router.push({ name: 'Home' })
+          }else{
+
+            commit('setUser', res.data.data)
+            router.push({ name: 'Home' })
+          }
         })
         .catch(err => {
           router.push({ name: 'Login' })
