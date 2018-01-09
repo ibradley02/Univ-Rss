@@ -23,9 +23,14 @@
                         <i class="fa fa-home"></i> Home</router-link>
                 </li>
                 <li>
+                    <a data-toggle="modal" data-target="#editProfileModal">
+                        <i class="fa fa-cog"> Profile</i>
+                    </a>
+                </li>
+                <!-- <li>
                     <router-link to="Profile">
                         <i class="fa fa-cog"></i> Profile</router-link>
-                </li>
+                </li> -->
                 <li>
                     <a href="#feedSubmenu" data-toggle="collapse" aria-expanded="false">
                         <i class="fa fa-feed"></i> Feeds</a>
@@ -44,18 +49,18 @@
                                     <i class="fa fa-remove pull-right" @click="removeCategory(category._id)"></i>
                                 </div>
                             </div>
-                                <ul class="collapse list unstyled" :id="category._id">
-                                    <li v-for="feed in feeds">
-                                        <div v-if="category._id == feed.categoryId" class="row">
-                                            <div class="form-check col-sm-4">
-                                                   <input type="checkbox" class="form-check-input" :id="feed._id">
-                                               </div>
-                                            <div class="feedStyle col-sm-8">
-                                                <h5>{{feed.name}}</h5>
-                                            </div>
+                            <ul class="collapse list unstyled" :id="category._id">
+                                <li v-for="feed in feeds">
+                                    <div v-if="category._id == feed.categoryId" class="row">
+                                        <div class="form-check col-sm-4">
+                                            <input type="checkbox" class="form-check-input" :id="feed._id">
                                         </div>
-                                    </li>
-                                </ul>
+                                        <div class="feedStyle col-sm-8">
+                                            <h5>{{feed.name}}</h5>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </li>
@@ -105,6 +110,7 @@
 </template>
 
 <script>
+    import Profile from './Profile'
     import Feed from './Feed'
     import Spotify from './Spotify'
     export default {
@@ -127,7 +133,8 @@
 
         components: {
             Feed,
-            Spotify
+            Spotify,
+            Profile
         },
         mounted() {
             this.$store.dispatch('getCategories'),

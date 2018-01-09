@@ -36,6 +36,7 @@
         </div>
       </div>
     </div>
+    <profile></profile>
     <div>
       <feed></feed>
     </div>

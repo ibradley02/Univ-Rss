@@ -187,6 +187,11 @@
 </script>
 
 <style scoped>
+    .modal-content {
+        background-color: black;
+        color: white;
+    }
+
     input {
         width: 80%;
         text-align: center;
@@ -210,6 +215,10 @@
 
     button {
         color: black;
+    }
+
+    .close {
+        color: white;
     }
 
     .modal-fade {

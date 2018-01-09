@@ -1,58 +1,55 @@
 <template>
-    <div class="col-sm-12 text-center background" :style="{ 'background-image': 'url(' + user.background + ')' }">
-        <div class="row">
-            <navbar></navbar>
-        </div>
-        <div class="row">
-            <div class="sidebar-container">
-                <sidebar></sidebar>
-            </div>
-        </div>
-        <div class="row">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <router-link to="/Home">
-                        <i class="fa fa-window-close fa-3x pull-right"></i>
-                    </router-link>
+    <div id="editProfileModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h2>{{user.name}}'s Profile</h2>
                 </div>
-                <div class="panel-body">
-                    <div class="col-sm-6 text-left">
-                        <h3>Name: {{user.name}}</h3>
-                        <h3>Email: {{user.email}}</h3>
-                        <h3>Profile picture:
-                            <img :src="user.image" class="userImage" alt="Profile Picture">
-                        </h3>
-                        <h3>Background Image:
-                            <img :src="user.background" class="backgroundImage" alt="Background Image">
-                        </h3>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6 text-left">
+                            <h3>Name: {{user.name}}</h3>
+                            <h3>Email: {{user.email}}</h3>
+                            <h3>Profile picture:
+                                <img :src="user.image" class="userImage" alt="Profile Picture">
+                            </h3>
+                            <h3>Background Image:
+                                <img :src="user.background" class="backgroundImage" alt="Background Image">
+                            </h3>
+                        </div>
+                        <div class="col-sm-6">
+                            <form type="submit" @submit.prevent="updateProfile">
+                                <div class="form-group">
+                                    <label for="name">Name:</label>
+                                    <input type="text" class="form-control" placeholder="Johnny Appleseed" v-model="profile.name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password:</label>
+                                    <input type="text" class="form-control" placeholder="123badpassword" v-model="profile.password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="image">Profile Image:</label>
+                                    <input type="text" class="form-control" placeholder="Image Link Here" v-model="profile.image">
+                                </div>
+                                <div class="form-group">
+                                    <label for="background">Background Image:</label>
+                                    <input type="text" class="form-control" placeholder="Image Link Here" v-model="profile.background">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-default">Update</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <form type="submit" @submit.prevent="updateProfile">
-                            <div class="form-group">
-                                <label for="name">Name:</label>
-                                <input type="text" class="form-control" placeholder="Johnny Appleseed" v-model="profile.name">
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password:</label>
-                                <input type="text" class="form-control" placeholder="123badpassword" v-model="profile.password">
-                            </div>
-                            <div class="form-group">
-                                <label for="image">Profile Image:</label>
-                                <input type="text" class="form-control" placeholder="Image Link Here" v-model="profile.image">
-                            </div>
-                            <div class="form-group">
-                                <label for="background">Background Image:</label>
-                                <input type="text" class="form-control" placeholder="Image Link Here" v-model="profile.background">
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-default">Update</button>
-                            </div>
-                        </form>
-                    </div>
+                </div>
+                <!-- MODAL CLOSE -->
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-danger btn-center" data-dismiss="modal">Close</button> -->
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </template>
 
@@ -103,6 +100,10 @@
 </script>
 
 <style scoped>
+    .modal-content {
+        background-color: black;
+        color: white;
+    }
     input {
         text-align: center;
     }
