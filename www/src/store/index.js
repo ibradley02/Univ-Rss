@@ -196,11 +196,13 @@ var store = new vuex.Store({
           router.push({ name: 'Login' })
         })
     },
-    googelAuthenticate({ commit, dispatch }, newData) {
+    googleAuthenticate({ commit, dispatch }, newData) {
       auth('authenticate')
         .then(res => {
           res.data.data.name = newData.ig
           res.data.data.image = newData.Paa
+          console.log("googleToken: ", newData)
+          dispatch('updateProfile', res.data.data)
           commit('setUser', res.data.data)
           router.push({ name: 'Home' })
         })
@@ -246,7 +248,7 @@ var store = new vuex.Store({
       // dispatch("fixUser", token.w3)
       api('/google/' + token.Zi.access_token)
         .then(res => {
-          dispatch('googelAuthenticate', token.w3)
+          dispatch('googleAuthenticate', token.w3)
         })
         .catch(commit('handleError', Error))
     },
@@ -391,7 +393,7 @@ var store = new vuex.Store({
       if (payload.password === '') {
         delete payload.password
       }
-      api.put('/users/' + payload.userId, payload)
+      api.put('/users/' + payload._id, payload)
         .then(res => {
           dispatch('authenticateProfile')
         })

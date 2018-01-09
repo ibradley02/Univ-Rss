@@ -74,7 +74,7 @@ export default {
   methods: {
     updateProfile() {
       var update = {
-        userId: this.user._id,
+        _id: this.user._id,
         name: this.profile.name,
         password: this.profile.password,
         image: this.profile.image,
