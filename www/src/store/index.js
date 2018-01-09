@@ -49,8 +49,9 @@ var store = new vuex.Store({
     },
     setUser(state, data) {
       state.user = data
-      state.oauth = data.oauth
+      // state.oauth = data
     },
+  
     setWeather(state, data) {
       state.weather = data
     },
@@ -86,7 +87,7 @@ var store = new vuex.Store({
           commit('handleError', err)
         })
     },
-    modBoards({commit, dispatch}, boards){
+    modBoards({ commit, dispatch }, boards) {
       var newBoards = []
       var newIndex = 0
       for (var i = 0; i < boards.length; i++) {
@@ -106,7 +107,6 @@ var store = new vuex.Store({
             var test = {}
             test.height = ((item.h * 39) - 80)
             test.i = item.i
-            console.log("payload array: ", test)
             commit('setHeight', test)
             return
           }
@@ -162,7 +162,6 @@ var store = new vuex.Store({
 
     // USER LOGIN/REGISTER/LOGOUT
     login({ commit, dispatch }, user) {
-      debugger
       auth.post('login', user)
         .then(res => {
           if (!res.data.error) {
@@ -197,8 +196,20 @@ var store = new vuex.Store({
           router.push({ name: 'Login' })
         })
     },
+    googelAuthenticate({ commit, dispatch }, newData) {
+      auth('authenticate')
+        .then(res => {
+          res.data.data.name = newData.ig
+          res.data.data.image = newData.Paa
+          commit('setUser', res.data.data)
+          router.push({ name: 'Home' })
+        })
+        .catch(err => {
+          router.push({ name: 'Login' })
+        })
+    },
     getCal({ commit, dispatch }) {
-      api('/g-cal').then(res => console.log(res)).catch(err => console.log(err))
+      api('/g-cal').then(res => console.log("calender: ", res)).catch(err => console.log(err))
     },
 
     // authenticateProfile({ commit, dispatch }) {
@@ -212,7 +223,6 @@ var store = new vuex.Store({
     //     })
     // },
 
-
     authenticateProfile({ commit, dispatch }) {
       auth('authenticate')
         .then(res => {
@@ -224,7 +234,6 @@ var store = new vuex.Store({
         })
     },
     logout({ commit, dispatch }) {
-      debugger
       auth.delete('logout')
         .then(res => {
           commit('setUser', {})
@@ -232,6 +241,23 @@ var store = new vuex.Store({
         })
 
     },
+
+    // Google oAuth2
+    getGoogleUser({ commit, dispatch }, token) {
+      // dispatch("fixUser", token.w3)
+      api('/google/' + token.Zi.access_token)
+        .then(res => {
+          dispatch('googelAuthenticate', token.w3)
+        })
+        .catch(commit('handleError', Error))
+    },
+    // fixUser({ commit, dispatch }, data) {
+    //   var newData = {
+    //     name: data.ig,
+    //     image: data.Paa
+    //   }
+    //   commit("setGoogleUser", newData)
+    // },
 
     // Weather
     getWeather({ commit, dispatch }) {
@@ -253,15 +279,6 @@ var store = new vuex.Store({
 
 
     },
-    
-    // Google oAuth2
-    getGoogleUser({ commit, dispatch }, token) {
-      api('/google/' + token)
-        .then(res => {
-          dispatch('authenticate')
-        })
-        .catch(commit('handleError', Error))
-    },
 
     // Events
     getEvents({ commit, dispatch }) {
@@ -275,58 +292,58 @@ var store = new vuex.Store({
         }
         api('/event/' + location.lat + '/' + location.long)
           .then(res => {
-            console.log("events: ",res.data.events)
+            console.log("events: ", res.data.events)
             dispatch('modifyEventTime', res.data.events.event)
           })
           .catch(commit('handleError', Error))
       })
     },
-    modifyEventTime({commit, dispatch}, data){
+    modifyEventTime({ commit, dispatch }, data) {
       var newData = []
       var newTime = ""
       // loop to find the time in event
       for (let i = 0; i < data.length; i++) {
         var time = data[i].start_time;
         // Function to change time
-        (function(){
-          var D= new Date('2011-06-02T09:34:29+02:00');
-          if(!D || +D!==1307000069000){
-              Date.fromISO= function(s){
-                  var day, tz,
-                  rx=/^(\d{4}\-\d\d\-\d\d([tT][\d:\.]*)?)([zZ]|([+\-])(\d\d):(\d\d))?$/,
-                  p= rx.exec(s) || [];
-                  if(p[1]){
-                      day= p[1].split(/\D/);
-                      for(var i=0,L=day.length;i<L;i++){
-                      day[i]=parseInt(day[i], 10) || 0;
-                      };
-                      day[1]-= 1;
-                      day= new Date(Date.UTC.apply(Date, day));
-                      if(!day.getDate()) return NaN;
-                      if(p[5]){
-                          tz= (parseInt(p[5], 10)*60);
-                          if(p[6]) tz+= parseInt(p[6], 10);
-                          if(p[4]== '+') tz*= -1;
-                          if(tz) day.setUTCMinutes(day.getUTCMinutes()+ tz);
-                      }
-                      return day;
-                  }
-                  return NaN;
+        (function () {
+          var D = new Date('2011-06-02T09:34:29+02:00');
+          if (!D || +D !== 1307000069000) {
+            Date.fromISO = function (s) {
+              var day, tz,
+                rx = /^(\d{4}\-\d\d\-\d\d([tT][\d:\.]*)?)([zZ]|([+\-])(\d\d):(\d\d))?$/,
+                p = rx.exec(s) || [];
+              if (p[1]) {
+                day = p[1].split(/\D/);
+                for (var i = 0, L = day.length; i < L; i++) {
+                  day[i] = parseInt(day[i], 10) || 0;
+                };
+                day[1] -= 1;
+                day = new Date(Date.UTC.apply(Date, day));
+                if (!day.getDate()) return NaN;
+                if (p[5]) {
+                  tz = (parseInt(p[5], 10) * 60);
+                  if (p[6]) tz += parseInt(p[6], 10);
+                  if (p[4] == '+') tz *= -1;
+                  if (tz) day.setUTCMinutes(day.getUTCMinutes() + tz);
+                }
+                return day;
               }
-              // shim implemented;
+              return NaN;
+            }
+            // shim implemented;
           }
-          else{
-              Date.fromISO= function(s){
-                  return new Date(s);
-              }
-              //native ISO Date implemented;
+          else {
+            Date.fromISO = function (s) {
+              return new Date(s);
+            }
+            //native ISO Date implemented;
           }
-      })()
-      // call Function to change time
-      newTime = Date.fromISO(time).toLocaleString();
-      // insert new time in event and push to newData
-      data[i].start_time = newTime
-      newData.push(data[i])
+        })()
+        // call Function to change time
+        newTime = Date.fromISO(time).toLocaleString();
+        // insert new time in event and push to newData
+        data[i].start_time = newTime
+        newData.push(data[i])
       }
       commit('setEvent', newData)
     },

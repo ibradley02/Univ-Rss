@@ -19,9 +19,9 @@
                     <div class="form-group">
                         <button type="submit" class="btn">Login</button>
                     </div>
-                    <a class="toggle-link" @click="toggleFormState">Don't Have an Account? Signup now!</a>
+                    <a class="toggle-link cursor" @click="toggleFormState">Don't Have an Account? Signup now!</a>
                 </form>
-                <a id="signin-button" v-on:click="signIn">
+                <a id="signin-button" class="cursor" @click="signIn">
                     <i class="fa fa-google-plus-official fa-3x"></i>
                     Sign in with Google
                 </a>
@@ -49,7 +49,7 @@
                     <div class="form-group">
                         <button type="submit" class="btn">Register</button>
                     </div>
-                    <a class="toggle-link" @click="toggleFormState">Already Have an Account? Login now!</a>
+                    <a class="toggle-link cursor" @click="toggleFormState">Already Have an Account? Login now!</a>
                 </form>
             </div>
         </div>
@@ -86,8 +86,7 @@
             onSignInSuccess: function (authorizationCode) {
                 this.toggleLoading()
                 this.resetResponse()
-                this.$store.dispatch('getGoogleUser', authorizationCode.Zi.access_token)
-                console.log(authorizationCode)
+                this.$store.dispatch('getGoogleUser', authorizationCode)
             },
             onSignInError: function (error) {
                 this.response = 'Failed to sign-in'
@@ -147,5 +146,9 @@
         background-color: rgb(176, 209, 222) !important;
         height: 120vh;
         width: 100vw;
+    }
+
+    .cursor {
+        cursor: pointer;
     }
 </style>

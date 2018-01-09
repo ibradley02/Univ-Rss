@@ -37,28 +37,19 @@
                     <ul class="collapse list-unstyled" id="feedSubmenu">
                         <li>
                             <a data-toggle="modal" data-target="#editFeedModal">
-                                <i class="fa fa-gear"> Edit Feeds</i>
-                            </a>
+                                <i class="fa fa-gear"></i>Edit Feeds</a>
                         </li>
-                        <li v-for="category in categories" class="col-sm-12">
-                            <div class="categoryStyle">
-                                <a :href="'#'+ category._id" data-toggle="collapse" aria-expanded="false">
-                                    <h5>{{category.name}}</h5>
-                                </a>
-                                <div class="delete">
-                                    <i class="fa fa-remove pull-right" @click="removeCategory(category._id)"></i>
-                                </div>
-                            </div>
+                        <li v-for="category in categories">
+                            <a :href="'#'+ category._id" data-toggle="collapse" aria-expanded="false">
+                                {{category.name}}
+                                <i class="fa fa-remove" @click="removeCategory(category._id)"></i>
+                            </a>
                             <ul class="collapse list unstyled" :id="category._id">
                                 <li v-for="feed in feeds">
-                                    <div v-if="category._id == feed.categoryId" class="row">
-                                        <div class="form-check col-sm-4">
-                                            <input type="checkbox" class="form-check-input" :id="feed._id">
-                                        </div>
-                                        <div class="feedStyle col-sm-8">
-                                            <h5>{{feed.name}}</h5>
-                                        </div>
-                                    </div>
+                                    <a v-if="category._id == feed.categoryId" class="feed-name">
+                                        {{feed.name}}
+                                        <input type="checkbox" class="form-check-input" :id="feed._id">
+                                    </a>
                                 </li>
                             </ul>
                         </li>
@@ -300,6 +291,10 @@
         border-radius: 20px;
     }
 
+    .feed-name {
+        padding-left:6.5rem !important;
+    }
+
     .fa-cog {
         cursor: pointer;
     }
@@ -443,7 +438,7 @@
 
     ul ul a {
         font-size: 0.9em !important;
-        padding-left: 30px !important;
+        padding-left: 30px; 
         background: rgba(0, 1, 3, 0.521);
     }
 </style>

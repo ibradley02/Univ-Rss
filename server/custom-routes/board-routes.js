@@ -80,7 +80,7 @@ module.exports = {
             var authEmailUrl = "https://www.googleapis.com/gmail/v1/users/115581082286636298877/history?access_token="
             var tokenInfoUrl = 'https://www.googleapis.com/oauth2/v1/tokeninfo?access_token='
 
-            request(tokenInfoUrl + req.params.token, function (error, response, body) {
+            request(tokenInfoUrl + req.params.token , function (error, response, body) {
                 body = JSON.parse(body)
                 // console.log('statusCode:', response && response.statusCode)
                 Users.findOneAndUpdate({ email: body.email }, body, { upsert: true }).then(user => {
