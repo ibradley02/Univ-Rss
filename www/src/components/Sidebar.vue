@@ -20,20 +20,20 @@
             <ul class="list-unstyled components">
                 <li>
                     <router-link to="Home">
-                        <i class="fa fa-home"></i> Home</router-link>
+                        <i class="fa fa-home fa-lg"></i> Home</router-link>
                 </li>
                 <li>
                     <a @click="closeSidebar" data-toggle="modal" data-target="#editProfileModal" data-dismiss="#editFeedModal">
-                        <i class="fa fa-cog"> Profile</i>
+                        <i class="fa fa-cog fa-lg"></i> Profile
                     </a>
                 </li>
                 <li>
                     <a href="#feedSubmenu" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-feed"></i> Feeds</a>
+                        <i class="fa fa-feed fa-lg"></i> Feeds</a>
                     <ul class="collapse list-unstyled" id="feedSubmenu">
                         <li>
                             <a @click="closeSidebar" data-toggle="modal" data-target="#editFeedModal">
-                                <i class="fa fa-gear"></i> Edit Feeds</a>
+                                <i class="fa fa-gear fa-lg"></i> Edit Feeds</a>
                         </li>
                         <li v-for="category in categories">
                             <a :href="'#'+ category._id" data-toggle="collapse" aria-expanded="false">
@@ -53,27 +53,27 @@
                 </li>
                 <li>
                     <a href="#componentSubmenu" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-briefcase"></i> Components</a>
+                        <i class="fa fa-briefcase fa-lg"></i> Components</a>
                     <ul class="collapse list-unstyled" id="componentSubmenu">
                         <li>
                             <a @click="setClock">
-                                <i class="fa fa-clock-o"></i> Clock</a>
+                                <i class="fa fa-clock-o fa-lg"></i> Clock</a>
                         </li>
                         <li>
                             <a @click="setTodo">
-                                <i class="fa fa-list-ol"></i> To-Do</a>
+                                <i class="fa fa-list-ol fa-lg"></i> To-Do</a>
                         </li>
                         <li>
                             <a @click="setWeather">
-                                <i class="fa fa-snowflake-o"></i> Weather</a>
+                                <i class="fa fa-snowflake-o fa-lg"></i> Weather</a>
                         </li>
                         <li>
                             <a @click="setQuote">
-                                <i class="fa fa-commenting"></i> Inspirational Quote</a>
+                                <i class="fa fa-commenting fa-lg"></i> Inspirational Quote</a>
                         </li>
                         <li>
                             <a @click="createEvent">
-                                <i class="fa fa-calendar"></i> Local Events</a>
+                                <i class="fa fa-calendar fa-lg"></i> Local Events</a>
                         </li>
                         <li>
                             <a @click="closeSidebar" data-toggle="modal" data-target="#spotifyModal">
