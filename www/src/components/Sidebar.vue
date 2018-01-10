@@ -81,10 +81,16 @@
                             </a>
                         </li>
                         <li>
+                            <a @click="closeSidebar" data-toggle="modal" data-target="#imageModal">
+                                <i class="fa fa-picture-o fa-lg"></i> Image
+                            </a>
+                        </li>
+                        <li>
                             <a @click="getCal">
                                 <i class="fa fa-calendar fa-lg"></i> Get Google Calendar
                             </a>
                         </li>
+                        
                         <!-- <li>
                             <a @click="createSpotify">
                                 <i class="fa fa-spotify fa-lg"></i> Spotify </a>
@@ -100,6 +106,7 @@
     import Profile from './Profile'
     import Feed from './Feed'
     import Spotify from './Spotify'
+    import Photo from './Photo'
     export default {
         name: 'sidebar',
         data() {
@@ -121,7 +128,8 @@
         components: {
             Feed,
             Spotify,
-            Profile
+            Profile,
+            Photo
         },
         mounted() {
             this.$store.dispatch('getCategories'),
