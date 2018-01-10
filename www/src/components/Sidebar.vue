@@ -23,7 +23,7 @@
                         <i class="fa fa-home"></i> Home</router-link>
                 </li>
                 <li>
-                    <a data-toggle="modal" data-target="#editProfileModal" data-dismiss="#editFeedModal">
+                    <a @click="closeSidebar" data-toggle="modal" data-target="#editProfileModal" data-dismiss="#editFeedModal">
                         <i class="fa fa-cog"> Profile</i>
                     </a>
                 </li>
@@ -32,7 +32,7 @@
                         <i class="fa fa-feed"></i> Feeds</a>
                     <ul class="collapse list-unstyled" id="feedSubmenu">
                         <li>
-                            <a data-toggle="modal" data-target="#editFeedModal">
+                            <a @click="closeSidebar" data-toggle="modal" data-target="#editFeedModal">
                                 <i class="fa fa-gear"></i> Edit Feeds</a>
                         </li>
                         <li v-for="category in categories">
@@ -76,7 +76,7 @@
                                 <i class="fa fa-calendar"></i> Local Events</a>
                         </li>
                         <li>
-                            <a data-toggle="modal" data-target="#spotifyModal">
+                            <a @click="closeSidebar" data-toggle="modal" data-target="#spotifyModal">
                                 <i class="fa fa-spotify fa-lg"></i> Spotify
                             </a>
                         </li>
@@ -128,6 +128,10 @@
                 this.$store.dispatch('getFeeds')
         },
         methods: {
+            closeSidebar() {
+                $('#stack').toggleClass('open'),
+                $('#sidebar').toggleClass('active')
+            },
             removeCategory(category) {
                 this.$store.dispatch('removeCategory', category)
             },
@@ -288,7 +292,7 @@
     }
 
     .feed-name {
-        padding-left:6.5rem !important;
+        padding-left: 6.5rem !important;
     }
 
     .fa-cog {
@@ -434,7 +438,7 @@
 
     ul ul a {
         font-size: 0.9em !important;
-        padding-left: 30px; 
+        padding-left: 30px;
         background: rgba(0, 1, 3, 0.521);
     }
 </style>

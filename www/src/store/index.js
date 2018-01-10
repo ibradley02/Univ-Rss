@@ -199,7 +199,6 @@ var store = new vuex.Store({
     googleAuthenticate({ commit, dispatch }, newData) {
       auth('authenticate')
         .then(res => {
-          console.log("googleToken: ", newData)
           dispatch('getAll')
           if(res.data.data.name == undefined){
             res.data.data.name = newData.ig
