@@ -2,7 +2,7 @@
     <div class="row">
         <!-- BEGIN MODAL -->
 
-        <div id="spotifyModal" class="modal fade" role="dialog">
+        <div id="imageModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <!-- Modal EDIT FEED WINDOW -->
                 <div class="modal-content">
@@ -16,12 +16,12 @@
                             <div class="input">
                                 <form>
                                     <div class="form-group">
-                                        <label>Insert Spotify Playlist Link Here:</label>
-                                        <input type="url" class="form-control" v-model="spotify.link" placeholder="https://open.spotify.com/embed/user/spotify/playlist/37i9dQZF1DWT6MhXz0jw61">
+                                        <label>Insert Image Link Here:</label>
+                                        <input type="url" class="form-control" v-model="image.link" placeholder="https://www.planwallpaper.com/static/images/cool-wallpapers_3.jpg">
                                     </div>
                                     <div class="form-group">
-                                        <label>Playlist Name</label>
-                                        <input type="text" class="form-control" v-model="spotify.title" placeholder="Playlist Name Here">
+                                        <label>Image Name:</label>
+                                        <input type="text" class="form-control" v-model="image.title" placeholder="Image Name or Title Here">
                                     </div>
                                 </form>
                             </div>
@@ -29,7 +29,7 @@
                     </div>
                     <!-- MODAL CLOSE -->
                     <div class="modal-footer" style="text-align: center">
-                        <button class="btn btn-default btn-center" @click="createSpotify" data-dismiss="modal">Submit</button>
+                        <button class="btn btn-default btn-center" @click="createImage" data-dismiss="modal">Submit</button>
                     </div>
                 </div>
             </div>
@@ -39,10 +39,10 @@
 
 <script>
     export default {
-        name: "spotify",
+        name: "Photo",
         data() {
             return {
-                spotify: {}
+                image: {}
             }
         },
 
@@ -51,39 +51,29 @@
         },
         methods: {
 
-            createSpotify() {
+            createImage() {
                 var boards = this.$store.state.boards.length
                 var create = true
-                var spotify = this.spotify
-                var res = spotify.link.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+                var image = this.image
+                var res = image.link.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
                 if (res == null) {
                     create = false
                     return
-                }
-                var url1 = ""
-                var url2 = ""
-                for (var i = 0; i < spotify.link.length; i++) {
-                    var char = spotify.link[i];
-                    if(url1 != "https://open.spotify.com"){
-                        url1 += char
-                    }else{
-                        url2 += char
-                    }
                 }
                 if (create) {
                     this.newBoard = {
                         x: 7,
                         y: 0,
-                        w: 3,
-                        h: 10,
+                        w: 4,
+                        h: 8,
                         i: boards.toString(),
-                        component: "spotify",
-                        mediaLink: url1 + "/embed" + url2,
-                        title: spotify.title
+                        component: "photo",
+                        imageLink: image.link,
+                        title: image.title
                     }
 
                     this.$store.dispatch('createBoard', this.newBoard)
-                    this.spotify = {}
+                    this.picture = {}
                 }
             }
 
@@ -98,7 +88,7 @@
 </script>
 
 <style>
-    #spotifyModal {
+    #imageModal {
         z-index: 99999
     }
 </style>
