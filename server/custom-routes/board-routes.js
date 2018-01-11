@@ -4,11 +4,11 @@ let Feeds = require('../models/feed')
 
 module.exports = {
     searchFeed: {
-        path: '/searchFeed',
-        reqType: 'post',
+        path: '/searchfeeds/:name',
+        reqType: 'get',
         method(req, res, next) {
             let action = 'Search Feeds'
-            Feeds.find({ name: req.body.name })
+            Feeds.find({ name: req.params.name })
                 .then(feeds => {
                     res.send(handleResponse(action, feeds))
                 }).catch(error => {
@@ -17,7 +17,7 @@ module.exports = {
         }
     },
     submitFeed: {
-        path: '/feeds',
+        path: '/submitfeed',
         reqType: 'post',
         method(req, res, next) {
             let apiKey = 'u1le59ytbef1hkkspxk0ewbrd1lm3pcu1nuazvin'
@@ -30,11 +30,12 @@ module.exports = {
         }
     },
     getFeedsByUser: {
-        path: '/feeds',
+        path: '/feeds/:categoryId',
         reqType: 'get',
         method(req, res, next) {
+            debugger
             let action = 'make request for users feeds'
-            Feeds.find({ userId: {$in: req.sessions.uid }})
+            Feeds.find({ categoryIds: req.params.categoryId})
             .then(feeds => {
                 res.send(handleResponse(action, feeds))
             }).catch(error => {
@@ -43,11 +44,12 @@ module.exports = {
         }
     },
     updateFeed: {
-        path: '/updatefeed',
+        path: '/feeds/:_id',
         reqType: 'put',
         method(req, res, next) {
+            debugger
             let action = 'add userId to feed'
-            Feeds.findOneAndUpdate({ _id: req.body._id }, {$push: { categoryIds: req.body.categoryId }})
+            Feeds.findOneAndUpdate({ _id: req.params._id }, {$push: { categoryIds: req.body.categoryId }}, {$push: { userIds: req.session.uid}})
             .then(feed => {
                 console.log("update feed response: ", res)
                 res.send(handleResponse(action, feed))

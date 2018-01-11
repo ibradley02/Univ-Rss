@@ -200,13 +200,13 @@ var store = new vuex.Store({
       auth('authenticate')
         .then(res => {
           dispatch('getAll')
-          if(res.data.data.name == undefined){
+          if (res.data.data.name == undefined) {
             res.data.data.name = newData.ig
             res.data.data.image = newData.Paa
             dispatch('updateProfile', res.data.data)
             commit('setUser', res.data.data)
             router.push({ name: 'Home' })
-          }else{
+          } else {
 
             commit('setUser', res.data.data)
             router.push({ name: 'Home' })
@@ -216,13 +216,13 @@ var store = new vuex.Store({
           router.push({ name: 'Login' })
         })
     },
-    getAll({commit, dispatch}){
+    getAll({ commit, dispatch }) {
       dispatch('getWeather')
       dispatch('getTodos')
       dispatch('getEvents')
       dispatch('getQuote')
       dispatch('getBoards')
-      dispatch('getFeedsByUser')
+      // dispatch('getFeedsByUser')
     },
     getCal({ commit, dispatch }) {
       api('/g-cal').then(res => console.log("calender: ", res)).catch(err => console.log(err))
@@ -440,18 +440,49 @@ var store = new vuex.Store({
 
     // FEEDS
     searchFeeds({ commit, dispatch }, payload) {
-      api.post('searchFeed', payload)
+      api('/searchfeeds/' + payload.name)
         .then(res => {
-          console.log("feed search: ", res.data)
+          console.log("Search Results: ", res.data)
           commit('setSearchResults', res.data)
         })
     },
-    getFeedsByUser({ commit, dispatch }) {
-      api('/feeds')
+    postFeed({ commit, dispatch }, payload) {
+      api.post('feeds', payload.data)
         .then(res => {
           console.log("feed get: ", res)
-          commit('setFeeds', res.data)
+          dispatch('getFeedsByUser')
+          // commit('setFeeds', res.data)
         })
+    },
+    addUserFeed({ commit, dispatch }, payload){
+      api.put('/feeds/' + payload._id, payload)
+      .then(res => {
+        dispatch('getFeedsByUser', res.data)
+      })
+      .catch(err => {
+        commit('handleError', err)
+      })
+    },
+    getFeedsByUser({ commit, dispatch }, payload) {
+      debugger
+      api('/feeds/' + payload.categoryId)
+        .then(res => {
+          console.log("userFeeds: ", res)
+          dispatch('feedParse', res)
+        })
+    },
+    feedParse({ commit, dispatch }, res){
+      debugger
+      var feeds = []
+      for(var i = 0; i < res.length; i++){
+        var feed = res[i]
+        api.put('/updateFeeds', feed)
+        .then(response => {
+          console.log("updated feed: " + response)
+          feeds.push(response)
+        })
+      }
+      commit('setFeeds', feeds)
     },
     // addUserFeed({ commit, dispatch }, payload) {
     //   api.put('/updatefeed', payload)
@@ -462,19 +493,20 @@ var store = new vuex.Store({
     //   })
     // },
     // getUserFeeds({ commit, dispatch }) {
-     
+
     //   api('/user-feeds')
     //     .then(res => {
     //       console.log("user feeds: ", res.data)
     //       dispatch('getFeeds')
     //     })
     // },
-    addFeed({ commit, dispatch }, feed) {
+    createFeed({ commit, dispatch }, feed) {
       api.post('/feeds', feed)
         .then(res => {
-          console.log("add feed: ", res.data)
-          commit("setFeeds", res.data)
-          dispatch('getFeedsByUser')
+          console.log("created feed: ", res.data)
+          .catch(err => {
+            commit('handleError', err)
+          })
         })
     },
     createCategory({ commit, dispatch }, payload) {

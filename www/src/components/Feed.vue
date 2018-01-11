@@ -152,29 +152,18 @@
                 this.createFeedActive = !this.createFeedActive
             },
             searchFeeds() {
-                this.$store.dispatch('searchFeeds', { name: this.search.name })
+                var feed = {
+                    name: this.search.name.toLowerCase(),
+                }
+                this.$store.dispatch('searchFeeds', feed)
                 this.search.name = ''
             },
-            // addUserFeed() {
-            //     debugger
-            //     var userFeed = {
-            //         // name: this.feed.name,
-            //         _id: this.feed._id,
-            //         categoryId: this.feed.categoryId
-            //     }
-            //     this.$store.dispatch('addUserFeed', userFeed)
-            //     this.userFeed = {
-            //         name: '',
-            //         url: '',
-            //         categoryId: ''
-            //     }
-            // },
             createFeed() {
                 var newFeed = {
-                    name: this.feed.name,
+                    name: this.feed.name.toLowerCase(),
                     url: this.feed.url,
                 }
-                this.$store.dispatch('addFeed', newFeed)
+                this.$store.dispatch('createFeed', newFeed)
                 this.feed = {
                     name: '',
                     url: ''
