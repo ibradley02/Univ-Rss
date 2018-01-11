@@ -43,8 +43,8 @@
                             <ul class="collapse list unstyled" :id="category._id">
                                 <li v-for="feed in feeds">
                                     <a v-if="category._id == feed.categoryId" class="feed-name">
-                                        {{feed.name}}
                                         <input type="checkbox" class="form-check-input" :id="feed._id">
+                                        <h6>{{feed.name}}</h6>
                                     </a>
                                 </li>
                             </ul>
@@ -124,8 +124,7 @@
             Profile
         },
         mounted() {
-            this.$store.dispatch('getCategories'),
-                this.$store.dispatch('getFeeds')
+            this.$store.dispatch('getCategories')
         },
         methods: {
             removeCategory(category) {
@@ -236,7 +235,7 @@
 </script>
 
 <style scoped>
-    input {
+    /* input {
         width: 80%;
         text-align: center;
         margin: 0 auto;
@@ -244,7 +243,7 @@
 
     .input {
         display: inline-flex;
-    }
+    } */
 
     ul {
         list-style-type: none;

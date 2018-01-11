@@ -28,6 +28,9 @@
                   <div v-if="item.component == 'events'" id="event">
                     <event :i="item.i"></event>
                   </div>
+                  <!-- <div v-if="item.component == 'feeds'" id="feed">
+                      <feed :i="item.i"></feed>
+                    </div> -->
                 </grid-item>
               </grid-layout>
             </div>
@@ -91,6 +94,9 @@
       boards() {
         return this.$store.state.boards
       },
+      feeds() {
+        return this.$store.state.feeds
+      }
     },
     watch: {
       boards: function () {

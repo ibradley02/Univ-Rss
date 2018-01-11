@@ -17,7 +17,7 @@ module.exports = {
         }
     },
     submitFeed: {
-        path: '/feed',
+        path: '/feeds',
         reqType: 'post',
         method(req, res, next) {
             let apiKey = 'u1le59ytbef1hkkspxk0ewbrd1lm3pcu1nuazvin'
@@ -26,6 +26,33 @@ module.exports = {
                 var info = JSON.parse(body)
                 console.log(info)
                 res.send(info)
+            })
+        }
+    },
+    getFeedsByUser: {
+        path: '/feeds',
+        reqType: 'get',
+        method(req, res, next) {
+            let action = 'make request for users feeds'
+            Feeds.find({ userId: {$in: req.sessions.uid }})
+            .then(feeds => {
+                res.send(handleResponse(action, feeds))
+            }).catch(error => {
+                return next(handleResponse(action, null, error))
+            })
+        }
+    },
+    updateFeed: {
+        path: '/updatefeed',
+        reqType: 'put',
+        method(req, res, next) {
+            let action = 'add userId to feed'
+            Feeds.findOneAndUpdate({ _id: req.body._id }, {$push: { categoryIds: req.body.categoryId }})
+            .then(feed => {
+                console.log("update feed response: ", res)
+                res.send(handleResponse(action, feed))
+            }).catch(error => {
+                return next(handleResponse(action, null, error))
             })
         }
     },
