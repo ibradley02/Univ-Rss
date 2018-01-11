@@ -50,7 +50,6 @@ var store = new vuex.Store({
       state.user = data
       // state.oauth = data
     },
-
     setWeather(state, data) {
       state.weather = data
     },
@@ -64,8 +63,9 @@ var store = new vuex.Store({
       state.quote = data
     },
     setFeeds(state, data) {
-      console.log("setFeeds: ", data.data)
-      state.feeds = data.data
+      debugger
+      console.log("setFeeds: ", data)
+      state.feeds = data
     },
     setSearchResults(state, data) {
       state.searchResults = data.data
@@ -220,6 +220,7 @@ var store = new vuex.Store({
       dispatch('getEvents')
       dispatch('getQuote')
       dispatch('getBoards')
+      dispatch('getFeedsByUser')
     },
     getCal({ commit, dispatch }) {
       api('/g-cal').then(res => console.log("calender: ", res)).catch(err => console.log(err))
@@ -443,6 +444,7 @@ var store = new vuex.Store({
           commit('setSearchResults', res.data)
         })
     },
+<<<<<<< HEAD
     // getFeed({ commit, dispatch }, payload) {
     //   debugger
     //   api.post('feed', payload.data)
@@ -453,18 +455,43 @@ var store = new vuex.Store({
     // },
     getFeeds({ commit, dispatch }) {
       debugger
+=======
+    getFeedsByUser({ commit, dispatch }) {
+>>>>>>> 1509d28ba8177d74ad884fe6486dfca8345dfc62
       api('/feeds')
         .then(res => {
-          console.log("feeds get: ", res.data)
+          console.log("feed get: ", res)
           commit('setFeeds', res.data)
         })
     },
+    // addUserFeed({ commit, dispatch }, payload) {
+    //   api.put('/updatefeed', payload)
+    //   .then(res => {
+    //     console.log("updated feed: ", res)
+    //     commit("setFeeds", res.data)
+    //     dispatch("getFeedsByUser")
+    //   })
+    // },
+    // getUserFeeds({ commit, dispatch }) {
+     
+    //   api('/user-feeds')
+    //     .then(res => {
+    //       console.log("user feeds: ", res.data)
+    //       dispatch('getFeeds')
+    //     })
+    // },
     addFeed({ commit, dispatch }, feed) {
       debugger
       api.post('/feeds', feed)
         .then(res => {
+<<<<<<< HEAD
           console.log("add feed: ", res)
           dispatch('getFeeds', res.data)
+=======
+          console.log("add feed: ", res.data)
+          commit("setFeeds", res.data)
+          dispatch('getFeedsByUser')
+>>>>>>> 1509d28ba8177d74ad884fe6486dfca8345dfc62
         })
     },
     createCategory({ commit, dispatch }, payload) {

@@ -1,5 +1,5 @@
 <template>
-    <div class="animated fadeInLeftBig" v-if="user.todo">
+    <div class="animated fadeInRightBig" v-if="user.todo">
         <div class="col-sm-12">
             <div class="panel panel-default panel-style">
                 <div class="panel-heading">

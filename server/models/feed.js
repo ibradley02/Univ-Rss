@@ -4,10 +4,10 @@ var Schema = mongoose.Schema
 var ObjectId = Schema.Types.ObjectId
 
 var schema = new Schema({
-    name: { type: String, required: true},
+    name: { type: String, required: true },
     url: { type: String, required: true },
-    boardId: { type: ObjectId, ref: models.board },
-    categoryId: { type: ObjectId, ref: models.category, required: true }
+    categoryIds: [{ type: ObjectId, ref: models.category }]
+    // userIds: [{ type: ObjectId, ref: models.user }],
   })
 
 

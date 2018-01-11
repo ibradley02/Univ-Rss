@@ -33,14 +33,14 @@
                                         <div class="form-group">
                                             <label>Create Feed:</label>
                                             <div>
-                                                <div class="form-group">
+                                                <!-- <div class="form-group">
                                                     <div class="col-sm-12 dropdown-style" title="choose category">
                                                         <select class="form-control text-center row" v-model="category.Id">
                                                             <option class="col-sm-12" selected disabled>Select Category</option>
                                                             <option class="col-sm-12" v-for="category in categories" :value="category._id">{{category.name}}</option>
                                                         </select>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                             </div>
                                             <input type="text" class="form-control" placeholder="Feed Name" v-model="feed.name">
                                         </div>
@@ -66,11 +66,31 @@
                                 </div>
                             </form>
                         </div>
-                        <div v-for="result in searchResults">
-                            <h6>{{result.name}}
-                                <i class="fa fa-plus" style="color: green"></i>
-                            </h6>
-                        </div>
+                        <!-- <form type="submit" @submit.prevent="addUserFeed"> -->
+                            <div v-for="result in searchResults">
+                                <result :feedprop="result"></result>
+                                <!-- <div class="form-group">-->
+                                    <!-- <div>
+                                        <h6>{{result.name}}</h6>
+                                    </div> -->
+                                <!--</div>
+                                adds feed to the users account
+                                <div v-if="categoryList" class="col-sm-3 dropdown-style" title="choose category">
+                                    <div class="form-group">
+                                        <select class="text-center row" v-model="feed.categoryId">
+                                            <option class="col-sm-3" selected>Select Category</option>
+                                            <option class="col-sm-3" v-for="category in categories" :value="category._id">{{category.name}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit">Add Feed</button>
+                                    </div>
+                                </div>
+                                <div v-else>
+                                    <i class="fa fa-plus" style="color: green" @click="toggleCategoryList"></i>
+                                </div> -->
+                            </div>
+                        <!-- </form> -->
                     </div>
                     <!-- MODAL CLOSE -->
                     <div class="modal-footer">
@@ -83,6 +103,7 @@
 </template>
 
 <script>
+    import Result from './Result'
     export default {
         name: 'feed',
         data() {
@@ -90,6 +111,7 @@
                 searchFormActive: true,
                 createFormActive: true,
                 createFeedActive: true,
+                categoryList: false,
                 search: {
                     name: ''
                 },
@@ -104,8 +126,11 @@
                 }
             }
         },
+        components: {
+            Result
+        },
         mounted() {
-            this.$store.dispatch('getCategories')
+            // this.$store.dispatch('getCategories')
         },
         methods: {
             // submitFeed() {
@@ -114,6 +139,9 @@
             //         url: ''
             //     }
             // },
+            toggleCategoryList() {
+                this.categoryList = !this.categoryList
+            },
             toggleFormState() {
                 this.searchFormActive = !this.searchFormActive
             },
@@ -127,11 +155,24 @@
                 this.$store.dispatch('searchFeeds', { name: this.search.name })
                 this.search.name = ''
             },
+            // addUserFeed() {
+            //     debugger
+            //     var userFeed = {
+            //         // name: this.feed.name,
+            //         _id: this.feed._id,
+            //         categoryId: this.feed.categoryId
+            //     }
+            //     this.$store.dispatch('addUserFeed', userFeed)
+            //     this.userFeed = {
+            //         name: '',
+            //         url: '',
+            //         categoryId: ''
+            //     }
+            // },
             createFeed() {
                 var newFeed = {
                     name: this.feed.name,
                     url: this.feed.url,
-                    categoryId: this.category.Id
                 }
                 this.$store.dispatch('addFeed', newFeed)
                 this.feed = {
@@ -205,9 +246,11 @@
     .close {
         color: white !important;
     }
+
     .close-style {
         color: white !important;
     }
+
     .modal-fade {
         z-index: 100 !important;
     }

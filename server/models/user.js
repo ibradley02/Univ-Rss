@@ -15,7 +15,7 @@ let schema = new Schema({
   quote: { type: Boolean, required: true, default: true },
   todo: { type: Boolean, required: true, default: true },
   clock: { type: Boolean, required: true, default: true },
-  event: { type: Boolean, required: true, default: true }
+  event: { type: Boolean, required: true, default: true },
 })
 
 
