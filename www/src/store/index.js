@@ -155,9 +155,7 @@ var store = new vuex.Store({
           })
       }
     },
-    upadeLayout({ commit, dispatch }, layout) {
-      commit('setLayout', layout)
-    },
+  
 
     // USER LOGIN/REGISTER/LOGOUT
     login({ commit, dispatch }, user) {
