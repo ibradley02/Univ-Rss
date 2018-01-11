@@ -149,4 +149,3 @@ function handleResponse(action, data, error) {
 // https://www.googleapis.com/gmail/v1/users/115581082286636298877/history
 
 // "scope": "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.circles.members.read https://www.googleapis.com/auth/plus.profile.agerange.read https://www.googleapis.com/auth/plus.profile.language.read https://www.googleapis.com/auth/plus.moments.write"
-

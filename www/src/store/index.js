@@ -155,9 +155,7 @@ var store = new vuex.Store({
           })
       }
     },
-    upadeLayout({ commit, dispatch }, layout) {
-      commit('setLayout', layout)
-    },
+  
 
     // USER LOGIN/REGISTER/LOGOUT
     login({ commit, dispatch }, user) {
@@ -445,14 +443,16 @@ var store = new vuex.Store({
           commit('setSearchResults', res.data)
         })
     },
-    getFeed({ commit, dispatch }, payload) {
-      api.post('feed', payload.data)
-        .then(res => {
-          console.log("feed get: ", res)
-          commit('setFeeds', res.data)
-        })
-    },
+    // getFeed({ commit, dispatch }, payload) {
+    //   debugger
+    //   api.post('feed', payload.data)
+    //     .then(res => {
+    //       console.log("feed get: ", res)
+    //       commit('setFeeds', res.data)
+    //     })
+    // },
     getFeeds({ commit, dispatch }) {
+      debugger
       api('/feeds')
         .then(res => {
           console.log("feeds get: ", res.data)
@@ -460,10 +460,11 @@ var store = new vuex.Store({
         })
     },
     addFeed({ commit, dispatch }, feed) {
+      debugger
       api.post('/feeds', feed)
         .then(res => {
           console.log("add feed: ", res)
-          dispatch('getFeed', res.data)
+          dispatch('getFeeds', res.data)
         })
     },
     createCategory({ commit, dispatch }, payload) {
