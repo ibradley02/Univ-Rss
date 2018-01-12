@@ -48,11 +48,12 @@ module.exports = {
         reqType: 'put',
         method(req, res, next) {
             debugger
+            var creatorId = req.id
             let action = 'add userId to feed'
-            Feeds.findOneAndUpdate({ _id: req.params._id }, {$push: { categoryIds: req.body.categoryId }}, {$push: { userIds: req.session.uid}})
+            Feeds.findOneAndUpdate({ _id: req.params._id }, {$push: { categoryIds: req.body.categoryId }})
             .then(feed => {
                 console.log("update feed response: ", res)
-                res.send(handleResponse(action, feed))
+                res.send(handleResponse(req.body.categoryId, feed))
             }).catch(error => {
                 return next(handleResponse(action, null, error))
             })

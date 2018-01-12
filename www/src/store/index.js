@@ -463,7 +463,7 @@ var store = new vuex.Store({
     },
     getFeedsByUser({ commit, dispatch }, payload) {
       debugger
-      api('/feeds/' + payload.categoryId)
+      api('/feeds/' + payload.data.categoryId)
         .then(res => {
           console.log("userFeeds: ", res)
           dispatch('feedParse', res)
