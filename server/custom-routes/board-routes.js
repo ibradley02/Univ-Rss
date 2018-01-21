@@ -35,7 +35,11 @@ module.exports = {
         method(req, res, next) {
             debugger
             let action = 'make request for users feeds'
+<<<<<<< HEAD
             Feeds.find({ categoryIds: req.params.categoryId})
+=======
+            Feeds.find({ userId: req.session.uid })
+>>>>>>> 03cec82b9eef7bc57524d3c59a99ba93730533ce
             .then(feeds => {
                 res.send(handleResponse(action, feeds))
             }).catch(error => {

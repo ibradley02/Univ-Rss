@@ -63,7 +63,6 @@ var store = new vuex.Store({
       state.quote = data
     },
     setFeeds(state, data) {
-      debugger
       console.log("setFeeds: ", data)
       state.feeds = data
     },
@@ -155,7 +154,9 @@ var store = new vuex.Store({
           })
       }
     },
-  
+    upadeLayout({ commit, dispatch }, layout) {
+      commit('setLayout', layout)
+    },
 
     // USER LOGIN/REGISTER/LOGOUT
     login({ commit, dispatch }, user) {
@@ -498,7 +499,11 @@ var store = new vuex.Store({
     //       dispatch('getFeeds')
     //     })
     // },
+<<<<<<< HEAD
     createFeed({ commit, dispatch }, feed) {
+=======
+    addFeed({ commit, dispatch }, feed) {
+>>>>>>> 03cec82b9eef7bc57524d3c59a99ba93730533ce
       api.post('/feeds', feed)
         .then(res => {
           console.log("created feed: ", res.data)

@@ -30,7 +30,7 @@
                             <div>
                                 <div class="input">
                                     <form type="submit" @submit.prevent="createFeed">
-                                        <div class="form-group">
+                                        <div class="form-group"> 
                                             <label>Create Feed:</label>
                                             <div>
                                                 <!-- <div class="form-group">
@@ -158,6 +158,22 @@
                 this.$store.dispatch('searchFeeds', feed)
                 this.search.name = ''
             },
+<<<<<<< HEAD
+=======
+            // addUserFeed() {
+            //     var userFeed = {
+            //         // name: this.feed.name,
+            //         _id: this.feed._id,
+            //         categoryId: this.feed.categoryId
+            //     }
+            //     this.$store.dispatch('addUserFeed', userFeed)
+            //     this.userFeed = {
+            //         name: '',
+            //         url: '',
+            //         categoryId: ''
+            //     }
+            // },
+>>>>>>> 03cec82b9eef7bc57524d3c59a99ba93730533ce
             createFeed() {
                 var newFeed = {
                     name: this.feed.name.toLowerCase(),
