@@ -34,7 +34,7 @@ module.exports = {
         reqType: 'get',
         method(req, res, next) {
             let action = 'make request for users feeds'
-            Feeds.find({ userId: {$in: req.sessions.uid }})
+            Feeds.find({ userId: req.session.uid })
             .then(feeds => {
                 res.send(handleResponse(action, feeds))
             }).catch(error => {

@@ -28,9 +28,9 @@
                   <div v-if="item.component == 'events'" id="event">
                     <event :i="item.i"></event>
                   </div>
-                  <!-- <div v-if="item.component == 'feeds'" id="feed">
-                      <feed :i="item.i"></feed>
-                    </div> -->
+                  <!-- <div v-if="item.component == 'rssfeed'" id="feed">
+                      <rssfeed :i="item.i"></rssfeed>
+                 </div> -->
                 </grid-item>
               </grid-layout>
             </div>
@@ -70,6 +70,7 @@
   import Feed from './Feed'
   import Spotify from './Spotify'
   import Photo from './Photo'
+  import RSSFeed from './RSSfeed'
   var GridLayout = VueGridLayout.GridLayout;
   var GridItem = VueGridLayout.GridItem;
   export default {
@@ -90,7 +91,8 @@
       Navbar,
       Feed,
       Spotify,
-      Photo
+      Photo,
+      RSSFeed
     },
     computed: {
       user() {

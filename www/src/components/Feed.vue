@@ -30,7 +30,7 @@
                             <div>
                                 <div class="input">
                                     <form type="submit" @submit.prevent="createFeed">
-                                        <div class="form-group">
+                                        <div class="form-group"> 
                                             <label>Create Feed:</label>
                                             <div>
                                                 <!-- <div class="form-group">
@@ -156,7 +156,6 @@
                 this.search.name = ''
             },
             // addUserFeed() {
-            //     debugger
             //     var userFeed = {
             //         // name: this.feed.name,
             //         _id: this.feed._id,
