@@ -158,8 +158,6 @@
                 this.$store.dispatch('searchFeeds', feed)
                 this.search.name = ''
             },
-<<<<<<< HEAD
-=======
             // addUserFeed() {
             //     var userFeed = {
             //         // name: this.feed.name,
@@ -173,7 +171,6 @@
             //         categoryId: ''
             //     }
             // },
->>>>>>> 03cec82b9eef7bc57524d3c59a99ba93730533ce
             createFeed() {
                 var newFeed = {
                     name: this.feed.name.toLowerCase(),

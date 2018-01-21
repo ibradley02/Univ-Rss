@@ -499,11 +499,7 @@ var store = new vuex.Store({
     //       dispatch('getFeeds')
     //     })
     // },
-<<<<<<< HEAD
     createFeed({ commit, dispatch }, feed) {
-=======
-    addFeed({ commit, dispatch }, feed) {
->>>>>>> 03cec82b9eef7bc57524d3c59a99ba93730533ce
       api.post('/feeds', feed)
         .then(res => {
           console.log("created feed: ", res.data)
