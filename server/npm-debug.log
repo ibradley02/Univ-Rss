@@ -1,0 +1,48 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/daniel/.nvm/versions/node/v7.6.0/bin/node',
+1 verbose cli   '/Users/daniel/.nvm/versions/node/v7.6.0/bin/npm',
+1 verbose cli   'run',
+1 verbose cli   'dev' ]
+2 info using npm@4.1.2
+3 info using node@v7.6.0
+4 verbose run-script [ 'predev', 'dev', 'postdev' ]
+5 info lifecycle univ-rss@1.0.0~predev: univ-rss@1.0.0
+6 silly lifecycle univ-rss@1.0.0~predev: no script for predev, continuing
+7 info lifecycle univ-rss@1.0.0~dev: univ-rss@1.0.0
+8 verbose lifecycle univ-rss@1.0.0~dev: unsafe-perm in lifecycle true
+9 verbose lifecycle univ-rss@1.0.0~dev: PATH: /Users/daniel/.nvm/versions/node/v7.6.0/lib/node_modules/npm/bin/node-gyp-bin:/Users/daniel/files/Univ-Rss/server/node_modules/.bin:/Users/daniel/.composer/vendor/bin/:/Users/daniel/.nvm/versions/node/v7.6.0/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+10 verbose lifecycle univ-rss@1.0.0~dev: CWD: /Users/daniel/files/Univ-Rss/server
+11 silly lifecycle univ-rss@1.0.0~dev: Args: [ '-c', 'node index.js' ]
+12 silly lifecycle univ-rss@1.0.0~dev: Returned: code: 1  signal: null
+13 info lifecycle univ-rss@1.0.0~dev: Failed to exec dev script
+14 verbose stack Error: univ-rss@1.0.0 dev: `node index.js`
+14 verbose stack Exit status 1
+14 verbose stack     at EventEmitter.<anonymous> (/Users/daniel/.nvm/versions/node/v7.6.0/lib/node_modules/npm/lib/utils/lifecycle.js:279:16)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at EventEmitter.emit (events.js:192:7)
+14 verbose stack     at ChildProcess.<anonymous> (/Users/daniel/.nvm/versions/node/v7.6.0/lib/node_modules/npm/lib/utils/spawn.js:40:14)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at ChildProcess.emit (events.js:192:7)
+14 verbose stack     at maybeClose (internal/child_process.js:890:16)
+14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
+15 verbose pkgid univ-rss@1.0.0
+16 verbose cwd /Users/daniel/files/Univ-Rss/server
+17 error Darwin 17.7.0
+18 error argv "/Users/daniel/.nvm/versions/node/v7.6.0/bin/node" "/Users/daniel/.nvm/versions/node/v7.6.0/bin/npm" "run" "dev"
+19 error node v7.6.0
+20 error npm  v4.1.2
+21 error code ELIFECYCLE
+22 error univ-rss@1.0.0 dev: `node index.js`
+22 error Exit status 1
+23 error Failed at the univ-rss@1.0.0 dev script 'node index.js'.
+23 error Make sure you have the latest version of node.js and npm installed.
+23 error If you do, this is most likely a problem with the univ-rss package,
+23 error not with npm itself.
+23 error Tell the author that this fails on your system:
+23 error     node index.js
+23 error You can get information on how to open an issue for this project with:
+23 error     npm bugs univ-rss
+23 error Or if that isn't available, you can get their info via:
+23 error     npm owner ls univ-rss
+23 error There is likely additional logging output above.
+24 verbose exit [ 1, true ]
