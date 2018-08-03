@@ -5,9 +5,7 @@
   "author": "Ian Bradley <ianbradleydebate@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run prod",
-    "build": "node build/build.js"
+    "start": "node server/index.js"
   },
   "dependencies": {
     "axios": "^0.17.1",
