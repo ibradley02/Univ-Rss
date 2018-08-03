@@ -8,7 +8,7 @@
     "start": "node server/index.js",
     "dev": "node index.js"
   },
-  "author": "Dan Swantek + Ian Bradley",
+  "author": "",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.16.0",
